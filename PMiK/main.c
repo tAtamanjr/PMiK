@@ -1,128 +1,134 @@
 //
-// Created by Oleksandr Bolbat, PMiK project
+// Oleksandr "tAtaman" Bolbat
+// PMiK project
 //
 
-#if !defined(STDLIB_H)
-#include "pico/stdlib.h"
-#endif
-#if !defined(CYW43_ARCH_H)
-#include "pico/cyw43_arch.h"
-#endif
-#if !defined(ADC_H)
-#include "hardware/adc.h"
+#ifndef THE_DATA_H
+#include "TheData.h"
 #endif
 
-#if !defined(BYTE_H)
-#include "Byte.h"
-#endif
-#if !defined(DIRECTION_H)
-#include "Direction.h"
-#endif
-#if !defined(JOYSTICK_H)
-#include "Joystick.h"
+#ifndef LED_1
+#define LED_1 15
+#define LED_0 14
 #endif
 
 
-#if !defined(ADC_X)
-#define GPIO_X 26           // Pin for reading x position
-#endif
-#if !defined(ADC_Y)
-#define GPIO_Y 27           // Pin for reading y position
-#endif
-#if !defined(GPIO_SW)
-#define GPIO_SW 18          // Pin for reading state of switch in joystick
-#endif
-#if !defined(LED_1)
-#define LED_1 16
-#endif
-#if !defined(LED_0)
-#define LED_0 17
-#endif
-
-
-uint16_t xValue;
-uint16_t yValue;
-Direction direction;
 byte_t states;
+ledOut_t ledOut;
 joystick_t joystick;
+display_t display;
 
 
-void picoInit();
+void setUp();
+void setUpADC();
+void setUpSPI();
+void startTimers();
+void setIRQ();
 
 
 int main() {
-    picoInit();
+    setUp();
 
-    gpio_init(LED_1);
-    gpio_set_dir(LED_1, GPIO_OUT);
-    gpio_init(LED_0);
-    gpio_set_dir(LED_0, GPIO_OUT);
+    initByte(&states);
+    initLedOut(&ledOut);
+    initJoystick(&joystick);
+    initDisplay(&display);
 
-    states = newByte();
-    joystick = newJoystick();
-    joystick.init(&joystick, GPIO_X, GPIO_Y);
+    startTimers();
+    setIRQ();
 
     // Sine fine loop
     while (true) {
         states.reset(&states);
-        direction = joystick.read(&joystick);
+        joystick.read(&joystick);
 
-        switch (direction) {
-            case UP_AND_RIGHT:
+        switch (joystick.direction) {
+            case NE:
                 states.on(&states, 2);
                 states.on(&states, 1);
                 states.on(&states, 0);
                 break;
-            case UP:
+            case N:
                 states.on(&states, 2);
                 states.on(&states, 1);
                 break;
-            case UP_AND_LEFT:
+            case NW:
                 states.on(&states, 2);
                 states.on(&states, 0);
                 break;
-            case RIGHT:
+            case E:
                 states.on(&states, 2);
                 break;
-            case LEFT:
+            case W:
                 states.on(&states, 1);
                 states.on(&states, 0);
                 break;
-            case DOWN_AND_RIGHT:
+            case SE:
                 states.on(&states, 1);
                 break;
-            case DOWN:
+            case S:
                 states.on(&states, 0);
                 break;
-            case DOWN_AND_LEFT:
+            case SW:
                 break;
             default:
                 break;
         }
 
-        cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, states.read(&states, 2));
+        ledOut.set(states.read(&states, 2));
         gpio_put(LED_1, states.read(&states, 1));
         gpio_put(LED_0, states.read(&states, 0));
-
-        printf("Joystick:\n");
-        printf("\tX: %d\n", joystick.xPosition);
-        printf("\tY: %d\n", joystick.yPosition);
-        printf("Leds: ");
-        for (int i = 7; i >= 0; i--) {
-            printf("%d", states.read(&states, i));
-        }
-        printf("\n");
-
-        sleep_ms(100);
     }
 }
 
-void picoInit() {
-    // Pico inits
+void setUp() {
     stdio_init_all();
+    setUpADC();
+    setUpSPI();
+
+    gpio_init(LED_1);
+    gpio_set_dir(LED_1, GPIO_OUT);
+    gpio_init(LED_0);
+    gpio_set_dir(LED_0, GPIO_OUT);
+}
+
+
+void setUpADC() {
     adc_init();
 
-    // LED on board
-    int rc = cyw43_arch_init();
-    hard_assert(rc == PICO_OK);
+    adc_gpio_init(JOYSTICK_GPIO_X);
+    adc_gpio_init(JOYSTICK_GPIO_Y);
+
+    gpio_init(JOYSTICK_GPIO_SW);
+}
+
+
+void setUpSPI() {
+    spi_init(spi_default, 100 M);
+    gpio_set_function(GPIO_SCK, GPIO_FUNC_SPI);
+    gpio_set_function(GPIO_SDA, GPIO_FUNC_SPI);
+
+    gpio_init(GPIO_CS);
+    gpio_init(GPIO_DC);
+    gpio_init(GPIO_LED);
+    gpio_init(GPIO_RESET);
+    
+    gpio_set_dir(GPIO_CS, GPIO_OUT);
+    gpio_set_dir(GPIO_DC, GPIO_OUT);
+    gpio_set_dir(GPIO_LED, GPIO_OUT);
+    gpio_set_dir(GPIO_RESET, GPIO_OUT);
+    
+    gpio_put(GPIO_CS, 1);
+    gpio_put(GPIO_DC, 1);
+    gpio_put(GPIO_LED, 1);
+    gpio_put(GPIO_RESET, 1);
+}
+
+void startTimers() {
+    struct repeating_timer timer;
+    add_repeating_timer_ms(250, joystickDataCallback, NULL, &timer);
+}
+
+void setIRQ() {
+    gpio_set_irq_enabled_with_callback(JOYSTICK_GPIO_SW, GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true, &joystickSwitchCallback);
 }
