@@ -1,6 +1,6 @@
 #
 # Oleksandr "tAtaman" Bolbat
-# PMiK project
+# PMiK project "CMakeLists.txt"
 #
 
 # == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==

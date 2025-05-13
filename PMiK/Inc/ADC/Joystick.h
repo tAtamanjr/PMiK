@@ -1,7 +1,11 @@
-//
-// Oleksandr "tAtaman" Bolbat
-// PMiK project
-//
+/**
+ * \file	Joystick.h
+ * \brief
+ */
+
+/*
+ * Copyright (c) 2025 Oleksandr "tAtaman" Bolbat
+ */
 
 #if !defined(JOYSTICK_H)
 #define JOYSTICK_H

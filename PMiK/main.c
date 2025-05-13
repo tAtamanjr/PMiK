@@ -1,11 +1,16 @@
-//
-// Oleksandr "tAtaman" Bolbat
-// PMiK project
-//
+/**
+ * \file	main.c
+ * \brief
+ */
+
+/*
+ * Copyright (c) 2025 Oleksandr "tAtaman" Bolbat
+ */
 
 #ifndef THE_DATA_H
 #include "TheData.h"
 #endif
+
 
 #ifndef LED_1
 #define LED_1 15
@@ -13,6 +18,7 @@
 #endif
 
 
+uint8_t x, y;
 byte_t states;
 ledOut_t ledOut;
 joystick_t joystick;
@@ -21,7 +27,7 @@ display_t display;
 
 void setUp();
 void setUpADC();
-void setUpSPI();
+void initElements();
 void startTimers();
 void setIRQ();
 
@@ -31,11 +37,11 @@ int main() {
 
     initByte(&states);
     initLedOut(&ledOut);
-    initJoystick(&joystick);
-    initDisplay(&display);
 
     startTimers();
     setIRQ();
+
+    display.fillScreen(BLACK);
 
     // Sine fine loop
     while (true) {
@@ -78,18 +84,29 @@ int main() {
         ledOut.set(states.read(&states, 2));
         gpio_put(LED_1, states.read(&states, 1));
         gpio_put(LED_0, states.read(&states, 0));
+
+        display.fillRectangle(x, y, 50, 30, BLACK);
+        x += 7;
+        y += 7;
+        if ((x + 50) >= DISPLAY_SIZE_X) x = 0;
+        if ((y + 30) >= DISPLAY_SIZE_Y) y = 0;
+        display.fillRectangle(x, y, 50, 30, BLUE);
+        sleep_ms(100);
     }
 }
 
 void setUp() {
     stdio_init_all();
     setUpADC();
-    setUpSPI();
+    initElements();
 
     gpio_init(LED_1);
     gpio_set_dir(LED_1, GPIO_OUT);
     gpio_init(LED_0);
     gpio_set_dir(LED_0, GPIO_OUT);
+
+    x = 10;
+    y = 10;
 }
 
 
@@ -102,26 +119,9 @@ void setUpADC() {
     gpio_init(JOYSTICK_GPIO_SW);
 }
 
-
-void setUpSPI() {
-    spi_init(spi_default, 100 M);
-    gpio_set_function(GPIO_SCK, GPIO_FUNC_SPI);
-    gpio_set_function(GPIO_SDA, GPIO_FUNC_SPI);
-
-    gpio_init(GPIO_CS);
-    gpio_init(GPIO_DC);
-    gpio_init(GPIO_LED);
-    gpio_init(GPIO_RESET);
-    
-    gpio_set_dir(GPIO_CS, GPIO_OUT);
-    gpio_set_dir(GPIO_DC, GPIO_OUT);
-    gpio_set_dir(GPIO_LED, GPIO_OUT);
-    gpio_set_dir(GPIO_RESET, GPIO_OUT);
-    
-    gpio_put(GPIO_CS, 1);
-    gpio_put(GPIO_DC, 1);
-    gpio_put(GPIO_LED, 1);
-    gpio_put(GPIO_RESET, 1);
+void initElements() {
+    initJoystick(&joystick);
+    initDisplay(&display);
 }
 
 void startTimers() {

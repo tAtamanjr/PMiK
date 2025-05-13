@@ -1,7 +1,11 @@
-//
-// Oleksandr "tAtaman" Bolbat
-// PMiK project
-//
+/**
+ * \file	TheData.h
+ * \brief
+ */
+
+/*
+ * Copyright (c) 2025 Oleksandr "tAtaman" Bolbat
+ */
 
 #ifndef THE_DATA_H
 #define THE_DATA_H
@@ -27,6 +31,9 @@
 #ifndef DEFINES_ADC_H
 #include "Defines_ADC.h"
 #endif
+#ifndef DEFINES_COLOR_H
+#include "Defines_Color.h"
+#endif
 #ifndef DEFINES_SPI_H
 #include "Defines_SPI.h"
 #endif
@@ -35,14 +42,16 @@
 #endif
 
 
+#ifndef DIRECTION_H
+#include "Direction.h"
+#endif
+
+
 #ifndef BYTE_H
 #include "Byte.h"
 #endif
 #ifndef LED_OUT_H
 #include "LedOut.h"
-#endif
-#ifndef DIRECTION_H
-#include "Direction.h"
 #endif
 #ifndef TIMER_CALLBACK_FUNCTIONS_H
 #include "TimerCallbackFunctions.h"

@@ -1,7 +1,11 @@
-//
-// Oleksandr "tAtaman" Bolbat
-// PMiK project
-//
+/**
+ * \file	TimerCallbackFunctions
+ * \brief
+ */
+
+/*
+ * Copyright (c) 2025 Oleksandr "tAtaman" Bolbat
+ */
 
 #ifndef TIMER_CALLBACK_FUNCTIONS_H
 #include "TimerCallbackFunctions.h"

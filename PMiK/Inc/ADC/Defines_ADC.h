@@ -1,7 +1,11 @@
-//
-// Oleksandr "tAtaman" Bolbat
-// PMiK project
-//
+/**
+ * \file	Defines_ADC.h
+ * \brief
+ */
+
+/*
+ * Copyright (c) 2025 Oleksandr "tAtaman" Bolbat
+ */
 
 #ifndef DEFINES_ADC_H
 #define DEFINES_ADC_H

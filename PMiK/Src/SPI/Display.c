@@ -1,60 +1,122 @@
-//
-// Oleksandr "tAtaman" Bolbat
-// PMiK project
-//
+/**
+ * \file	Display.c
+ * \brief
+ */
+
+/*
+ * Copyright (c) 2025 Oleksandr "tAtaman" Bolbat
+ */
 
 #ifndef DISPLAY_H
 #include "Display.h"
 
-inline static void init();
-inline static void reset();
-inline static void writeCommand(unsigned char);
-inline static void writeByte(unsigned char);
-static void setPixel(unsigned char, unsigned char, COLOR_T);
+
+static inline void sendCommand(uint8_t);
+static inline void sendData(uint8_t *, size_t);
+static void hardReset();
+static void setWindow(uint8_t, uint8_t, uint8_t, uint8_t);
+static void fillScreen(color_t);
+static void drawPixel(uint8_t, uint8_t, color_t);
+static void fillRectangle(uint8_t, uint8_t, uint8_t, uint8_t, color_t);
 
 
 void initDisplay(display_t *display) {
-    init();
+    gpio_init(GPIO_CS);
+    gpio_init(GPIO_DC);
+    gpio_init(GPIO_RESET);
 
-    display->setPixel = setPixel;
+    gpio_set_dir(GPIO_CS, GPIO_OUT);
+    gpio_set_dir(GPIO_DC, GPIO_OUT);
+    gpio_set_dir(GPIO_RESET, GPIO_OUT);
+
+    spi_init(SPI_PORT, 20 * 1000 * 1000);
+    gpio_set_function(GPIO_SCK, GPIO_FUNC_SPI);
+    gpio_set_function(GPIO_SDA, GPIO_FUNC_SPI);
+
+    SET_CS_1;
+
+    hardReset();
+
+    sendCommand(SWRESET);
+    INIT_SLEEP;
+    sendCommand(SLPOUT);
+    INIT_SLEEP;
+
+    sendCommand(COLMOD);
+    uint8_t colorMode = 0x05; //16 bit colors
+    sendData(&colorMode, 1);
+
+    sendCommand(MADCTL);
+    uint8_t madctl = 0x00; //16 bit colors
+    sendData(&madctl, 1);
+
+    sendCommand(DISPON);
+    INIT_SLEEP;
+
+    display->fillScreen = fillScreen;
+    display->drawPixel = drawPixel;
+    display->fillRectangle = fillRectangle;
 }
 
-static void setPixel(const unsigned char x, const unsigned char y, const COLOR_T color) {
-
+static void fillScreen(color_t color) {
+    fillRectangle(0, 0, DISPLAY_SIZE_X, DISPLAY_SIZE_Y, color);
 }
 
-inline static void init() {
-    reset();
-    sleep_ms(DELAY_MS);
-
-    writeCommand(SWRESET);
-    sleep_ms(DELAY_MS);
-    writeCommand(SLPOUT);
-    sleep_ms(200);
-
-    writeCommand(COLMOD);
-    writeByte(0x05);
-    writeCommand(DISPON);
+static void drawPixel(uint8_t x, uint8_t y, color_t color) {
+    if (x >= DISPLAY_SIZE_X || y >= DISPLAY_SIZE_Y) return;
+    setWindow(x, y, x, y);
+    uint8_t data[2] = {color >> 8, color & 0xff};
+    sendData(data, 2);
 }
 
-inline static void reset() {
-    DESELECT_DISPLAY;
+static void fillRectangle(uint8_t x, uint8_t y, uint8_t w, uint8_t h, color_t color) {
+    if (x >= DISPLAY_SIZE_X || y >= DISPLAY_SIZE_Y) return;
+    if ((x + w - 1) >= DISPLAY_SIZE_X) w = DISPLAY_SIZE_X - x;
+    if ((y + h - 1) >= DISPLAY_SIZE_Y) h = DISPLAY_SIZE_Y - y;
 
-    gpio_put(GPIO_RESET, 0);
-    sleep_ms(120);
+    setWindow(x, y, x + w - 1, y + h - 1);
 
-    gpio_put(GPIO_RESET, 1);
-    SELECT_DISPLAY;
+    uint8_t data[2] =  {color >> 8,  color & 0xFF};
+    for (int i = 0; i < w * h; i++) {
+        sendData(data, 2);
+    }
 }
 
-inline static void writeCommand(const unsigned char command) {
-    gpio_put(GPIO_DC, SEND_COMMAND);
-    spi_write_blocking(spi_default, &command, 1);
+static inline void sendCommand(uint8_t cmd) {
+    SET_DC_0;
+    SET_CS_0;
+    spi_write_blocking(SPI_PORT, &cmd, 1);
+    SET_CS_1;
 }
 
-inline static void writeByte(const unsigned char byte) {
-    gpio_put(GPIO_DC, SEND_DATA);
-    spi_write_blocking(spi_default, &byte, 1);
+static inline void sendData(uint8_t *data, size_t len) {
+    SET_DC_1;
+    SET_CS_0;
+    spi_write_blocking(SPI_PORT, data, len);
+    SET_CS_1;
+}
+
+static void hardReset(void) {
+    SET_RST_0;
+    RST_SLEEP;
+    SET_RST_1;
+    RST_SLEEP;
+}
+
+void setWindow(uint8_t startX, uint8_t startY, uint8_t endX, uint8_t endY) {
+    uint8_t data[4];
+
+    sendCommand(CASET);
+    data[0] = 0; data[1] = startX;
+    data[2] = 0; data[3] = endX;
+    sendData(data, 4);
+
+    sendCommand(RASET);
+    data[0] = 0; data[1] = startY;
+    data[2] = 0; data[3] = endY;
+    sendData(data, 4);
+
+    sendCommand(RAMWR);
 }
 
 

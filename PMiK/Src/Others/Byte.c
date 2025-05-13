@@ -1,15 +1,19 @@
-//
-// Oleksandr "tAtaman" Bolbat
-// PMiK project
-//
+/**
+ * \file	Byte.c
+ * \brief
+ */
+
+/*
+ * Copyright (c) 2025 Oleksandr "tAtaman" Bolbat
+ */
 
 #ifndef BYTE_H
 #include "Byte.h"
 
 
-static void on(byte_t *, unsigned char);
-static void off(byte_t *, unsigned char);
-static bool read(const byte_t *, unsigned char);
+static void on(byte_t *, uint8_t);
+static void off(byte_t *, uint8_t);
+static bool read(const byte_t *, uint8_t);
 static void reset(byte_t *);
 
 
@@ -21,15 +25,15 @@ void initByte(byte_t *byte) {
     byte->read = read;
 }
 
-static void on(byte_t *byte, const unsigned char bit) {
+static void on(byte_t *byte, const uint8_t bit) {
     byte->bits |= 1 << bit;
 }
 
-static void off(byte_t *byte, const unsigned char bit) {
+static void off(byte_t *byte, const uint8_t bit) {
     byte->bits &= 0 << bit;
 }
 
-static bool read(const byte_t *byte, const unsigned char bit) {
+static bool read(const byte_t *byte, const uint8_t bit) {
     return (byte->bits & 1 << bit);
 }
 

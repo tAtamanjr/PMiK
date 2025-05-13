@@ -1,7 +1,11 @@
-//
-// Oleksandr "tAtaman" Bolbat
-// PMiK project
-//
+/**
+ * \file	Display.h
+ * \brief
+ */
+
+/*
+ * Copyright (c) 2025 Oleksandr "tAtaman" Bolbat
+ */
 
 #ifndef DISPLAY_H
 #define DISPLAY_H
@@ -13,7 +17,9 @@
 
 
 typedef struct Display {
-    void (*setPixel) (const unsigned char x, const unsigned char y, const COLOR_T color);
+    void (*fillScreen) (color_t color);
+    void (*drawPixel) (uint8_t x, uint8_t y, color_t color);
+    void (*fillRectangle) (uint8_t x, uint8_t y, uint8_t w, uint8_t h, color_t color);
 } display_t;
 
 

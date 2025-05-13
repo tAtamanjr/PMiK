@@ -1,7 +1,11 @@
-//
-// Oleksandr "tAtaman" Bolbat
-// PMiK project
-//
+/**
+ * \file	IRQCallBackFunctions
+ * \brief
+ */
+
+/*
+ * Copyright (c) 2025 Oleksandr "tAtaman" Bolbat
+ */
 
 #ifndef IRQ_CALLBACK_FUNCTIONS_H
 #define IRQ_CALLBACK_FUNCTIONS_H
