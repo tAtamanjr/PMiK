@@ -26,15 +26,15 @@ void initLedOut(ledOut_t *ledOut) {
 }
 
 static void on() {
-    cyw43_arch_gpio_put(LED_OUT, 1);
+    cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 1);
 }
 
 static void off() {
-    cyw43_arch_gpio_put(LED_OUT, 0);
+    cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 0);
 }
 
 static void set(const bool state) {
-    cyw43_arch_gpio_put(LED_OUT, state);
+    cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, state);
 }
 
 

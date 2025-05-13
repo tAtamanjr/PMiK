@@ -11,6 +11,22 @@
 #include "TheData.h"
 #endif
 
+#ifndef BYTE_H
+#include "Byte.h"
+#endif
+#ifndef LED_OUT_H
+#include "LedOut.h"
+#endif
+#ifndef JOYSTICK_H
+#include "Joystick.h"
+#endif
+#ifndef DISPLAY_H
+#include "Display.h"
+#endif
+#ifndef VIEWS_H
+#include "Views.h"
+#endif
+
 
 #ifndef LED_1
 #define LED_1 15
@@ -18,8 +34,6 @@
 #endif
 
 
-uint8_t x, y;
-uint8_t colorIndex;
 byte_t states;
 ledOut_t ledOut;
 joystick_t joystick;
@@ -28,21 +42,22 @@ display_t display;
 
 void setUp();
 void initElements();
+void setIRQs();
 void startTimers();
-void setIRQ();
 
 
 int main() {
     setUp();
 
-    initByte(&states);
-    initLedOut(&ledOut);
-
+    setIRQs();
     startTimers();
-    setIRQ();
 
-    display.fillScreen(BLACK);
-    color_t colors[6] = {GRAY, WHITE, ORANGE, RED, YELLOW, BLUE};
+    // display.fillScreen(BLACK);
+    // color_t colors[6] = {GRAY, WHITE, ORANGE, RED, YELLOW, BLUE};
+    drawFieldView(&display);
+    drawBoat(&display, 0, 0);
+    drawBoat(&display, 4, 5);
+    drawBoat(&display, 9, 7);
 
     // Sine fine loop
     while (true) {
@@ -86,21 +101,21 @@ int main() {
         gpio_put(LED_1, states.read(&states, 1));
         gpio_put(LED_0, states.read(&states, 0));
 
-        display.fillRectangle(x, y, 50, 30, BLACK);
-        x += 7;
-        y += 7;
-        if ((x + 50) >= DISPLAY_SIZE_X) {
-            x = 0;
-            colorIndex++;
-            if (colorIndex >= 6) colorIndex = 0;
-        }
-        if ((y + 30) >= DISPLAY_SIZE_Y) {
-            y = 0;
-            colorIndex++;
-            if (colorIndex >= 6) colorIndex = 0;
-        }
-        display.fillRectangle(x, y, 50, 30, colors[colorIndex]);
-        sleep_ms(100);
+        // display.fillRectangle(x, y, 50, 30, BLACK);
+        // x += 7;
+        // y += 7;
+        // if ((x + 50) >= DISPLAY_SIZE_X) {
+        //     x = 0;
+        //     colorIndex++;
+        //     if (colorIndex >= 6) colorIndex = 0;
+        // }
+        // if ((y + 30) >= DISPLAY_SIZE_Y) {
+        //     y = 0;
+        //     colorIndex++;
+        //     if (colorIndex >= 6) colorIndex = 0;
+        // }
+        // display.fillRectangle(x, y, 50, 30, colors[colorIndex]);
+        // sleep_ms(100);
     }
 }
 
@@ -113,22 +128,25 @@ void setUp() {
     gpio_init(LED_0);
     gpio_set_dir(LED_0, GPIO_OUT);
 
-    x = 10;
-    y = 10;
+    // x = 10;
+    // y = 10;
 
-    colorIndex = 0;
+    // colorIndex = 0;
 }
 
 void initElements() {
+    initLedOut(&ledOut);
     initJoystick(&joystick);
     initDisplay(&display);
+
+    initByte(&states);
 }
 
 void startTimers() {
-    struct repeating_timer timer;
-    add_repeating_timer_ms(250, joystickDataCallback, NULL, &timer);
+    struct repeating_timer printer;
+    add_repeating_timer_ms(250, joystickDataCallback, NULL, &printer);
 }
 
-void setIRQ() {
+void setIRQs() {
     gpio_set_irq_enabled_with_callback(JOYSTICK_GPIO_SW, GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true, &joystickSwitchCallback);
 }

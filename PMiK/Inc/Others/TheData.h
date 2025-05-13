@@ -28,11 +28,14 @@
 #endif
 
 
+#ifndef COLOR_H
+#include "Color.h"
+#endif
 #ifndef DEFINES_ADC_H
 #include "Defines_ADC.h"
 #endif
-#ifndef DEFINES_COLOR_H
-#include "Defines_Color.h"
+#ifndef DEFINES_JOYSTICK_H
+#include "Defines_Joystick.h"
 #endif
 #ifndef DEFINES_SPI_H
 #include "Defines_SPI.h"
@@ -47,37 +50,11 @@
 #endif
 
 
-#ifndef BYTE_H
-#include "Byte.h"
-#endif
-#ifndef LED_OUT_H
-#include "LedOut.h"
-#endif
 #ifndef TIMER_CALLBACK_FUNCTIONS_H
 #include "TimerCallbackFunctions.h"
 #endif
 #ifndef IRQ_CALLBACK_FUNCTIONS_H
 #include "IRQCallbackFunctions.h"
-#endif
-#ifndef JOYSTICK_H
-#include "Joystick.h"
-#endif
-#ifndef DISPLAY_H
-#include "Display.h"
-#endif
-
-
-#ifndef LED_OUT
-#define LED_OUT CYW43_WL_GPIO_LED_PIN
-#endif
-#ifndef JOYSTICK_GPIO_SW
-#define JOYSTICK_GPIO_SW    13
-#endif
-#ifndef k
-#define k * 1000
-#endif
-#ifndef M
-#define M * 1000000
 #endif
 
 

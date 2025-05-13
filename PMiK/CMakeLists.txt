@@ -50,19 +50,19 @@ project(PMiK C CXX ASM)
 pico_sdk_init()
 
 # All headers
+include_directories(${CMAKE_SOURCE_DIR}/Inc/Others/Defines)
+include_directories(${CMAKE_SOURCE_DIR}/Inc/Others/Enums)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/Others)
-include_directories(${CMAKE_SOURCE_DIR}/Inc/Timers)
-include_directories(${CMAKE_SOURCE_DIR}/Inc/Interrupts)
-include_directories(${CMAKE_SOURCE_DIR}/Inc/ADC)
-include_directories(${CMAKE_SOURCE_DIR}/Inc/SPI)
-include_directories(${CMAKE_SOURCE_DIR}/Inc)
+include_directories(${CMAKE_SOURCE_DIR}/Inc/CallbackFunctions)
+include_directories(${CMAKE_SOURCE_DIR}/Inc/Devices)
+include_directories(${CMAKE_SOURCE_DIR}/Inc/Symbols)
+include_directories(${CMAKE_SOURCE_DIR}/Inc/Views)
 
 # All source files and main.c
 file(GLOB SRC_FILES ${CMAKE_SOURCE_DIR}/Src/Others/*.c
-                    ${CMAKE_SOURCE_DIR}/Src/Timers/*.c
-                    ${CMAKE_SOURCE_DIR}/Src/Interrupts/*.c
-                    ${CMAKE_SOURCE_DIR}/Src/ADC/*.c
-                    ${CMAKE_SOURCE_DIR}/Src/SPI/*.c)
+                    ${CMAKE_SOURCE_DIR}/Src/CallbackFunctions/*.c
+                    ${CMAKE_SOURCE_DIR}/Src/Devices/*.c
+                    ${CMAKE_SOURCE_DIR}/Src/Views/*.c)
 add_executable(PMiK main.c ${SRC_FILES})
 
 pico_set_program_name(PMiK "PMiK")

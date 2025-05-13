@@ -18,6 +18,8 @@ static void setWindow(uint8_t, uint8_t, uint8_t, uint8_t);
 static void fillScreen(color_t);
 static void drawPixel(uint8_t, uint8_t, color_t);
 static void fillRectangle(uint8_t, uint8_t, uint8_t, uint8_t, color_t);
+static void drawHorizontalLine(uint8_t, uint8_t, uint8_t, uint8_t, color_t);
+static void drawVerticalLine(uint8_t, uint8_t, uint8_t, uint8_t, color_t);
 
 
 void initDisplay(display_t *display) {
@@ -56,6 +58,8 @@ void initDisplay(display_t *display) {
     display->fillScreen = fillScreen;
     display->drawPixel = drawPixel;
     display->fillRectangle = fillRectangle;
+    display->drawHorizontalLine = drawHorizontalLine;
+    display->drawVerticalLine = drawVerticalLine;
 }
 
 static void fillScreen(color_t color) {
@@ -76,11 +80,38 @@ static void fillRectangle(uint8_t x, uint8_t y, uint8_t w, uint8_t h, color_t co
 
     setWindow(x, y, x + w - 1, y + h - 1);
 
-    uint8_t data[2] =  {color >> 8,  color & 0xFF};
+    uint8_t data[2] = {color >> 8,  color & 0xff};
     for (int i = 0; i < w * h; i++) {
         sendData(data, 2);
     }
 }
+
+void drawHorizontalLine(uint8_t x, uint8_t y, uint8_t l, uint8_t w, color_t color) {
+    if (x >= DISPLAY_SIZE_X || y >= DISPLAY_SIZE_Y) return;
+    if ((x + l - 1) >= DISPLAY_SIZE_X) l = DISPLAY_SIZE_X - x;
+    if ((y + w - 1) >= DISPLAY_SIZE_Y) w = DISPLAY_SIZE_Y - y;
+
+    setWindow(x, y, x + l - 1, y + w - 1);
+
+    uint8_t data[2] = {color >> 8,  color & 0xff};
+    for (int i = 0; i < l * w; i++) {
+        sendData(data, 2);
+    }
+}
+
+void drawVerticalLine(uint8_t x, uint8_t y, uint8_t l, uint8_t w, color_t color) {
+    if (x >= DISPLAY_SIZE_X || y >= DISPLAY_SIZE_Y) return;
+    if ((x + w - 1) >= DISPLAY_SIZE_X) w = DISPLAY_SIZE_X - x;
+    if ((y + l - 1) >= DISPLAY_SIZE_Y) l = DISPLAY_SIZE_Y - y;
+
+    setWindow(x, y, x + w - 1, y + l - 1);
+
+    uint8_t data[2] = {color >> 8,  color & 0xff};
+    for (int i = 0; i < l * w; i++) {
+        sendData(data, 2);
+    }
+}
+
 
 static inline void sendCommand(uint8_t cmd) {
     SET_DC_0;
