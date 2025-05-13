@@ -19,6 +19,7 @@
 
 
 uint8_t x, y;
+uint8_t colorIndex;
 byte_t states;
 ledOut_t ledOut;
 joystick_t joystick;
@@ -26,7 +27,6 @@ display_t display;
 
 
 void setUp();
-void setUpADC();
 void initElements();
 void startTimers();
 void setIRQ();
@@ -42,6 +42,7 @@ int main() {
     setIRQ();
 
     display.fillScreen(BLACK);
+    color_t colors[6] = {GRAY, WHITE, ORANGE, RED, YELLOW, BLUE};
 
     // Sine fine loop
     while (true) {
@@ -88,16 +89,23 @@ int main() {
         display.fillRectangle(x, y, 50, 30, BLACK);
         x += 7;
         y += 7;
-        if ((x + 50) >= DISPLAY_SIZE_X) x = 0;
-        if ((y + 30) >= DISPLAY_SIZE_Y) y = 0;
-        display.fillRectangle(x, y, 50, 30, BLUE);
+        if ((x + 50) >= DISPLAY_SIZE_X) {
+            x = 0;
+            colorIndex++;
+            if (colorIndex >= 6) colorIndex = 0;
+        }
+        if ((y + 30) >= DISPLAY_SIZE_Y) {
+            y = 0;
+            colorIndex++;
+            if (colorIndex >= 6) colorIndex = 0;
+        }
+        display.fillRectangle(x, y, 50, 30, colors[colorIndex]);
         sleep_ms(100);
     }
 }
 
 void setUp() {
     stdio_init_all();
-    setUpADC();
     initElements();
 
     gpio_init(LED_1);
@@ -107,16 +115,8 @@ void setUp() {
 
     x = 10;
     y = 10;
-}
 
-
-void setUpADC() {
-    adc_init();
-
-    adc_gpio_init(JOYSTICK_GPIO_X);
-    adc_gpio_init(JOYSTICK_GPIO_Y);
-
-    gpio_init(JOYSTICK_GPIO_SW);
+    colorIndex = 0;
 }
 
 void initElements() {

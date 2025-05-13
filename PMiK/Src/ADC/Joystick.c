@@ -15,6 +15,13 @@ static void read(joystick_t *);
 
 
 void initJoystick(joystick_t *joystick) {
+    gpio_init(JOYSTICK_GPIO_SW);
+
+    adc_init();
+
+    adc_gpio_init(JOYSTICK_ADC_X);
+    adc_gpio_init(JOYSTICK_ADC_Y);
+
     joystick->position[0] = 0x8fff;
     joystick->position[1] = 0x8fff;
     joystick->direction = NONE;
