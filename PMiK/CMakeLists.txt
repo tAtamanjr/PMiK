@@ -72,6 +72,7 @@ pico_enable_stdio_usb(PMiK 1)
 
 # Add the standard library to the build
 target_link_libraries(PMiK  pico_stdlib
+                            pico_rand
                             pico_cyw43_arch_none
                             hardware_adc
                             hardware_spi)

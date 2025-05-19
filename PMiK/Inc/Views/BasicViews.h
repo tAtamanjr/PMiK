@@ -11,7 +11,7 @@
 #define BASIC_VIEWS_H
 
 
-#ifndef THE_DATA_H
+#ifndef DISPLAY_H
 #include "Display.h"
 #endif
 #ifndef SHIP_VIEWS_H
@@ -19,8 +19,8 @@
 #endif
 
 
-void drawFieldView(display_t *display);
-void drawMenuView(display_t *display);
+void drawFieldView(const display_t *display);
+void drawMenuView(const display_t *display);
 
 
 #endif

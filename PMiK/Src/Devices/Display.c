@@ -12,7 +12,7 @@
 
 
 static inline void sendCommand(uint8_t);
-static inline void sendData(uint8_t *, size_t);
+static inline void sendData(const uint8_t *, size_t);
 static void hardReset();
 static void setWindow(uint8_t, uint8_t, uint8_t, uint8_t);
 static void fillScreen(color_t);
@@ -62,18 +62,18 @@ void initDisplay(display_t *display) {
     display->drawVerticalLine = drawVerticalLine;
 }
 
-static void fillScreen(color_t color) {
+static void fillScreen(const color_t color) {
     fillRectangle(0, 0, DISPLAY_SIZE_X, DISPLAY_SIZE_Y, color);
 }
 
-static void drawPixel(uint8_t x, uint8_t y, color_t color) {
+static void drawPixel(const uint8_t x, const uint8_t y, color_t color) {
     if (x >= DISPLAY_SIZE_X || y >= DISPLAY_SIZE_Y) return;
     setWindow(x, y, x, y);
     uint8_t data[2] = {color >> 8, color & 0xff};
     sendData(data, 2);
 }
 
-static void fillRectangle(uint8_t x, uint8_t y, uint8_t w, uint8_t h, color_t color) {
+static void fillRectangle(const uint8_t x, const uint8_t y, uint8_t w, uint8_t h, color_t color) {
     if (x >= DISPLAY_SIZE_X || y >= DISPLAY_SIZE_Y) return;
     if ((x + w - 1) >= DISPLAY_SIZE_X) w = DISPLAY_SIZE_X - x;
     if ((y + h - 1) >= DISPLAY_SIZE_Y) h = DISPLAY_SIZE_Y - y;
@@ -86,7 +86,7 @@ static void fillRectangle(uint8_t x, uint8_t y, uint8_t w, uint8_t h, color_t co
     }
 }
 
-void drawHorizontalLine(uint8_t x, uint8_t y, uint8_t l, uint8_t w, color_t color) {
+void drawHorizontalLine(const uint8_t x, const uint8_t y, uint8_t l, uint8_t w, color_t color) {
     if (x >= DISPLAY_SIZE_X || y >= DISPLAY_SIZE_Y) return;
     if ((x + l - 1) >= DISPLAY_SIZE_X) l = DISPLAY_SIZE_X - x;
     if ((y + w - 1) >= DISPLAY_SIZE_Y) w = DISPLAY_SIZE_Y - y;
@@ -99,7 +99,7 @@ void drawHorizontalLine(uint8_t x, uint8_t y, uint8_t l, uint8_t w, color_t colo
     }
 }
 
-void drawVerticalLine(uint8_t x, uint8_t y, uint8_t l, uint8_t w, color_t color) {
+void drawVerticalLine(const uint8_t x, const uint8_t y, uint8_t l, uint8_t w, color_t color) {
     if (x >= DISPLAY_SIZE_X || y >= DISPLAY_SIZE_Y) return;
     if ((x + w - 1) >= DISPLAY_SIZE_X) w = DISPLAY_SIZE_X - x;
     if ((y + l - 1) >= DISPLAY_SIZE_Y) l = DISPLAY_SIZE_Y - y;
@@ -113,28 +113,28 @@ void drawVerticalLine(uint8_t x, uint8_t y, uint8_t l, uint8_t w, color_t color)
 }
 
 
-static inline void sendCommand(uint8_t cmd) {
+static inline void sendCommand(const uint8_t cmd) {
     SET_DC_0;
     SET_CS_0;
     spi_write_blocking(SPI_PORT, &cmd, 1);
     SET_CS_1;
 }
 
-static inline void sendData(uint8_t *data, size_t len) {
+static inline void sendData(const uint8_t *data, const size_t len) {
     SET_DC_1;
     SET_CS_0;
     spi_write_blocking(SPI_PORT, data, len);
     SET_CS_1;
 }
 
-static void hardReset(void) {
+static void hardReset() {
     SET_RST_0;
     RST_SLEEP;
     SET_RST_1;
     RST_SLEEP;
 }
 
-void setWindow(uint8_t startX, uint8_t startY, uint8_t endX, uint8_t endY) {
+void setWindow(const uint8_t startX, const uint8_t startY, const uint8_t endX, const uint8_t endY) {
     uint8_t data[4];
 
     sendCommand(CASET);

@@ -37,14 +37,14 @@ static void read(joystick_t *joystick) {
     if (joystick->position[0] >= 3071) {
         if (joystick->position[1] >= 3071) joystick->direction = NE;
         else if (joystick->position[1] <= 1024) joystick->direction = NW;
-        else joystick->direction = N;
+        else joystick->direction = NP;
     } else if (joystick->position[1] >= 3071) {
         if (joystick->position[0] <= 1024) joystick->direction = SE;
-        else joystick->direction = E;
+        else joystick->direction = EP;
     } else if (joystick->position[1] <= 1024) {
         if (joystick->position[0] <= 1024) joystick->direction = SW;
-        else joystick->direction = W;
-    } else if (joystick->position[0] <= 1024) joystick->direction = S;
+        else joystick->direction = WP;
+    } else if (joystick->position[0] <= 1024) joystick->direction = SP;
     else joystick->direction = NONE;
 }
 

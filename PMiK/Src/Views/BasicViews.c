@@ -11,7 +11,7 @@
 #include "BasicViews.h"
 
 
-void drawFieldView(display_t *display) {
+void drawFieldView(const display_t *display) {
     display->fillScreen(BLACK);
 
     display->fillRectangle(14, 14, 100, 100, CLOUD);
@@ -27,7 +27,7 @@ void drawFieldView(display_t *display) {
     display->drawHorizontalLine(0, 128, 128, 2, ORANGE);
 }
 
-void drawMenuView(display_t *display) {
+void drawMenuView(const display_t *display) {
     display->fillScreen(BLACK);
 }
 

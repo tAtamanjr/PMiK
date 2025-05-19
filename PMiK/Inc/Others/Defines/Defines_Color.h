@@ -1,5 +1,5 @@
 /**
- * \file	Color.h
+ * \file	Defines_Color.h
  * \brief
  */
 
@@ -7,8 +7,8 @@
  * Copyright (c) 2025 Oleksandr "tAtaman" Bolbat
  */
 
-#ifndef COLOR_H
-#define COLOR_H
+#ifndef DEFINES_COLOR_H
+#define DEFINES_COLOR_H
 
 
 #define color_t     uint16_t

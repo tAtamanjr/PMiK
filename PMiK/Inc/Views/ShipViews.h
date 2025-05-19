@@ -11,12 +11,12 @@
 #define SHIP_VIEWS_H
 
 
-#ifndef THE_DATA_H
+#ifndef DISPLAY_H
 #include "Display.h"
 #endif
 
 
-void drawBoat(display_t *display, uint8_t x, uint8_t y);
+void drawBoat(const display_t *display, const coordinate_e x, const coordinate_e y);
 
 
 #endif

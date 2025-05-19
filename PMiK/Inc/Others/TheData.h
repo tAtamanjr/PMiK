@@ -14,6 +14,9 @@
 #ifndef STDLIB_H
 #include "pico/stdlib.h"
 #endif
+#ifndef RAND_H
+#include "pico/rand.h"
+#endif
 #ifndef CYW43_ARCH_H
 #include "pico/cyw43_arch.h"
 #endif
@@ -28,8 +31,14 @@
 #endif
 
 
-#ifndef COLOR_H
-#include "Color.h"
+#ifndef DEFINES_OTHER_H
+#include "Defines_Other.h"
+#endif
+#ifndef DEFINES_COLOR_H
+#include "Defines_Color.h"
+#endif
+#ifndef DEFINES_GAME_H
+#include "Defines_Game.h"
 #endif
 #ifndef DEFINES_ADC_H
 #include "Defines_ADC.h"
@@ -48,18 +57,19 @@
 #ifndef DIRECTION_H
 #include "Direction.h"
 #endif
-
-
-#ifndef TIMER_CALLBACK_FUNCTIONS_H
-#include "TimerCallbackFunctions.h"
+#ifndef COORDINATE_H
+#include "Coordinate.h"
 #endif
-#ifndef IRQ_CALLBACK_FUNCTIONS_H
-#include "IRQCallbackFunctions.h"
+#ifndef SHOT_RESULT_H
+#include "ShotResult.h"
 #endif
 
 
 extern struct Joystick joystick;
 extern struct Display  display;
+
+
+uint8_t randomNumber(const uint8_t min, const uint8_t max);
 
 
 #endif

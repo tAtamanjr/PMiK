@@ -17,11 +17,11 @@
 
 
 typedef struct Display {
-    void (*fillScreen) (color_t color);
-    void (*drawPixel) (uint8_t x, uint8_t y, color_t color);
-    void (*fillRectangle) (uint8_t x, uint8_t y, uint8_t w, uint8_t h, color_t color);
-    void (*drawHorizontalLine) (uint8_t x, uint8_t y, uint8_t l, uint8_t w, color_t color);
-    void (*drawVerticalLine) (uint8_t x, uint8_t y, uint8_t l, uint8_t w, color_t color);
+    void (*fillScreen) (const color_t color);
+    void (*drawPixel) (const uint8_t x, const uint8_t y, const color_t color);
+    void (*fillRectangle) (const uint8_t x, const uint8_t y, uint8_t w, uint8_t h, const color_t color);
+    void (*drawHorizontalLine) (const uint8_t x, const uint8_t y, uint8_t l, uint8_t w, const color_t color);
+    void (*drawVerticalLine) (const uint8_t x, const uint8_t y, uint8_t l, uint8_t w, const color_t color);
 } display_t;
 
 

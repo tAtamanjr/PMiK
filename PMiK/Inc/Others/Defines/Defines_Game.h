@@ -1,0 +1,18 @@
+/**
+ * \file	Defines_Game.h
+ * \brief
+ */
+
+/*
+ * Copyright (c) 2025 Oleksandr "tAtaman" Bolbat
+ */
+
+#ifndef DEFINES_GAME_H
+#define DEFINES_GAME_H
+
+#define FIELD_SIZE              10
+#define SHIPS_AMOUNT            10
+#define UNDEFINED_COORDINATE    174
+#define DESTROYED_SHIP_PART     74
+
+#endif

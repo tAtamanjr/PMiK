@@ -18,9 +18,13 @@
 #ifndef JOYSTICK_H
 #include "Joystick.h"
 #endif
+#ifndef VIEWS_H
+#include "Views.h"
+#endif
 
 
-bool joystickDataCallback(__unused struct repeating_timer *t);
+bool joystickDataCallback(struct repeating_timer *t);
+bool viewResetCallback(struct repeating_timer *t);
 
 
 #endif
