@@ -28,11 +28,30 @@ void drawFieldView() {
 
 void drawDownMenuElement() {
     display.drawHorizontalLine(0, 128, 128, 2, RED);
-    display.fillRectangle(0, 130, 128, 28, BLACK);
+    display.fillRectangle(0, 130, 128, 34, BLACK);
 }
 
 void drawMenuView() {
     display.fillScreen(BLACK);
+}
+
+void drawCloudCell(const uint8_t x, const uint8_t y) {
+    display.fillRectangle(19 + x * 11, 19 + y * 11, 10, 10, CLOUD);
+}
+
+void drawAim(const uint8_t x, const uint8_t y) {
+    display.fillRectangle(19 + x * 11, 19 + y * 11, 2, 2, RED);
+    display.fillRectangle(19 + x * 11 + 8, 19 + y * 11, 2, 2, RED);
+    display.fillRectangle(19 + x * 11 + 8, 19 + y * 11 + 8, 2, 2, RED);
+    display.fillRectangle(19 + x * 11, 19 + y * 11 + 8, 2, 2, RED);
+    display.fillRectangle(19 + x * 11 + 1, 19 + y * 11 + 1, 2, 2, RED);
+    display.fillRectangle(19 + x * 11 + 7, 19 + y * 11 + 1, 2, 2, RED);
+    display.fillRectangle(19 + x * 11 + 7, 19 + y * 11 + 7, 2, 2, RED);
+    display.fillRectangle(19 + x * 11 + 1, 19 + y * 11 + 7, 2, 2, RED);
+}
+
+void removeAim(const uint8_t x, const uint8_t y) {
+    drawCloudCell(x, y);
 }
 
 

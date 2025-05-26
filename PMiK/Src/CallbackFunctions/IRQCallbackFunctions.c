@@ -11,19 +11,29 @@
 #include "IRQCallbackFunctions.h" 
 
 
+static void mainButtonCallback(uint32_t events);
+static void confirmButtonCallback(uint32_t events);
+static void supp1ButtonCallback(uint32_t events);
+static void supp2ButtonCallback(uint32_t events);
+
+
 void callbackSwitcher(uint gpio, uint32_t events) {
     switch (gpio) {
         case MAIN_BUTTON:
-            mainButtonCallback(events);
+            // mainButtonCallback(events);
+            printf("Main button\n");
             break;
         case CONFIRM_BUTTON:
-            confirmButtonCallback(events);
+            // confirmButtonCallback(events);
+            printf("Confirm button\n");
             break;
         case SUPP_BUTTON_1:
-            supp1ButtonCallback(events);
+            // supp1ButtonCallback(events);
+            printf("Supp button 1\n");
             break;
         case SUPP_BUTTON_2:
-            supp2ButtonCallback(events);
+            // supp2ButtonCallback(events);
+            printf("Supp button 2\n");
             break;
         default:
             break;
@@ -31,50 +41,50 @@ void callbackSwitcher(uint gpio, uint32_t events) {
 }
 
 
-void mainButtonCallback(uint32_t events) {
-    if (buttonFlags.read(&buttonFlags, MAIN_WAIT_BIT)) { 
-        printf("Button moment\n");
-        return;
-    }
-    buttonFlags.on(&buttonFlags, MAIN_WAIT_BIT);
+// static void mainButtonCallback(uint32_t events) {
+//     if (buttonFlags.read(&buttonFlags, MAIN_WAIT_BIT)) { 
+//         printf("Button moment\n");
+//         return;
+//     }
+//     buttonFlags.on(&buttonFlags, MAIN_WAIT_BIT);
 
-    mainAlarm = add_alarm_in_ms(100, confirmButtonAlarmCallback, NULL, false);
+//     mainAlarm = add_alarm_in_ms(100, confirmButtonAlarmCallback, NULL, false);
 
-    printf("Main button\n");
-}
+//     printf("Main button\n");
+// }
 
-void confirmButtonCallback(uint32_t events) {
-    if (buttonFlags.read(&buttonFlags, CONFIRM_WAIT_BIT)) { 
-        printf("Button moment\n");
-        return;
-    }
-    buttonFlags.on(&buttonFlags, CONFIRM_WAIT_BIT);
+// static void confirmButtonCallback(uint32_t events) {
+//     if (buttonFlags.read(&buttonFlags, CONFIRM_WAIT_BIT)) { 
+//         printf("Button moment\n");
+//         return;
+//     }
+//     buttonFlags.on(&buttonFlags, CONFIRM_WAIT_BIT);
 
-    confirmAlarm = add_alarm_in_ms(100, suppButton1AlarmCallback, NULL, false);
+//     confirmAlarm = add_alarm_in_ms(100, suppButton1AlarmCallback, NULL, false);
     
-    printf("Confirm button\n");
-}
+//     printf("Confirm button\n");
+// }
 
-void supp1ButtonCallback(uint32_t events) {
-    if (buttonFlags.read(&buttonFlags, SUPP1_WAIT_BIT)) { 
-        printf("Button moment\n");
-        return;
-    }
-    buttonFlags.on(&buttonFlags, SUPP1_WAIT_BIT);
+// static void supp1ButtonCallback(uint32_t events) {
+//     if (buttonFlags.read(&buttonFlags, SUPP1_WAIT_BIT)) { 
+//         printf("Button moment\n");
+//         return;
+//     }
+//     buttonFlags.on(&buttonFlags, SUPP1_WAIT_BIT);
 
-    suppAlarm1 = add_alarm_in_ms(100, suppButton2AlarmCallback, NULL, false);
+//     suppAlarm1 = add_alarm_in_ms(100, suppButton2AlarmCallback, NULL, false);
 
-    printf("Supp button 1\n");
-}
+//     printf("Supp button 1\n");
+// }
 
-void supp2ButtonCallback(uint32_t events) {
-    if (buttonFlags.read(&buttonFlags, SUPP2_WAIT_BIT)) return;
-    buttonFlags.on(&buttonFlags, SUPP2_WAIT_BIT);
+// static void supp2ButtonCallback(uint32_t events) {
+//     if (buttonFlags.read(&buttonFlags, SUPP2_WAIT_BIT)) return;
+//     buttonFlags.on(&buttonFlags, SUPP2_WAIT_BIT);
 
-    suppAlarm2 = add_alarm_in_ms(100, suppButton2AlarmCallback, NULL, false);
+//     suppAlarm2 = add_alarm_in_ms(100, suppButton2AlarmCallback, NULL, false);
 
-    printf("Supp button 2\n");
-}
+//     printf("Supp button 2\n");
+// }
 
 
 #endif

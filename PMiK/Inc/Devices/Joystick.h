@@ -18,6 +18,7 @@
 
 typedef struct Joystick {
     uint16_t position[2];
+    uint8_t cell[2];
     direction_e direction;
 
     void (*read) (struct Joystick *joystick);

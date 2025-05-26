@@ -69,7 +69,7 @@
 
 
 extern struct LedOut ledOut;
-extern struct Byte states;
+// extern struct Byte states;
 extern struct Byte buttonFlags;
 
 

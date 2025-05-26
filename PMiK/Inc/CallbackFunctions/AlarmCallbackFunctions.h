@@ -23,13 +23,16 @@
 extern alarm_id_t mainAlarm;
 extern alarm_id_t confirmAlarm;
 extern alarm_id_t suppAlarm1;
-extern alarm_id_t suppAlarm2;
+// extern alarm_id_t suppAlarm2;
+extern uint8_t joystickMoveDebouncerFlag;
+extern alarm_id_t joystickMoveDebouncerAlarm;
 
 
 int64_t mainButtonAlarmCallback(alarm_id_t id, void *user_data);
 int64_t confirmButtonAlarmCallback(alarm_id_t id, void *user_data);
 int64_t suppButton1AlarmCallback(alarm_id_t id, void *user_data);
-int64_t suppButton2AlarmCallback(alarm_id_t id, void *user_data);
+// int64_t suppButton2AlarmCallback(alarm_id_t id, void *user_data);
+int64_t joystickMoveDebouncerCallback(alarm_id_t id, void *user_data);
 
 
 #endif

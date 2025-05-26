@@ -39,18 +39,21 @@
 #endif
 
 
-byte_t states;
+// byte_t states;
 ledOut_t ledOut;
 joystick_t joystick;
+uint8_t joystickMoveDebouncerFlag;
 display_t display;
 byte_t buttonFlags;
 
 alarm_id_t mainAlarm;
 alarm_id_t confirmAlarm;
 alarm_id_t suppAlarm1;
-alarm_id_t suppAlarm2;
+// alarm_id_t suppAlarm2;
+alarm_id_t joystickMoveDebouncerAlarm;
 
-struct repeating_timer timer;
+struct repeating_timer joystickUpdateTimer;
+struct repeating_timer joystickMoveTimer;
 struct repeating_timer viewResetter;
 
 
@@ -66,6 +69,10 @@ int main() {
     setIRQs();
     startTimers();
 
+    drawFieldView();
+    drawDownMenuElement();
+    drawAim(joystick.cell[0], joystick.cell[1]);
+
     // Sine fine loop
     while (HABEMUS_RES_QUAE_AD_SOLVENDUM_OPUS) tight_loop_contents();
 }
@@ -77,10 +84,10 @@ void setUp() {
     initElements();
     sleep_ms(500);
 
-    gpio_init(15);
-    gpio_set_dir(15, GPIO_OUT);
-    gpio_init(14);
-    gpio_set_dir(14, GPIO_OUT);
+    // gpio_init(15);
+    // gpio_set_dir(15, GPIO_OUT);
+    // gpio_init(14);
+    // gpio_set_dir(14, GPIO_OUT);
 }
 
 void initElements() {
@@ -101,7 +108,8 @@ void initElements() {
     gpio_set_dir(SUPP_BUTTON_2, GPIO_IN);
 
     initByte(&buttonFlags);
-    initByte(&states);
+    // initByte(&states);
+    joystickMoveDebouncerFlag = 1;
 }
 
 void setIRQs() {
@@ -112,6 +120,7 @@ void setIRQs() {
 }
 
 void startTimers() {
-    add_repeating_timer_ms(50, joystickDataCallback, NULL, &timer);
-    add_repeating_timer_ms(1500, viewResetCallback, NULL, &viewResetter);
+    add_repeating_timer_ms(50, joystickDataCallback, NULL, &joystickUpdateTimer);
+    add_repeating_timer_ms(50, joystickMoveCallback, NULL, &joystickMoveTimer);
+    // add_repeating_timer_ms(1500, viewResetCallback, NULL, &viewResetter);
 }

@@ -26,6 +26,9 @@
 void drawFieldView();
 void drawMenuView();
 void drawDownMenuElement();
+void drawCloudCell(uint8_t x, uint8_t y);
+void drawAim(uint8_t x, uint8_t y);
+void removeAim(uint8_t x, uint8_t y);
 
 
 #endif
