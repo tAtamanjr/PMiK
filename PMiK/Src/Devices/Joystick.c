@@ -15,7 +15,7 @@ static void read(joystick_t *);
 
 
 void initJoystick(joystick_t *joystick) {
-    gpio_init(JOYSTICK_GPIO_SW);
+    gpio_init(13);
 
     adc_init();
 

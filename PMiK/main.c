@@ -28,6 +28,9 @@
 #endif
 
 
+#ifndef ALARM_CALLBACK_FUNCTIONS_H
+#include "AlarmCallbackFunctions.h"
+#endif
 #ifndef TIMER_CALLBACK_FUNCTIONS_H
 #include "TimerCallbackFunctions.h"
 #endif
@@ -36,19 +39,18 @@
 #endif
 
 
-#ifndef LED_1
-#define LED_1 15
-#define LED_0 14
-#endif
-
-
 byte_t states;
 ledOut_t ledOut;
 joystick_t joystick;
 display_t display;
+byte_t buttonFlags;
 
+alarm_id_t mainAlarm;
+alarm_id_t confirmAlarm;
+alarm_id_t suppAlarm1;
+alarm_id_t suppAlarm2;
 
-struct repeating_timer printer;
+struct repeating_timer timer;
 struct repeating_timer viewResetter;
 
 
@@ -65,60 +67,20 @@ int main() {
     startTimers();
 
     // Sine fine loop
-    while (HABEMUS_RES_QUAE_AD_SOLVENDUM_OPUS) {
-        tight_loop_contents();
-
-        states.reset(&states);
-        joystick.read(&joystick);
-
-        switch (joystick.direction) {
-            case NE:
-                states.on(&states, 2);
-                states.on(&states, 1);
-                states.on(&states, 0);
-                break;
-            case NP:
-                states.on(&states, 2);
-                states.on(&states, 1);
-                break;
-            case NW:
-                states.on(&states, 2);
-                states.on(&states, 0);
-                break;
-            case EP:
-                states.on(&states, 2);
-                break;
-            case WP:
-                states.on(&states, 1);
-                states.on(&states, 0);
-                break;
-            case SE:
-                states.on(&states, 1);
-                break;
-            case SP:
-                states.on(&states, 0);
-                break;
-            case SW:
-                break;
-            default:
-                break;
-        }
-
-        ledOut.set(states.read(&states, 2));
-        gpio_put(LED_1, states.read(&states, 1));
-        gpio_put(LED_0, states.read(&states, 0));
-    }
+    while (HABEMUS_RES_QUAE_AD_SOLVENDUM_OPUS) tight_loop_contents();
 }
 
 void setUp() {
     stdio_init_all();
+    sleep_ms(500);
 
     initElements();
+    sleep_ms(500);
 
-    gpio_init(LED_1);
-    gpio_set_dir(LED_1, GPIO_OUT);
-    gpio_init(LED_0);
-    gpio_set_dir(LED_0, GPIO_OUT);
+    gpio_init(15);
+    gpio_set_dir(15, GPIO_OUT);
+    gpio_init(14);
+    gpio_set_dir(14, GPIO_OUT);
 }
 
 void initElements() {
@@ -126,14 +88,30 @@ void initElements() {
     initJoystick(&joystick);
     initDisplay(&display);
 
+    gpio_init(MAIN_BUTTON);
+    gpio_set_dir(MAIN_BUTTON, GPIO_IN);
+
+    gpio_init(CONFIRM_BUTTON);
+    gpio_set_dir(CONFIRM_BUTTON, GPIO_IN);
+
+    gpio_init(SUPP_BUTTON_1);
+    gpio_set_dir(SUPP_BUTTON_1, GPIO_IN);
+
+    gpio_init(SUPP_BUTTON_2);
+    gpio_set_dir(SUPP_BUTTON_2, GPIO_IN);
+
+    initByte(&buttonFlags);
     initByte(&states);
 }
 
 void setIRQs() {
-    gpio_set_irq_enabled_with_callback(JOYSTICK_GPIO_SW, GPIO_IRQ_EDGE_FALL, true, &joystickSwitchCallback);
+    gpio_set_irq_enabled_with_callback(MAIN_BUTTON, GPIO_IRQ_EDGE_FALL, true, &callbackSwitcher);
+    gpio_set_irq_enabled(CONFIRM_BUTTON, GPIO_IRQ_EDGE_FALL, true);
+    gpio_set_irq_enabled(SUPP_BUTTON_1, GPIO_IRQ_EDGE_FALL, true);
+    gpio_set_irq_enabled(SUPP_BUTTON_2, GPIO_IRQ_EDGE_FALL, true);
 }
 
 void startTimers() {
-    add_repeating_timer_ms(250, joystickDataCallback, NULL, &printer);
-    add_repeating_timer_ms(2000, viewResetCallback, NULL, &viewResetter);
+    add_repeating_timer_ms(50, joystickDataCallback, NULL, &timer);
+    add_repeating_timer_ms(1500, viewResetCallback, NULL, &viewResetter);
 }

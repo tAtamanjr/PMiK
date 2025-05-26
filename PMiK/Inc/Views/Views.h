@@ -15,7 +15,7 @@
 #include "BasicViews.h"
 #endif
 #ifndef SHIP_VIEWS_H
-#include "ShipViews.h"
+#include "ShipElements.h"
 #endif
 
 

@@ -11,16 +11,21 @@
 #define BASIC_VIEWS_H
 
 
+#ifndef THE_DATA_H
+#include "TheData.h"
+#endif
+
 #ifndef DISPLAY_H
 #include "Display.h"
 #endif
-#ifndef SHIP_VIEWS_H
-#include "ShipViews.h"
+#ifndef TEXT_ELEMENTS_H
+#include "TextElements.h"
 #endif
 
 
-void drawFieldView(const display_t *display);
-void drawMenuView(const display_t *display);
+void drawFieldView();
+void drawMenuView();
+void drawDownMenuElement();
 
 
 #endif

@@ -1,5 +1,5 @@
 /**
- * \file	IRQCallBackFunctions
+ * \file	IRQCallBackFunctions.h
  * \brief
  */
 
@@ -15,8 +15,19 @@
 #include "TheData.h"
 #endif
 
+#ifndef BYTE_H
+#include "Byte.h"
+#endif
+#ifndef ALARM_CLABACK_FUNCTIONS_H
+#include "AlarmCallbackFunctions.h"
+#endif
 
-void joystickSwitchCallback(uint gpio, uint32_t events);
+
+void callbackSwitcher(uint gpio, uint32_t events);
+void mainButtonCallback(uint32_t events);
+void confirmButtonCallback(uint32_t events);
+void supp1ButtonCallback(uint32_t events);
+void supp2ButtonCallback(uint32_t events);
 
 
 #endif

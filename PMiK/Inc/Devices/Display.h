@@ -25,6 +25,9 @@ typedef struct Display {
 } display_t;
 
 
+extern display_t display;
+
+
 void initDisplay(display_t *display);
 
 

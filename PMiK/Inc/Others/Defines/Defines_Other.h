@@ -1,5 +1,5 @@
 /**
- * \file	Defines_Color.h
+ * \file	Defines_Other.h
  * \brief
  */
 

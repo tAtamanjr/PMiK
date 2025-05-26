@@ -24,6 +24,9 @@ typedef struct Joystick {
 } joystick_t;
 
 
+extern joystick_t joystick;
+
+
 void initJoystick(joystick_t *joystick);
 
 

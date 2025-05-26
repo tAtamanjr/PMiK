@@ -21,7 +21,7 @@ typedef struct Byte {
 
 	void (*on) (struct Byte *byte, const uint8_t bit);
 	void (*off) (struct Byte *byte, const uint8_t bit);
-	bool (*read) (const struct Byte *byte, const uint8_t bit);
+	uint8_t (*read) (const struct Byte *byte, const uint8_t bit);
 	void (*reset) (struct Byte *byte);
 } byte_t;
 

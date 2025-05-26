@@ -29,10 +29,16 @@
 #ifndef SPI_H
 #include "hardware/spi.h"
 #endif
+#ifndef TIMER_H
+#include "hardware/timer.h"
+#endif
 
 
 #ifndef DEFINES_OTHER_H
 #include "Defines_Other.h"
+#endif
+#ifndef DEFINES_BUTTONS_H
+#include "Defines_Buttons.h"
 #endif
 #ifndef DEFINES_COLOR_H
 #include "Defines_Color.h"
@@ -42,9 +48,6 @@
 #endif
 #ifndef DEFINES_ADC_H
 #include "Defines_ADC.h"
-#endif
-#ifndef DEFINES_JOYSTICK_H
-#include "Defines_Joystick.h"
 #endif
 #ifndef DEFINES_SPI_H
 #include "Defines_SPI.h"
@@ -65,8 +68,9 @@
 #endif
 
 
-extern struct Joystick joystick;
-extern struct Display  display;
+extern struct LedOut ledOut;
+extern struct Byte states;
+extern struct Byte buttonFlags;
 
 
 uint8_t randomNumber(const uint8_t min, const uint8_t max);

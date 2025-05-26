@@ -13,7 +13,7 @@
 
 static void on(byte_t *, uint8_t);
 static void off(byte_t *, uint8_t);
-static bool read(const byte_t *, uint8_t);
+static uint8_t read(const byte_t *, uint8_t);
 static void reset(byte_t *);
 
 
@@ -33,7 +33,7 @@ static void off(byte_t *byte, const uint8_t bit) {
     byte->bits &= 0 << bit;
 }
 
-static bool read(const byte_t *byte, const uint8_t bit) {
+static uint8_t read(const byte_t *byte, const uint8_t bit) {
     return (byte->bits & 1 << bit);
 }
 

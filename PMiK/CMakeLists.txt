@@ -55,7 +55,6 @@ include_directories(${CMAKE_SOURCE_DIR}/Inc/Others/Enums)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/Others)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/CallbackFunctions)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/Devices)
-include_directories(${CMAKE_SOURCE_DIR}/Inc/Symbols)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/Views)
 
 # All source files and main.c
@@ -75,7 +74,8 @@ target_link_libraries(PMiK  pico_stdlib
                             pico_rand
                             pico_cyw43_arch_none
                             hardware_adc
-                            hardware_spi)
+                            hardware_spi
+                            hardware_timer)
 
 # Add the standard include files to the build
 target_include_directories(PMiK PRIVATE ${CMAKE_CURRENT_LIST_DIR})

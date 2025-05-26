@@ -1,5 +1,5 @@
 /**
- * \file	BasicViews.c
+ * \file	ShipElements.c
  * \brief
  */
 
@@ -11,24 +11,28 @@
 #include "BasicViews.h"
 
 
-void drawFieldView(const display_t *display) {
-    display->fillScreen(BLACK);
+void drawFieldView() {
+    display.fillRectangle(0, 0, 128, 128, WHITE);
 
-    display->fillRectangle(14, 14, 100, 100, CLOUD);
-
-
-    for (uint8_t x = 13; x <= 113; x += 10) {
-        display->drawVerticalLine(x, 0, 128, 2, WHITE);
-    }
-    for (uint8_t y = 13; y <= 113; y += 10) {
-        display->drawHorizontalLine(0, y, 128, 2, WHITE);
+    display.fillRectangle(19, 19, 109, 109, CLOUD);
+    display.drawHorizontalLine(0, 17, 128, 2, BLACK);
+    display.drawVerticalLine(17, 0, 128, 2, BLACK);
+    for (uint8_t i = 1; i < 10; i++) {
+        display.drawHorizontalLine(0, 18 + i * 11, 128, 1, BLACK);
+        display.drawVerticalLine(18 + i * 11, 0, 128, 1, BLACK);
     }
 
-    display->drawHorizontalLine(0, 128, 128, 2, ORANGE);
+    drawFieldLogo();
+    drawFieldCoordinates();
 }
 
-void drawMenuView(const display_t *display) {
-    display->fillScreen(BLACK);
+void drawDownMenuElement() {
+    display.drawHorizontalLine(0, 128, 128, 2, RED);
+    display.fillRectangle(0, 130, 128, 28, BLACK);
+}
+
+void drawMenuView() {
+    display.fillScreen(BLACK);
 }
 
 

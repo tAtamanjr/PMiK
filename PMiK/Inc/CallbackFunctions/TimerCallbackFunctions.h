@@ -1,5 +1,5 @@
 /**
- * \file	TimerCallbackFunctions
+ * \file	TimerCallbackFunctions.h
  * \brief
  */
 
@@ -15,12 +15,22 @@
 #include "TheData.h"
 #endif
 
+#ifndef LED_OUT_H
+#include "LedOut.h"
+#endif
+#ifndef BYTE_H
+#include "Byte.h"
+#endif
 #ifndef JOYSTICK_H
 #include "Joystick.h"
 #endif
 #ifndef VIEWS_H
 #include "Views.h"
 #endif
+
+
+extern struct repeating_timer timer;
+extern struct repeating_timer viewResetter;
 
 
 bool joystickDataCallback(struct repeating_timer *t);

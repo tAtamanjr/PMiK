@@ -31,7 +31,7 @@ void initDisplay(display_t *display) {
     gpio_set_dir(GPIO_DC, GPIO_OUT);
     gpio_set_dir(GPIO_RESET, GPIO_OUT);
 
-    spi_init(SPI_PORT, 20 * 1000 * 1000);
+    spi_init(SPI_PORT, 100 * 1000 * 1000);
     gpio_set_function(GPIO_SCK, GPIO_FUNC_SPI);
     gpio_set_function(GPIO_SDA, GPIO_FUNC_SPI);
 
