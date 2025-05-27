@@ -24,8 +24,8 @@ void initJoystick(joystick_t *joystick) {
 
     joystick->position[0] = 0x8fff;
     joystick->position[1] = 0x8fff;
-    joystick->cell[0] = 0x00;
-    joystick->cell[1] = 0x00;
+    joystick->cell->x = randomNumber(0, 9);
+    joystick->cell->y = randomNumber(0, 9);
     joystick->direction = NONE;
     joystick->read = read;
 }

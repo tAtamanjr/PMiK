@@ -21,7 +21,7 @@
 #define WATER       0x5dfb
 #define CLOUD       0xc637
 #define WOOD_BOAT   0x8121
-
+    
 #define RED         0xf800
 
 #define GRAY        0x8410

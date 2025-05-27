@@ -21,7 +21,13 @@
 
 
 void drawBoatHorizontal(const coordinate_e x, const coordinate_e y);
+void drawBowHorizontal(const coordinate_e x, const coordinate_e y);
+void drawMiddleHorizontal(const coordinate_e x, const coordinate_e y);
+void drawEndHorizontal(const coordinate_e x, const coordinate_e y);
 void drawBoatVertical(const coordinate_e x, const coordinate_e y);
+void drawBowVertical(const coordinate_e x, const coordinate_e y);
+void drawMiddleVertical(const coordinate_e x, const coordinate_e y);
+void drawEndVertical(const coordinate_e x, const coordinate_e y);
 
 
 #endif

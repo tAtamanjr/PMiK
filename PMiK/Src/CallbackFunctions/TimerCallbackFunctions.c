@@ -12,46 +12,7 @@
 
 
 bool joystickDataCallback(struct repeating_timer *t) {
-    // states.reset(&states);
     joystick.read(&joystick);
-
-    // switch (joystick.direction) {
-    //     case NE:
-    //         states.on(&states, 2);
-    //         states.on(&states, 1);
-    //         states.on(&states, 0);
-    //         break;
-    //     case NP:
-    //         states.on(&states, 2);
-    //         states.on(&states, 1);
-    //         break;
-    //     case NW:
-    //         states.on(&states, 2);
-    //         states.on(&states, 0);
-    //         break;
-    //     case EP:
-    //         states.on(&states, 2);
-    //         break;
-    //     case WP:
-    //         states.on(&states, 1);
-    //         states.on(&states, 0);
-    //         break;
-    //     case SE:
-    //         states.on(&states, 1);
-    //         break;
-    //     case SP:
-    //         states.on(&states, 0);
-    //         break;
-    //     case SW:
-    //         break;
-    //     default:
-    //         break;
-    // }
-
-    // ledOut.set(states.read(&states, 2));
-    // gpio_put(15, states.read(&states, 1));
-    // gpio_put(14, states.read(&states, 0));
-    
     return true;
 }
 
@@ -83,40 +44,41 @@ bool joystickMoveCallback(struct repeating_timer *t) {
         joystickMoveDebouncerFlag = 0;
         joystickMoveDebouncerAlarm = add_alarm_in_ms(150, joystickMoveDebouncerCallback, NULL, false);
         
-        removeAim(joystick.cell[0], joystick.cell[1]);
+        removeAim();
         switch(joystick.direction) {
             case NE:
-                if (joystick.cell[0] != J) joystick.cell[0]++;
-                if (joystick.cell[1] != A) joystick.cell[1]--;
+                if (joystick.cell->x != J) joystick.cell->x++;
+                if (joystick.cell->y != A) joystick.cell->y--;
                 break;
             case NP:
-                if (joystick.cell[1] != A) joystick.cell[1]--;
+                if (joystick.cell->y != A) joystick.cell->y--;
                 break;
             case NW:
-                if (joystick.cell[0] != A) joystick.cell[0]--;
-                if (joystick.cell[1] != A) joystick.cell[1]--;
+                if (joystick.cell->x != A) joystick.cell->x--;
+                if (joystick.cell->y != A) joystick.cell->y--;
                 break;
             case EP:
-                if (joystick.cell[0] != J) joystick.cell[0]++;
+                if (joystick.cell->x != J) joystick.cell->x++;
                 break;
             case WP:
-                if (joystick.cell[0] != A) joystick.cell[0]--;
+                if (joystick.cell->x != A) joystick.cell->x--;
                 break;
             case SE:
-                if (joystick.cell[0] != J) joystick.cell[0]++;
-                if (joystick.cell[1] != J) joystick.cell[1]++;
+                if (joystick.cell->x != J) joystick.cell->x++;
+                if (joystick.cell->y != J) joystick.cell->y++;
                 break;
             case SP:
-                if (joystick.cell[1] != J) joystick.cell[1]++;
+                if (joystick.cell->y != J) joystick.cell->y++;
                 break;
             case SW:
-                if (joystick.cell[0] != A) joystick.cell[0]--;
-                if (joystick.cell[1] != J) joystick.cell[1]++;
+                if (joystick.cell->x != A) joystick.cell->x--;
+                if (joystick.cell->y != J) joystick.cell->y++;
                 break;
             default:
                 break;
         }
-        drawAim(joystick.cell[0], joystick.cell[1]);
+        drawAim();
+        updateCoordinates();
     }
 }
 

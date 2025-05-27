@@ -33,7 +33,6 @@
 #include "hardware/timer.h"
 #endif
 
-
 #ifndef DEFINES_OTHER_H
 #include "Defines_Other.h"
 #endif
@@ -56,12 +55,20 @@
 #include "Defines_Display.h"
 #endif
 
-
+#ifndef COORDINATE_H
+#include "Coordinate.h"
+#endif
+#ifndef DIFFICULTY_H
+#include "Difficulty.h"
+#endif
 #ifndef DIRECTION_H
 #include "Direction.h"
 #endif
-#ifndef COORDINATE_H
-#include "Coordinate.h"
+#ifndef RESULT_H
+#include "Result.h"
+#endif
+#ifndef SHIP_PART_H
+#include "ShipPart.h"
 #endif
 #ifndef SHOT_RESULT_H
 #include "ShotResult.h"
@@ -71,6 +78,7 @@
 extern struct LedOut ledOut;
 // extern struct Byte states;
 extern struct Byte buttonFlags;
+extern struct Field someField;
 
 
 uint8_t randomNumber(const uint8_t min, const uint8_t max);

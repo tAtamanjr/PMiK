@@ -1,6 +1,7 @@
 /**
  * \file	main.c
- * \brief
+ * \brief   Project for PMiK, "Programowanie mikrokontrolerów"
+ *          Game BattleShips
  */
 
 /*
@@ -26,7 +27,12 @@
 #ifndef VIEWS_H
 #include "Views.h"
 #endif
-
+#ifndef FIELD_H
+#include "Field.h"
+#endif
+#ifndef NAVY_PLACER_H
+#include "NavyPlacer.h"
+#endif
 
 #ifndef ALARM_CALLBACK_FUNCTIONS_H
 #include "AlarmCallbackFunctions.h"
@@ -45,6 +51,7 @@ joystick_t joystick;
 uint8_t joystickMoveDebouncerFlag;
 display_t display;
 byte_t buttonFlags;
+field_t someField;
 
 alarm_id_t mainAlarm;
 alarm_id_t confirmAlarm;
@@ -69,9 +76,12 @@ int main() {
     setIRQs();
     startTimers();
 
+    while (!placeNavy(&someField))
+    sleep_ms(100);
     drawFieldView();
     drawDownMenuElement();
-    drawAim(joystick.cell[0], joystick.cell[1]);
+    drawAim();
+    updateCoordinates();
 
     // Sine fine loop
     while (HABEMUS_RES_QUAE_AD_SOLVENDUM_OPUS) tight_loop_contents();
@@ -108,6 +118,7 @@ void initElements() {
     gpio_set_dir(SUPP_BUTTON_2, GPIO_IN);
 
     initByte(&buttonFlags);
+    initField(&someField);
     // initByte(&states);
     joystickMoveDebouncerFlag = 1;
 }
