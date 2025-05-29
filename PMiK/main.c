@@ -49,6 +49,7 @@
 ledOut_t ledOut;
 joystick_t joystick;
 uint8_t joystickMoveDebouncerFlag;
+uint8_t resetNavyDebouncerFlag;
 display_t display;
 byte_t buttonFlags;
 field_t someField;
@@ -121,13 +122,14 @@ void initElements() {
     initField(&someField);
     // initByte(&states);
     joystickMoveDebouncerFlag = 1;
+    resetNavyDebouncerFlag = 1;
 }
 
 void setIRQs() {
-    gpio_set_irq_enabled_with_callback(MAIN_BUTTON, GPIO_IRQ_EDGE_FALL, true, &callbackSwitcher);
-    gpio_set_irq_enabled(CONFIRM_BUTTON, GPIO_IRQ_EDGE_FALL, true);
-    gpio_set_irq_enabled(SUPP_BUTTON_1, GPIO_IRQ_EDGE_FALL, true);
-    gpio_set_irq_enabled(SUPP_BUTTON_2, GPIO_IRQ_EDGE_FALL, true);
+    gpio_set_irq_enabled_with_callback(MAIN_BUTTON, GPIO_IRQ_EDGE_RISE, true, &callbackSwitcher);
+    gpio_set_irq_enabled(CONFIRM_BUTTON, GPIO_IRQ_EDGE_RISE, true);
+    gpio_set_irq_enabled(SUPP_BUTTON_1, GPIO_IRQ_EDGE_RISE, true);
+    gpio_set_irq_enabled(SUPP_BUTTON_2, GPIO_IRQ_EDGE_RISE, true);
 }
 
 void startTimers() {

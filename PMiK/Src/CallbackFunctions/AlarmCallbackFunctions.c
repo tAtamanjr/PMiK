@@ -36,6 +36,11 @@ int64_t joystickMoveDebouncerCallback(alarm_id_t id, void *user_data) {
     return 0;
 }
 
+int64_t resetNavyDebouncerCallback(alarm_id_t id, void *user_data) {
+    resetNavyDebouncerFlag = 1;
+    return 0;
+}
+
 
 
 #endif

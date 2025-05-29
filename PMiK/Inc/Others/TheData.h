@@ -64,9 +64,6 @@
 #ifndef DIRECTION_H
 #include "Direction.h"
 #endif
-#ifndef RESULT_H
-#include "Result.h"
-#endif
 #ifndef SHIP_PART_H
 #include "ShipPart.h"
 #endif

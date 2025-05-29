@@ -24,7 +24,7 @@ void initField(field_t *field) {
 }
 
 static void set(field_t *field, const coordinates_t cell, const uint8_t value) {
-    if (cell.x == UNDEFINED_COORDINATE || cell.x > J || cell.y == UNDEFINED_COORDINATE || cell.y > J) return;
+    if (cell.x > J || cell.y > J) return;
 	field->self[cell.x + cell.y * FIELD_SIZE] = value;
 }
 

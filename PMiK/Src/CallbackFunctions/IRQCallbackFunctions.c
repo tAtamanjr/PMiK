@@ -11,17 +11,19 @@
 #include "IRQCallbackFunctions.h" 
 
 
-static void mainButtonCallback(uint32_t events);
-static void confirmButtonCallback(uint32_t events);
-static void supp1ButtonCallback(uint32_t events);
-static void supp2ButtonCallback(uint32_t events);
+static void resetNavyCallback();
+// static void mainButtonCallback(uint32_t events);
+// static void confirmButtonCallback(uint32_t events);
+// static void supp1ButtonCallback(uint32_t events);
+// static void supp2ButtonCallback(uint32_t events);
 
 
 void callbackSwitcher(uint gpio, uint32_t events) {
     switch (gpio) {
         case MAIN_BUTTON:
             // mainButtonCallback(events);
-            printf("Main button\n");
+            resetNavyCallback();
+            // printf("Main button\n");
             break;
         case CONFIRM_BUTTON:
             // confirmButtonCallback(events);
@@ -40,6 +42,19 @@ void callbackSwitcher(uint gpio, uint32_t events) {
     }
 }
 
+static void resetNavyCallback() {
+    if (resetNavyDebouncerFlag) {
+        resetNavyDebouncerFlag = 0;
+        joystickMoveDebouncerAlarm = add_alarm_in_ms(1000, resetNavyDebouncerCallback, NULL, false);
+
+        while (!placeNavy(&someField))
+        sleep_ms(100);
+        drawFieldView();
+        drawDownMenuElement();
+        drawAim();
+        updateCoordinates();
+    }
+}
 
 // static void mainButtonCallback(uint32_t events) {
 //     if (buttonFlags.read(&buttonFlags, MAIN_WAIT_BIT)) { 

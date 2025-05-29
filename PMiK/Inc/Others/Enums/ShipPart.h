@@ -20,7 +20,8 @@ typedef enum ShipPart {
     BOW_HORIZONTAL,
     BOW_VERTICLE,
     END_HORIZONTAL,
-    END_VERTICLE
+    END_VERTICLE,
+    DESTROYED_SHIP_PART
 } shipPart_e;
 
 

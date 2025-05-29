@@ -21,6 +21,12 @@
 #ifndef ALARM_CLABACK_FUNCTIONS_H
 #include "AlarmCallbackFunctions.h"
 #endif
+#ifndef NAVY_PLACER_H
+#include "NavyPlacer.h"
+#endif
+#ifndef VIEWS_H
+#include "Views.h"
+#endif
 
 
 void callbackSwitcher(uint gpio, uint32_t events);

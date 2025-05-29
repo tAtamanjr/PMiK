@@ -13,6 +13,5 @@
 #define FIELD_SIZE              10
 #define SHIPS_AMOUNT            10
 #define UNDEFINED_COORDINATE    174
-#define DESTROYED_SHIP_PART     74
 
 #endif

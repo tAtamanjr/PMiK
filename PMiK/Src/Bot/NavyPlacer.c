@@ -21,16 +21,16 @@ uint8_t placeNavy(field_t *field) {
 		const uint8_t ships[SHIPS_AMOUNT] = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
 		const uint8_t direction = randomNumber(0, 1);
 
-		ship_t ship = (ship_t) {(coordinates_t) {UNDEFINED_COORDINATE}, direction, ships[index]};
+		ship_t ship = (ship_t) {(coordinates_t) {UNDEFINED_COORDINATE, UNDEFINED_COORDINATE}, direction, ships[index]};
 
-		if (generateRandomCoordinates(field, &ship) == FAIL) {
-			if (chooseCoordinatesFromFreeSpace(field, &ship) == FAIL) {
+		if (generateRandomCoordinates(field, &ship) == 0) {
+			if (chooseCoordinatesFromFreeSpace(field, &ship) == 0) {
 				initField(field);
-				return FAIL;
+				return 0;
 			}
 		}
 	}
-	return SUCCESS;
+	return 1;
 }
 
 static uint8_t generateRandomCoordinates(field_t *field, ship_t *ship) {
@@ -44,46 +44,31 @@ static uint8_t generateRandomCoordinates(field_t *field, ship_t *ship) {
 			ship->bow.x = randomNumber(0, J);
 			ship->bow.y = randomNumber(0, FIELD_SIZE - ship->length);
 		}
-
 		if (findPlaceForShip(field, ship)) {
 			if (ship->direction) {
-				for (uint8_t x = ship->bow.x; x < ship->bow.x+ ship->length; x++) {
-					if (x == ship->bow.x) {
-                        if (ship->length == 1) {
-                            if (ship->direction) field->set(field, (coordinates_t) {x, ship->bow.y}, BOAT_HORIZONTAL);
-                            else field->set(field, (coordinates_t) {x, ship->bow.y}, BOAT_VERTICAL);
-                        }
-                            else if (ship->direction) field->set(field, (coordinates_t) {x, ship->bow.y}, BOW_HORIZONTAL);
-                            else field->set(field, (coordinates_t) {x, ship->bow.y}, BOW_VERTICLE);
-                        }
-                        else if (x == ship->bow.x + ship->length - 1) {
-                            if (ship->direction) field->set(field, (coordinates_t) {x, ship->bow.y}, END_HORIZONTAL);                                else field->set(field, (coordinates_t) {x, ship->bow.y}, END_VERTICLE);
-                        }
-                        else if (ship->direction) field->set(field, (coordinates_t) {x, ship->bow.y}, MIDDLE_PART_HORIZONTAL);
-                        else field->set(field, (coordinates_t) {x, ship->bow.y}, MIDDLE_PART_VERTICLE);
+				if (ship->length == 1) field->set(field, (coordinates_t) {ship->bow.x, ship->bow.y}, BOAT_HORIZONTAL);
+				else {
+					for (uint8_t x = ship->bow.x; x < ship->bow.x + ship->length; x++) {
+						if (x == ship->bow.x) field->set(field, (coordinates_t) {ship->bow.x, ship->bow.y}, BOW_HORIZONTAL);
+						else if (x == ship->bow.x + ship->length - 1) field->set(field, (coordinates_t) {x, ship->bow.y}, END_HORIZONTAL);
+						else field->set(field, (coordinates_t) {x, ship->bow.y}, MIDDLE_PART_HORIZONTAL);
+					}
 				}
+				return 1;
 			} else {
-				for (uint8_t y = ship->bow.y; y < ship->bow.y + ship->length; y++) {
-					if (y == ship->bow.y) {
-                        if (ship->length == 1) {
-                            if (ship->direction) field->set(field, (coordinates_t) {ship->bow.x, y}, BOAT_HORIZONTAL);
-                            else field->set(field, (coordinates_t) {y, ship->bow.y}, BOAT_VERTICAL);
-                        }
-                        else if (ship->direction) field->set(field, (coordinates_t) {ship->bow.x, y}, BOW_HORIZONTAL);
-                        else field->set(field, (coordinates_t) {ship->bow.x, y}, BOW_VERTICLE);
-                    }
-                    else if (y == ship->bow.y + ship->length - 1) {
-                        if (ship->direction) field->set(field, (coordinates_t) {ship->bow.x, y}, END_HORIZONTAL);
-                        else field->set(field, (coordinates_t) {ship->bow.x, y}, END_VERTICLE);
-                    }
-                    else if (ship->direction) field->set(field, (coordinates_t) {ship->bow.x, y}, MIDDLE_PART_HORIZONTAL);
-                    else field->set(field, (coordinates_t) {ship->bow.x, y}, MIDDLE_PART_VERTICLE);
+				if (ship->length == 1) field->set(field, (coordinates_t) {ship->bow.x, ship->bow.y}, BOAT_VERTICAL);
+				else {
+					for (uint8_t y = ship->bow.y; y < ship->bow.y + ship->length; y++) {
+						if (y == ship->bow.y) field->set(field, (coordinates_t) {ship->bow.x, ship->bow.y}, BOW_VERTICLE);
+						else if (y == ship->bow.y + ship->length - 1) field->set(field, (coordinates_t) {ship->bow.x, y}, END_VERTICLE);
+						else field->set(field, (coordinates_t) {ship->bow.x, y}, MIDDLE_PART_VERTICLE);
+					}
 				}
+				return 1;
 			}
-			return SUCCESS;
 		}
 	} while (tries++ < 5);
-	return FAIL;
+	return 0;
 }
 
 static uint8_t chooseCoordinatesFromFreeSpace(field_t *field, ship_t *ship) {
@@ -95,23 +80,15 @@ static uint8_t chooseCoordinatesFromFreeSpace(field_t *field, ship_t *ship) {
 					ship->bow.y = y;
 
 					if (findPlaceForShip(field, ship)) {
-						for (uint8_t res = ship->bow.x; res < ship->bow.x + ship->length; res++) {
-							if (res == ship->bow.x) {
-                                if (ship->length == 1) {
-                                    if (ship->direction) field->set(field, (coordinates_t) {res, ship->bow.y}, BOAT_HORIZONTAL);
-                                    else field->set(field, (coordinates_t) {res, ship->bow.y}, BOAT_VERTICAL);
-                                }
-                                else if (ship->direction) field->set(field, (coordinates_t) {res, ship->bow.y}, BOW_HORIZONTAL);
-                                else field->set(field, (coordinates_t) {res, ship->bow.y}, BOW_VERTICLE);
-                            }
-                            else if (res == ship->bow.x + ship->length - 1) {
-                                if (ship->direction) field->set(field, (coordinates_t) {res, ship->bow.y}, END_HORIZONTAL);
-                                else field->set(field, (coordinates_t) {res, ship->bow.y}, END_VERTICLE);
-                            }
-                            else if (ship->direction) field->set(field, (coordinates_t) {res, ship->bow.y}, MIDDLE_PART_HORIZONTAL);
-                            else field->set(field, (coordinates_t) {res, ship->bow.y}, MIDDLE_PART_VERTICLE);
+						if (ship->length == 1) field->set(field, (coordinates_t) {x, y}, BOAT_HORIZONTAL);
+						else {
+							for (uint8_t res = x; res < x + ship->length; res++) {
+								if (res == x) field->set(field, (coordinates_t) {x, y}, BOW_HORIZONTAL);
+								else if (res == x + ship->length - 1) field->set(field, (coordinates_t) {res, y}, END_HORIZONTAL);
+								else field->set(field, (coordinates_t) {res, y}, MIDDLE_PART_HORIZONTAL);
+							}
 						}
-						return SUCCESS;
+						return 1;
 					}
 				}
 			}
@@ -124,33 +101,28 @@ static uint8_t chooseCoordinatesFromFreeSpace(field_t *field, ship_t *ship) {
 					ship->bow.y = y;
 
 					if (findPlaceForShip(field, ship)) {
-						for (uint8_t res = ship->bow.y; res < ship->bow.y + ship->length; res++) {
-                            if (res == ship->bow.y) {
-                                if (ship->length == 1) {
-                                    if (ship->direction) field->set(field, (coordinates_t) {ship->bow.x, res}, BOAT_HORIZONTAL);
-                                    else field->set(field, (coordinates_t) {res, ship->bow.y}, BOAT_VERTICAL);
-                                }
-                                else if (ship->direction) field->set(field, (coordinates_t) {ship->bow.x, res}, BOW_HORIZONTAL);
-                                else field->set(field, (coordinates_t) {res, ship->bow.y}, BOW_VERTICLE);
-                            }
-                            else if (res == ship->bow.y + ship->length - 1) {
-                                if (ship->direction) field->set(field, (coordinates_t) {ship->bow.x, res}, END_HORIZONTAL);
-                                else field->set(field, (coordinates_t) {res, ship->bow.y}, END_VERTICLE);
-                            }
-                            else if (ship->direction) field->set(field, (coordinates_t) {ship->bow.x, res}, MIDDLE_PART_HORIZONTAL);
-                            else field->set(field, (coordinates_t) {ship->bow.x, res}, MIDDLE_PART_VERTICLE);
+						if (ship->length == 1) field->set(field, (coordinates_t) {x, y}, BOAT_VERTICAL);
+						else {
+							for (uint8_t res = y; res < y + ship->length; res++) {
+								if (res == y) field->set(field, (coordinates_t) {x, y}, BOW_VERTICLE);
+								else if (res == y + ship->length - 1) field->set(field, (coordinates_t) {x, res}, END_VERTICLE);
+								else field->set(field, (coordinates_t) {x, res}, MIDDLE_PART_VERTICLE);
+							}
 						}
-						return SUCCESS;
+						return 1;
 					}
 				}
 			}
 		}
 	}
-	return FAIL;
+	return 0;
 }
 
 static uint8_t findPlaceForShip(const field_t *field, const ship_t *ship) {
-	uint8_t startX, startY, endX, endY;
+	uint8_t startX;
+	uint8_t startY;
+	uint8_t endX;
+	uint8_t endY;
 
 	if (ship->direction) {
 		if (!ship->bow.x) startX = 0;
@@ -174,11 +146,11 @@ static uint8_t findPlaceForShip(const field_t *field, const ship_t *ship) {
 
 	for (uint8_t y = startY; y <= endY; y++) {
 		for (uint8_t x = startX; x <= endX; x++) {
-			if (field->read(field, (coordinates_t) {x, y})) return FAIL;
+			if (field->read(field, (coordinates_t) {x, y})) return 0;
 		}
 	}
 
-	return SUCCESS;
+	return 1;
 }
 
 
