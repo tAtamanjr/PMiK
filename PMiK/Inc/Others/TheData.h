@@ -54,6 +54,9 @@
 #ifndef DEFINES_DISPLAY_H
 #include "Defines_Display.h"
 #endif
+#ifndef DEFINES_UI_MANAGER
+#include "Defines_UIManager.h"
+#endif
 
 #ifndef COORDINATE_H
 #include "Coordinate.h"
@@ -73,7 +76,6 @@
 
 
 extern struct LedOut ledOut;
-// extern struct Byte states;
 extern struct Byte buttonFlags;
 extern struct Field someField;
 

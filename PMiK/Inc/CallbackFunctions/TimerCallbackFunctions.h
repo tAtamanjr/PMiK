@@ -27,6 +27,9 @@
 #ifndef VIEWS_H
 #include "Views.h"
 #endif
+#ifndef UI_MANAGER_H
+#include "UIManager.h"
+#endif
 #ifndef ALARM_CLABACK_FUNCTIONS_H
 #include "AlarmCallbackFunctions.h"
 #endif
@@ -37,8 +40,7 @@ extern struct repeating_timer viewResetter;
 
 
 bool joystickDataCallback(struct repeating_timer *t);
-bool viewResetCallback(struct repeating_timer *t);
-bool joystickMoveCallback(struct repeating_timer *t);
+bool UIManagerUpdateCallback(struct repeating_timer *t);
 
 
 #endif

@@ -48,11 +48,7 @@ static void resetNavyCallback() {
         joystickMoveDebouncerAlarm = add_alarm_in_ms(1000, resetNavyDebouncerCallback, NULL, false);
 
         while (!placeNavy(&someField))
-        sleep_ms(100);
-        drawFieldView();
-        drawDownMenuElement();
-        drawAim();
-        updateCoordinates();
+        UIManager.setSmallChanges(1);
     }
 }
 

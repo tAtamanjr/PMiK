@@ -25,14 +25,15 @@ typedef struct Joystick {
     coordinates_t cell[2];
     direction_e direction;
 
-    void (*read) (struct Joystick *joystick);
+    void (*read) ();
+    void (*updateCell) ();
 } joystick_t;
 
 
 extern joystick_t joystick;
 
 
-void initJoystick(joystick_t *joystick);
+void initJoystick();
 
 
 #endif

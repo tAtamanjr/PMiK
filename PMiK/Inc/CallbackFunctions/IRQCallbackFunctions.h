@@ -27,6 +27,9 @@
 #ifndef VIEWS_H
 #include "Views.h"
 #endif
+#ifndef UI_MANAGER_H
+#include "UIManager.h"
+#endif
 
 
 void callbackSwitcher(uint gpio, uint32_t events);

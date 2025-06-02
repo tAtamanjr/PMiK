@@ -33,6 +33,9 @@
 #ifndef NAVY_PLACER_H
 #include "NavyPlacer.h"
 #endif
+#ifndef UI_MANAGER_H
+#include "UIManager.h"
+#endif
 
 #ifndef ALARM_CALLBACK_FUNCTIONS_H
 #include "AlarmCallbackFunctions.h"
@@ -53,6 +56,7 @@ uint8_t resetNavyDebouncerFlag;
 display_t display;
 byte_t buttonFlags;
 field_t someField;
+UIManager_t UIManager;
 
 alarm_id_t mainAlarm;
 alarm_id_t confirmAlarm;
@@ -60,6 +64,7 @@ alarm_id_t suppAlarm1;
 // alarm_id_t suppAlarm2;
 alarm_id_t joystickMoveDebouncerAlarm;
 
+struct repeating_timer UIManagerUpdater;
 struct repeating_timer joystickUpdateTimer;
 struct repeating_timer joystickMoveTimer;
 struct repeating_timer viewResetter;
@@ -76,13 +81,6 @@ int main() {
 
     setIRQs();
     startTimers();
-
-    while (!placeNavy(&someField))
-    sleep_ms(100);
-    drawFieldView();
-    drawDownMenuElement();
-    drawAim();
-    updateCoordinates();
 
     // Sine fine loop
     while (HABEMUS_RES_QUAE_AD_SOLVENDUM_OPUS) tight_loop_contents();
@@ -102,9 +100,10 @@ void setUp() {
 }
 
 void initElements() {
-    initLedOut(&ledOut);
-    initJoystick(&joystick);
-    initDisplay(&display);
+    initLedOut();
+    initJoystick();
+    initDisplay();
+    initUIManager();
 
     gpio_init(MAIN_BUTTON);
     gpio_set_dir(MAIN_BUTTON, GPIO_IN);
@@ -120,7 +119,6 @@ void initElements() {
 
     initByte(&buttonFlags);
     initField(&someField);
-    // initByte(&states);
     joystickMoveDebouncerFlag = 1;
     resetNavyDebouncerFlag = 1;
 }
@@ -133,7 +131,6 @@ void setIRQs() {
 }
 
 void startTimers() {
+    add_repeating_timer_ms(25, UIManagerUpdateCallback, NULL, &UIManagerUpdater);
     add_repeating_timer_ms(50, joystickDataCallback, NULL, &joystickUpdateTimer);
-    add_repeating_timer_ms(50, joystickMoveCallback, NULL, &joystickMoveTimer);
-    // add_repeating_timer_ms(1500, viewResetCallback, NULL, &viewResetter);
 }

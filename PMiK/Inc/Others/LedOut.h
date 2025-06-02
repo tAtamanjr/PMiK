@@ -20,10 +20,11 @@ typedef struct LedOut {
     void (*on) ();
     void (*off) ();
     void (*set) (const bool);
+    void (*toggle) ();
 } ledOut_t;
 
 
-void initLedOut(ledOut_t *ledOut);
+void initLedOut();
 
 
 #endif

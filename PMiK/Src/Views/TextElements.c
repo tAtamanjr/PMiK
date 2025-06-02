@@ -63,7 +63,7 @@ void drawBigB(const uint8_t x, const uint8_t y, const color_t color) {
     display.drawHorizontalLine(x + 2, y + 5, 3, 2, color);
     display.drawHorizontalLine(x + 2, y + 11, 3, 2, color);
     display.drawVerticalLine(x + 5, y + 2, 3, 2, color);
-    display.drawVerticalLine(x + 5, y + 8, 3, 2, color);
+    display.drawVerticalLine(x + 5, y + 7, 4, 2, color);
     display.drawVerticalLine(x + 5, y + 1, 11, 1, color);
 }
 

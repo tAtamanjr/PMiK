@@ -22,7 +22,7 @@ static void drawHorizontalLine(uint8_t, uint8_t, uint8_t, uint8_t, color_t);
 static void drawVerticalLine(uint8_t, uint8_t, uint8_t, uint8_t, color_t);
 
 
-void initDisplay(display_t *display) {
+void initDisplay() {
     gpio_init(GPIO_CS);
     gpio_init(GPIO_DC);
     gpio_init(GPIO_RESET);
@@ -55,11 +55,11 @@ void initDisplay(display_t *display) {
     sendCommand(DISPON);
     INIT_SLEEP;
 
-    display->fillScreen = fillScreen;
-    display->drawPixel = drawPixel;
-    display->fillRectangle = fillRectangle;
-    display->drawHorizontalLine = drawHorizontalLine;
-    display->drawVerticalLine = drawVerticalLine;
+    display.fillScreen = fillScreen;
+    display.drawPixel = drawPixel;
+    display.fillRectangle = fillRectangle;
+    display.drawHorizontalLine = drawHorizontalLine;
+    display.drawVerticalLine = drawVerticalLine;
 }
 
 static void fillScreen(const color_t color) {
