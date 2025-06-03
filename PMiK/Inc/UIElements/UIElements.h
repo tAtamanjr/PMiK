@@ -17,9 +17,6 @@
 #ifndef FIELD_View_UPDATE_FUNCTIONS_H
 #include "FieldViewUpdateFunctions.h"
 #endif
-#ifndef TEXT_ELEMENTS_H
-#include "TextElements.h"
-#endif
 #ifndef SHIP_VIEWS_H
 #include "ShipElements.h"
 #endif

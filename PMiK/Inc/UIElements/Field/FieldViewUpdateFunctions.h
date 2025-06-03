@@ -24,9 +24,6 @@
 #ifndef SHIP_ELEMENTS_H
 #include "ShipElements.h"
 #endif
-#ifndef TEXT_ELEMENTS_H
-#include "TextElements.h"
-#endif
 #ifndef FIELD_VIEW_H
 #include "FieldView.h"
 #endif
