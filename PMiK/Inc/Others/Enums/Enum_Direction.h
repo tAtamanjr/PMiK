@@ -1,5 +1,5 @@
 /**
- * \file	Direction.h
+ * \file	Enum_Direction.h
  * \brief
  */
 
@@ -7,8 +7,8 @@
  * Copyright (c) 2025 Oleksandr "tAtaman" Bolbat
  */
 
-#ifndef DIRECTION_H
-#define DIRECTION_H
+#ifndef ENUM_DIRECTION_H
+#define ENUM_DIRECTION_H
 
 
 typedef enum Direction {

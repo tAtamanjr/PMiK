@@ -1,5 +1,5 @@
 /**
- * \file	BasicViews.h
+ * \file	FieldViewUpdateFunctions.h
  * \brief
  */
 
@@ -7,8 +7,8 @@
  * Copyright (c) 2025 Oleksandr "tAtaman" Bolbat
  */
 
-#ifndef BASIC_VIEWS_H
-#define BASIC_VIEWS_H
+#ifndef FIELD_VIEW_UPDATE_FUNCTIONS_H
+#define FIELD_VIEW_UPDATE_FUNCTIONS_H
 
 
 #ifndef THE_DATA_H
@@ -27,18 +27,12 @@
 #ifndef TEXT_ELEMENTS_H
 #include "TextElements.h"
 #endif
-#ifndef FILED_H
-#include "Field.h"
+#ifndef FIELD_VIEW_H
+#include "FieldView.h"
 #endif
 
 
-void drawFieldView();
-void drawMenuView();
-void drawDownMenuElement();
-void drawCloudCell(uint8_t x, uint8_t y);
-void drawAim();
-void removeAim();
-void updateCoordinates();
+void updateAimPosition();
 
 
 #endif

@@ -55,14 +55,18 @@ include_directories(${CMAKE_SOURCE_DIR}/Inc/Others/Enums)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/Others)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/CallbackFunctions)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/Devices)
-include_directories(${CMAKE_SOURCE_DIR}/Inc/Views)
+include_directories(${CMAKE_SOURCE_DIR}/Inc/UIElements/BasicTextElements)
+include_directories(${CMAKE_SOURCE_DIR}/Inc/UIElements/Field)
+include_directories(${CMAKE_SOURCE_DIR}/Inc/UIElements)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/Bot)
 
 # All source files and main.c
 file(GLOB SRC_FILES ${CMAKE_SOURCE_DIR}/Src/Others/*.c
                     ${CMAKE_SOURCE_DIR}/Src/CallbackFunctions/*.c
                     ${CMAKE_SOURCE_DIR}/Src/Devices/*.c
-                    ${CMAKE_SOURCE_DIR}/Src/Views/*.c
+                    ${CMAKE_SOURCE_DIR}/Src/UIElements/BasicTextElements/*.c
+                    ${CMAKE_SOURCE_DIR}/Src/UIElements/Field/*.c
+                    ${CMAKE_SOURCE_DIR}/Src/UIElements/*.c
                     ${CMAKE_SOURCE_DIR}/Src/Bot/*.c)
 add_executable(PMiK main.c ${SRC_FILES})
 

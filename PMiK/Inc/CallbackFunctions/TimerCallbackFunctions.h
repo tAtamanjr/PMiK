@@ -24,8 +24,8 @@
 #ifndef JOYSTICK_H
 #include "Joystick.h"
 #endif
-#ifndef VIEWS_H
-#include "Views.h"
+#ifndef UI_ELEMENTS_H
+#include "UIElements.h"
 #endif
 #ifndef UI_MANAGER_H
 #include "UIManager.h"

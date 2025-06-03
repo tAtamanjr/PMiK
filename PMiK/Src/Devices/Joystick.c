@@ -25,8 +25,8 @@ void initJoystick() {
 
     joystick.position[0] = 0x8fff;
     joystick.position[1] = 0x8fff;
-    joystick.cell->x = randomNumber(0, 9);
-    joystick.cell->y = randomNumber(0, 9);
+    joystick.cell->x = 0;
+    joystick.cell->y = 0;
     joystick.direction = NONE;
     joystick.read = read;
     joystick.updateCell = updateCell;

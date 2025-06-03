@@ -58,20 +58,23 @@
 #include "Defines_UIManager.h"
 #endif
 
-#ifndef COORDINATE_H
-#include "Coordinate.h"
+#ifndef ENUM_COORDINATE_H
+#include "Enum_Coordinate.h"
 #endif
-#ifndef DIFFICULTY_H
-#include "Difficulty.h"
+#ifndef ENUM_DIFFICULTY_H
+#include "Enum_Difficulty.h"
 #endif
-#ifndef DIRECTION_H
-#include "Direction.h"
+#ifndef ENUM_DIRECTION_H
+#include "Enum_Direction.h"
 #endif
-#ifndef SHIP_PART_H
-#include "ShipPart.h"
+#ifndef ENUM_LETTER_H
+#include "Enum_Letter.h"
 #endif
-#ifndef SHOT_RESULT_H
-#include "ShotResult.h"
+#ifndef ENUM_SHIP_PART_H
+#include "Enum_ShipPart.h"
+#endif
+#ifndef ENUM_SHOT_RESULT_H
+#include "Enum_ShotResult.h"
 #endif
 
 

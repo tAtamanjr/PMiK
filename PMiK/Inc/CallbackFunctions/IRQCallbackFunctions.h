@@ -24,8 +24,8 @@
 #ifndef NAVY_PLACER_H
 #include "NavyPlacer.h"
 #endif
-#ifndef VIEWS_H
-#include "Views.h"
+#ifndef UI_ELEMENTS_H
+#include "UIElements.h"
 #endif
 #ifndef UI_MANAGER_H
 #include "UIManager.h"

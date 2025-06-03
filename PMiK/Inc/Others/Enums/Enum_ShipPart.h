@@ -1,5 +1,5 @@
 /**
- * \file	ShipPart.h
+ * \file	Enum_ShipPart.h
  * \brief
  */
 
@@ -7,8 +7,8 @@
  * Copyright (c) 2025 Oleksandr "tAtaman" Bolbat
  */
 
-#ifndef SHIP_PART_H
-#define SHIP_PART_H
+#ifndef ENUM_SHIP_PART_H
+#define ENUM_SHIP_PART_H
 
 
 typedef enum ShipPart {
