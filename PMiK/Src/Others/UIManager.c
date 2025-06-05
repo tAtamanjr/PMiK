@@ -35,16 +35,23 @@ static void updateView() {
         UIManager.nextView = 0b00000000;
         UIManager.smallChanges = 0b00000000;
     } else if (UIManager.smallChanges) {
-        if (UIManager.smallChanges & 1 << 0) {
-            if (UIManager.currentView && 1 << 1) {
-                updateAimPosition();
-                UIManager.smallChanges = UIManager.smallChanges & 0 << 0;
-            }
-        }
         if (UIManager.smallChanges & 1 << 1) {
             UIManager.currentView = 0b00000000;
             UIManager.nextView = 0b00000010;
             UIManager.smallChanges = UIManager.smallChanges & 0 << 1;
+        }
+        if (UIManager.smallChanges & 1 << 2) {
+            if (UIManager.currentView & 1 << 1) {
+                drawCell(joystick.cell->x, joystick.cell->y);
+                drawAim(joystick.cell->x, joystick.cell->y);
+                UIManager.smallChanges = UIManager.smallChanges & 0 << 2;
+            }
+        }
+        if (UIManager.smallChanges & 1 << 0) {
+            if (UIManager.currentView & 1 << 1) {
+                updateAimPosition();
+                UIManager.smallChanges = UIManager.smallChanges & 0 << 0;
+            }
         }
     }
 }

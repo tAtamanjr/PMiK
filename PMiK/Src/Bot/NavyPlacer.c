@@ -59,9 +59,9 @@ static uint8_t generateRandomCoordinates(field_t *field, ship_t *ship) {
 				if (ship->length == 1) field->set(field, (coordinates_t) {ship->bow.x, ship->bow.y}, BOAT_VERTICAL);
 				else {
 					for (uint8_t y = ship->bow.y; y < ship->bow.y + ship->length; y++) {
-						if (y == ship->bow.y) field->set(field, (coordinates_t) {ship->bow.x, ship->bow.y}, BOW_VERTICLE);
-						else if (y == ship->bow.y + ship->length - 1) field->set(field, (coordinates_t) {ship->bow.x, y}, END_VERTICLE);
-						else field->set(field, (coordinates_t) {ship->bow.x, y}, MIDDLE_PART_VERTICLE);
+						if (y == ship->bow.y) field->set(field, (coordinates_t) {ship->bow.x, ship->bow.y}, BOW_VERTICAL);
+						else if (y == ship->bow.y + ship->length - 1) field->set(field, (coordinates_t) {ship->bow.x, y}, END_VERTICAL);
+						else field->set(field, (coordinates_t) {ship->bow.x, y}, MIDDLE_PART_VERTICAL);
 					}
 				}
 				return 1;
@@ -104,9 +104,9 @@ static uint8_t chooseCoordinatesFromFreeSpace(field_t *field, ship_t *ship) {
 						if (ship->length == 1) field->set(field, (coordinates_t) {x, y}, BOAT_VERTICAL);
 						else {
 							for (uint8_t res = y; res < y + ship->length; res++) {
-								if (res == y) field->set(field, (coordinates_t) {x, y}, BOW_VERTICLE);
-								else if (res == y + ship->length - 1) field->set(field, (coordinates_t) {x, res}, END_VERTICLE);
-								else field->set(field, (coordinates_t) {x, res}, MIDDLE_PART_VERTICLE);
+								if (res == y) field->set(field, (coordinates_t) {x, y}, BOW_VERTICAL);
+								else if (res == y + ship->length - 1) field->set(field, (coordinates_t) {x, res}, END_VERTICAL);
+								else field->set(field, (coordinates_t) {x, res}, MIDDLE_PART_VERTICAL);
 							}
 						}
 						return 1;

@@ -45,22 +45,55 @@ void drawField() {
                 case BOW_HORIZONTAL:
                     drawBowHorizontal(x, y);
                     break;
-                case BOW_VERTICLE:
+                case BOW_VERTICAL:
                     drawBowVertical(x, y);
                     break;
                 case MIDDLE_PART_HORIZONTAL:
                     drawMiddleHorizontal(x, y);
                     break;
-                case MIDDLE_PART_VERTICLE:
+                case MIDDLE_PART_VERTICAL:
                     drawMiddleVertical(x, y);
                     break;
                 case END_HORIZONTAL:
                     drawEndHorizontal(x, y);
                     break;
-                case END_VERTICLE:
+                case END_VERTICAL:
                     drawEndVertical(x, y);
                     break;
+                case DAMAGED_BOW_HORIZONTAL:
+                case DAMAGED_BOW_VERTICAL:
+                case DAMAGED_MIDDLE_PART_HORIZONTAL:
+                case DAMAGED_MIDDLE_PART_VERTICAL:
+                case DAMAGED_END_HORIZONTAL:
+                case DAMAGED_END_VERTICAL:
+                    drawDamagedShipPart(x, y);
+                    break;
+                case DESTROYED_BOAT_HORIZONTAL:
+                    drawDestroyedBoatHorizontal(x, y);
+                    break;
+                case DESTROYED_BOAT_VERTICAL:
+                    drawDestroyedBoatVertical(x, y);
+                    break;
+                case DESTROYED_BOW_HORIZONTAL:
+                    drawDestroyedBowHorizontal(x, y);
+                    break;
+                case DESTROYED_BOW_VERTICAL:
+                    drawDestroyedBowVertical(x, y);
+                    break;
+                case DESTROYED_MIDDLE_PART_HORIZONTAL:
+                    drawMiddleHorizontal(x, y);
+                    break;
+                case DESTROYED_MIDDLE_PART_VERTICAL:
+                    drawDestroyedMiddleVertical(x, y);
+                    break;
+                case DESTROYED_END_HORIZONTAL:
+                    drawDestroyedEndHorizontal(x, y);
+                    break;
+                case DESTROYED_END_VERTICAL:
+                    drawDestroyedEndVertical(x, y);
+                    break;
                 default:
+                    display.fillRectangle(19 + x * 11, 19 + y * 11, 10, 10, CLOUD);
                     break;
             }
         }
@@ -77,45 +110,97 @@ void drawField() {
 
 void drawCell(const uint8_t x, const uint8_t y) {
     switch (someField.read(&someField, (coordinates_t) {x, y})) {
-    case BOAT_HORIZONTAL:
-        drawBoatHorizontal(x, y);
-        return;
-    case BOAT_VERTICAL:
-        drawBoatVertical(x, y);
-        return;
-    case BOW_HORIZONTAL:
-        drawBowHorizontal(x, y);
-        return;
-    case BOW_VERTICLE:
-        drawBowVertical(x, y);
-        return;
-    case MIDDLE_PART_HORIZONTAL:
-        drawMiddleHorizontal(x, y);
-        return;
-    case MIDDLE_PART_VERTICLE:
-        drawMiddleVertical(x, y);
-        return;
-    case END_HORIZONTAL:
-        drawEndHorizontal(x, y);
-        return;
-    case END_VERTICLE:
-        drawEndVertical(x, y);
-        return;
-    default:
-        display.fillRectangle(19 + x * 11, 19 + y * 11, 10, 10, CLOUD);
-        return;
+        case WATER_CELL:
+            display.fillRectangle(19 + x * 11, 19 + y * 11, 10, 10, WATER);
+            return;
+        case BOAT_HORIZONTAL:
+            drawBoatHorizontal(x, y);
+            return;
+        case BOAT_VERTICAL:
+            drawBoatVertical(x, y);
+            return;
+        case BOW_HORIZONTAL:
+            drawBowHorizontal(x, y);
+            return;
+        case BOW_VERTICAL:
+            drawBowVertical(x, y);
+            return;
+        case MIDDLE_PART_HORIZONTAL:
+            drawMiddleHorizontal(x, y);
+            return;
+        case MIDDLE_PART_VERTICAL:
+            drawMiddleVertical(x, y);
+            return;
+        case END_HORIZONTAL:
+            drawEndHorizontal(x, y);
+            return;
+        case END_VERTICAL:
+            drawEndVertical(x, y);
+            return;
+        case DAMAGED_BOW_HORIZONTAL:
+        case DAMAGED_BOW_VERTICAL:
+        case DAMAGED_MIDDLE_PART_HORIZONTAL:
+        case DAMAGED_MIDDLE_PART_VERTICAL:
+        case DAMAGED_END_HORIZONTAL:
+        case DAMAGED_END_VERTICAL:
+            drawDamagedShipPart(x, y);
+            return;
+        case DESTROYED_BOAT_HORIZONTAL:
+            drawDestroyedBoatHorizontal(x, y);
+            return;
+        case DESTROYED_BOAT_VERTICAL:
+            drawDestroyedBoatVertical(x, y);
+            return;
+        case DESTROYED_BOW_HORIZONTAL:
+            drawDestroyedBowHorizontal(x, y);
+            return;
+        case DESTROYED_BOW_VERTICAL:
+            drawDestroyedBowVertical(x, y);
+            return;
+        case DESTROYED_MIDDLE_PART_HORIZONTAL:
+            drawDestroyedMiddleHorizontal(x, y);
+            return;
+        case DESTROYED_MIDDLE_PART_VERTICAL:
+            drawDestroyedMiddleVertical(x, y);
+            return;
+        case DESTROYED_END_HORIZONTAL:
+            drawDestroyedEndHorizontal(x, y);
+            return;
+        case DESTROYED_END_VERTICAL:
+            drawDestroyedEndVertical(x, y);
+            return;
+        default:
+            display.fillRectangle(19 + x * 11, 19 + y * 11, 10, 10, CLOUD);
+            return;
     }
 }
 
 void drawAim(const uint8_t x, const uint8_t y) {
-    display.fillRectangle(19 + x * 11, 19 + y * 11, 2, 2, RED);
-    display.fillRectangle(19 + x * 11 + 8, 19 + y * 11, 2, 2, RED);
-    display.fillRectangle(19 + x * 11 + 8, 19 + y * 11 + 8, 2, 2, RED);
-    display.fillRectangle(19 + x * 11, 19 + y * 11 + 8, 2, 2, RED);
-    display.fillRectangle(19 + x * 11 + 1, 19 + y * 11 + 1, 2, 2, RED);
-    display.fillRectangle(19 + x * 11 + 7, 19 + y * 11 + 1, 2, 2, RED);
-    display.fillRectangle(19 + x * 11 + 7, 19 + y * 11 + 7, 2, 2, RED);
-    display.fillRectangle(19 + x * 11 + 1, 19 + y * 11 + 7, 2, 2, RED);
+    color_t color = RED;
+    switch (someField.read(&someField, (coordinates_t) {x, y})) {
+        case WATER_CELL:
+        case DESTROYED_BOAT_HORIZONTAL:
+        case DESTROYED_BOAT_VERTICAL:
+        case DESTROYED_BOW_HORIZONTAL:
+        case DESTROYED_BOW_VERTICAL:
+        case DESTROYED_MIDDLE_PART_HORIZONTAL:
+        case DESTROYED_MIDDLE_PART_VERTICAL:
+        case DESTROYED_END_HORIZONTAL:
+        case DESTROYED_END_VERTICAL:
+            color = FIRE_YELLOW;
+            break;
+        default:
+            break;
+    }
+
+    display.fillRectangle(19 + x * 11, 19 + y * 11, 2, 2, color);
+    display.fillRectangle(19 + x * 11 + 8, 19 + y * 11, 2, 2, color);
+    display.fillRectangle(19 + x * 11 + 8, 19 + y * 11 + 8, 2, 2, color);
+    display.fillRectangle(19 + x * 11, 19 + y * 11 + 8, 2, 2, color);
+    display.fillRectangle(19 + x * 11 + 1, 19 + y * 11 + 1, 2, 2, color);
+    display.fillRectangle(19 + x * 11 + 7, 19 + y * 11 + 1, 2, 2, color);
+    display.fillRectangle(19 + x * 11 + 7, 19 + y * 11 + 7, 2, 2, color);
+    display.fillRectangle(19 + x * 11 + 1, 19 + y * 11 + 7, 2, 2, color);
 }
 
 

@@ -26,11 +26,6 @@ int64_t suppButton1AlarmCallback(alarm_id_t id, void *user_data) {
     return 0;
 }
 
-// int64_t suppButton2AlarmCallback(alarm_id_t id, void *user_data) {
-//     buttonFlags.off(&buttonFlags, SUPP2_WAIT_BIT);
-//     return 0;
-// }
-
 int64_t joystickMoveDebouncerCallback(alarm_id_t id, void *user_data) {
     joystickMoveDebouncerFlag = 1;
     return 0;
@@ -41,6 +36,10 @@ int64_t resetNavyDebouncerCallback(alarm_id_t id, void *user_data) {
     return 0;
 }
 
+int64_t fireDebouncerCallback(alarm_id_t id, void *user_data) {
+    fireDebouncerFlag = 1;
+    return 0;
+}
 
 
 #endif

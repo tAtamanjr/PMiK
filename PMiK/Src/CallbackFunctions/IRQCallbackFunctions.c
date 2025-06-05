@@ -12,90 +12,105 @@
 
 
 static void resetNavyCallback();
-// static void mainButtonCallback(uint32_t events);
-// static void confirmButtonCallback(uint32_t events);
-// static void supp1ButtonCallback(uint32_t events);
-// static void supp2ButtonCallback(uint32_t events);
+static void fireCallback();
 
 
 void callbackSwitcher(uint gpio, uint32_t events) {
     switch (gpio) {
         case MAIN_BUTTON:
-            // mainButtonCallback(events);
             resetNavyCallback();
-            // printf("Main button\n");
-            break;
+            return;
         case CONFIRM_BUTTON:
-            // confirmButtonCallback(events);
-            printf("Confirm button\n");
-            break;
+            fireCallback();
+            return;
         case SUPP_BUTTON_1:
-            // supp1ButtonCallback(events);
             printf("Supp button 1\n");
-            break;
+            return;
         case SUPP_BUTTON_2:
-            // supp2ButtonCallback(events);
             printf("Supp button 2\n");
-            break;
+            return;
         default:
-            break;
+            return;
     }
 }
 
 static void resetNavyCallback() {
     if (resetNavyDebouncerFlag) {
         resetNavyDebouncerFlag = 0;
-        joystickMoveDebouncerAlarm = add_alarm_in_ms(1000, resetNavyDebouncerCallback, NULL, false);
+        resetNavyDebouncerAlarm = add_alarm_in_ms(1000, resetNavyDebouncerCallback, NULL, false);
 
         while (!placeNavy(&someField))
         UIManager.setSmallChanges(1);
     }
 }
 
-// static void mainButtonCallback(uint32_t events) {
-//     if (buttonFlags.read(&buttonFlags, MAIN_WAIT_BIT)) { 
-//         printf("Button moment\n");
-//         return;
-//     }
-//     buttonFlags.on(&buttonFlags, MAIN_WAIT_BIT);
-
-//     mainAlarm = add_alarm_in_ms(100, confirmButtonAlarmCallback, NULL, false);
-
-//     printf("Main button\n");
-// }
-
-// static void confirmButtonCallback(uint32_t events) {
-//     if (buttonFlags.read(&buttonFlags, CONFIRM_WAIT_BIT)) { 
-//         printf("Button moment\n");
-//         return;
-//     }
-//     buttonFlags.on(&buttonFlags, CONFIRM_WAIT_BIT);
-
-//     confirmAlarm = add_alarm_in_ms(100, suppButton1AlarmCallback, NULL, false);
-    
-//     printf("Confirm button\n");
-// }
-
-// static void supp1ButtonCallback(uint32_t events) {
-//     if (buttonFlags.read(&buttonFlags, SUPP1_WAIT_BIT)) { 
-//         printf("Button moment\n");
-//         return;
-//     }
-//     buttonFlags.on(&buttonFlags, SUPP1_WAIT_BIT);
-
-//     suppAlarm1 = add_alarm_in_ms(100, suppButton2AlarmCallback, NULL, false);
-
-//     printf("Supp button 1\n");
-// }
-
-// static void supp2ButtonCallback(uint32_t events) {
-//     if (buttonFlags.read(&buttonFlags, SUPP2_WAIT_BIT)) return;
-//     buttonFlags.on(&buttonFlags, SUPP2_WAIT_BIT);
-
-//     suppAlarm2 = add_alarm_in_ms(100, suppButton2AlarmCallback, NULL, false);
-
-//     printf("Supp button 2\n");
-// }
+static void fireCallback() {
+    if (fireDebouncerFlag) {
+        fireDebouncerFlag = 0;
+        fireDebouncerAlarm = add_alarm_in_ms(150, fireDebouncerCallback, NULL, false);
+        
+        switch (someField.read(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y})) {
+            case CLOUD_CELL:
+                someField.set(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y}, WATER_CELL);
+                break;
+            case BOAT_HORIZONTAL:
+                someField.set(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y}, DESTROYED_BOAT_HORIZONTAL);
+                break;
+            case BOAT_VERTICAL:
+                someField.set(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y}, DESTROYED_BOAT_VERTICAL);
+                break;
+            case BOW_HORIZONTAL:
+                someField.set(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y}, DAMAGED_BOW_HORIZONTAL);
+                break;
+            case BOW_VERTICAL:
+                someField.set(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y}, DAMAGED_BOW_VERTICAL);
+                break;
+            case MIDDLE_PART_HORIZONTAL:
+                someField.set(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y}, DAMAGED_MIDDLE_PART_HORIZONTAL);
+                break;
+            case MIDDLE_PART_VERTICAL:
+                someField.set(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y}, DAMAGED_MIDDLE_PART_VERTICAL);
+                break;
+            case END_HORIZONTAL:
+                someField.set(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y}, DAMAGED_END_HORIZONTAL);
+                break;
+            case END_VERTICAL:
+                someField.set(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y}, DAMAGED_END_VERTICAL);
+                break;
+            case DAMAGED_BOW_HORIZONTAL:
+                someField.set(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y}, DESTROYED_BOW_HORIZONTAL);
+                break;
+            case DAMAGED_BOW_VERTICAL:
+                someField.set(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y}, DESTROYED_BOW_VERTICAL);
+                break;
+            case DAMAGED_MIDDLE_PART_HORIZONTAL:
+                someField.set(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y}, DESTROYED_MIDDLE_PART_HORIZONTAL);
+                break;
+            case DAMAGED_MIDDLE_PART_VERTICAL:
+                someField.set(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y}, DESTROYED_MIDDLE_PART_VERTICAL);
+                break;
+            case DAMAGED_END_HORIZONTAL:
+                someField.set(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y}, DESTROYED_END_HORIZONTAL);
+                break;
+            case DAMAGED_END_VERTICAL:
+                someField.set(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y}, DESTROYED_END_VERTICAL);
+                break;
+            case WATER_CELL:
+            case DESTROYED_BOAT_HORIZONTAL:
+            case DESTROYED_BOAT_VERTICAL:
+            case DESTROYED_BOW_HORIZONTAL:
+            case DESTROYED_BOW_VERTICAL:
+            case DESTROYED_MIDDLE_PART_HORIZONTAL:
+            case DESTROYED_MIDDLE_PART_VERTICAL:
+            case DESTROYED_END_HORIZONTAL:
+            case DESTROYED_END_VERTICAL:
+                return;
+            default:
+                break;
+        }
+        UIManager.setSmallChanges(2);
+    }
+}
 
 
 #endif

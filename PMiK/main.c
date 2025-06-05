@@ -53,6 +53,7 @@ ledOut_t ledOut;
 joystick_t joystick;
 uint8_t joystickMoveDebouncerFlag;
 uint8_t resetNavyDebouncerFlag;
+uint8_t fireDebouncerFlag;
 display_t display;
 byte_t buttonFlags;
 field_t someField;
@@ -61,8 +62,9 @@ UIManager_t UIManager;
 alarm_id_t mainAlarm;
 alarm_id_t confirmAlarm;
 alarm_id_t suppAlarm1;
-// alarm_id_t suppAlarm2;
 alarm_id_t joystickMoveDebouncerAlarm;
+alarm_id_t resetNavyDebouncerAlarm;
+alarm_id_t fireDebouncerAlarm;
 
 struct repeating_timer UIManagerUpdater;
 struct repeating_timer joystickUpdateTimer;
@@ -92,11 +94,6 @@ void setUp() {
 
     initElements();
     sleep_ms(500);
-
-    // gpio_init(15);
-    // gpio_set_dir(15, GPIO_OUT);
-    // gpio_init(14);
-    // gpio_set_dir(14, GPIO_OUT);
 }
 
 void initElements() {
@@ -121,6 +118,7 @@ void initElements() {
     initField(&someField);
     joystickMoveDebouncerFlag = 1;
     resetNavyDebouncerFlag = 1;
+    fireDebouncerFlag = 1;
 }
 
 void setIRQs() {
