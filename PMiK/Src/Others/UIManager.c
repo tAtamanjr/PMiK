@@ -23,6 +23,7 @@ void initUIManager() {
     UIManager.updateView = updateView;
     UIManager.setNextView = setNextView;
     UIManager.setSmallChanges = setSmallChanges;
+    drawStartView();
 }
 
 static void updateView() {
@@ -30,12 +31,15 @@ static void updateView() {
         if (UIManager.nextView & 1 << 1) {
             drawField();
         }
+        UIManager.currentView = 0b00000010;
         UIManager.nextView = 0b00000000;
         UIManager.smallChanges = 0b00000000;
     } else if (UIManager.smallChanges) {
         if (UIManager.smallChanges & 1 << 0) {
-            updateAimPosition();
-            UIManager.smallChanges = UIManager.smallChanges & 0 << 0;
+            if (UIManager.currentView && 1 << 1) {
+                updateAimPosition();
+                UIManager.smallChanges = UIManager.smallChanges & 0 << 0;
+            }
         }
         if (UIManager.smallChanges & 1 << 1) {
             UIManager.currentView = 0b00000000;

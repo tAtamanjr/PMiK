@@ -28,6 +28,15 @@ void drawBoatVertical(const coordinate_e x, const coordinate_e y);
 void drawBowVertical(const coordinate_e x, const coordinate_e y);
 void drawMiddleVertical(const coordinate_e x, const coordinate_e y);
 void drawEndVertical(const coordinate_e x, const coordinate_e y);
+void drawDamagedShipPart(const coordinate_e x, const coordinate_e y);
+void drawDestroyedBoatHorizontal(const coordinate_e x, const coordinate_e y);
+void drawDestroyedBoatVertical(const coordinate_e x, const coordinate_e y);
+void drawDestroyedBowHorizontal(const coordinate_e x, const coordinate_e y);
+void drawDestroyedBowVertical(const coordinate_e x, const coordinate_e y);
+void drawDestroyedMiddleHorizontal(const coordinate_e x, const coordinate_e y);
+void drawDestroyedMiddleVertical(const coordinate_e x, const coordinate_e y);
+void drawDestroyedEndHorizontal(const coordinate_e x, const coordinate_e y);
+void drawDestroyedEndVertical(const coordinate_e x, const coordinate_e y);
 
 
 #endif

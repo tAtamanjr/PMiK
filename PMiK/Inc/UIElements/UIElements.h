@@ -11,14 +11,14 @@
 #define UI_ELEMENTS_H
 
 
+#ifndef START_VIEW_H
+#include "StartView.h"
+#endif
 #ifndef FIELD_VIEW_H
 #include "FieldView.h"
 #endif
 #ifndef FIELD_View_UPDATE_FUNCTIONS_H
 #include "FieldViewUpdateFunctions.h"
-#endif
-#ifndef SHIP_VIEWS_H
-#include "ShipElements.h"
 #endif
 
 
