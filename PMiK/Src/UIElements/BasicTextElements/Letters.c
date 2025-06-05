@@ -23,6 +23,11 @@ static void drawSmallG(uint8_t x, uint8_t y, color_t color);
 static void drawSmallH(uint8_t x, uint8_t y, color_t color);
 static void drawSmallI(uint8_t x, uint8_t y, color_t color);
 static void drawSmallJ(uint8_t x, uint8_t y, color_t color);
+static void drawSmallM(uint8_t x, uint8_t y, color_t color);
+static void drawSmallN(uint8_t x, uint8_t y, color_t color);
+static void drawSmallO(uint8_t x, uint8_t y, color_t color);
+static void drawSmallR(uint8_t x, uint8_t y, color_t color);
+static void drawSmallU(uint8_t x, uint8_t y, color_t color);
 
 
 void drawBigLetter(const letter_e letter, const uint8_t x, const uint8_t y, const color_t color) {
@@ -65,6 +70,21 @@ void drawSmallLetter(const letter_e letter, const uint8_t x, const uint8_t y, co
             return;
         case J_s:
             drawSmallJ(x, y, color);
+            return;
+        case M_s:
+            drawSmallM(x, y, color);
+            return;
+        case N_s:
+            drawSmallN(x, y, color);
+            return;
+        case O_s:
+            drawSmallO(x, y, color);
+            return;
+        case R_s:
+            drawSmallR(x, y, color);
+            return;
+        case U_s:
+            drawSmallU(x, y, color);
             return;
         default:
             return;
@@ -157,6 +177,48 @@ static void drawSmallJ(const uint8_t x, const uint8_t y, const color_t color) {
     display.drawHorizontalLine(x + 2, y + 7, 3, 1, color);
     display.drawVerticalLine(x + 1, y + 5, 2, 1, color);
     display.drawVerticalLine(x + 5, y + 1, 6, 1, color);
+}
+
+static void drawSmallM(const uint8_t x, const uint8_t y, const color_t color) {
+    display.drawVerticalLine(x + 1, y, 8, 1, color);
+    display.drawVerticalLine(x + 6, y, 8, 1, color);
+    display.drawPixel(x + 2, y + 1, color);
+    display.drawPixel(x + 5, y + 1, color);
+    display.drawHorizontalLine(x + 3, y + 2, 2, 1, color);
+}
+
+static void drawSmallN(const uint8_t x, const uint8_t y, const color_t color) {
+    display.drawVerticalLine(x + 1, y, 8, 1, color);
+    display.drawVerticalLine(x + 6, y, 8, 1, color);
+    display.drawPixel(x + 2, y + 2, color);
+    display.drawPixel(x + 3, y + 3, color);
+    display.drawPixel(x + 4, y + 4, color);
+    display.drawPixel(x + 5, y + 5, color);
+}
+
+static void drawSmallO(const uint8_t x, const uint8_t y, const color_t color) {
+    display.drawHorizontalLine(x + 2, y, 4, 1, color);
+    display.drawHorizontalLine(x + 2, y + 7, 4, 1, color);
+    display.drawVerticalLine(x + 1, y + 1, 6, 1, color);
+    display.drawVerticalLine(x + 6, y + 1, 6, 1, color);
+}
+
+static void drawSmallR(const uint8_t x, const uint8_t y, const color_t color) {
+    display.drawVerticalLine(x + 1, y, 8, 1, color);
+    display.drawHorizontalLine(x + 1, y, 5, 1, color);
+    display.drawHorizontalLine(x + 1, y + 3, 5, 1, color);
+    display.drawVerticalLine(x + 6, y + 1, 2, 1, color);
+    display.drawPixel(x + 3, y + 4, color);
+    display.drawPixel(x + 4, y + 5, color);
+    display.drawPixel(x + 5, y + 6, color);
+    display.drawPixel(x + 6, y + 7, color);
+}
+
+static void drawSmallU(const uint8_t x, const uint8_t y, const color_t color) {
+    display.drawVerticalLine(x + 1, y, 7, 1, color);
+    display.drawVerticalLine(x + 5, y, 7, 1, color);
+    display.drawHorizontalLine(x + 2, y + 7, 3, 1, color);
+    display.drawPixel(x + 6, y + 7, color);
 }
 
 

@@ -27,7 +27,14 @@
 #define FIRE_YELLOW 0xfea0  // #FFD700
 #define FIRE_ORANGE 0xfa80  // #FF8C00
 #define FIRE_RED    0xf900  // #FF4500
-    
+
+
+// Button wires
+#define WIRE_GRAY   0x4a28  // #484848
+#define WIRE_PURPLE 0x8008  // #800080
+#define WIRE_BLUE   0x0011  // #000088
+#define WIRE_GREEN  0x0200  // #002200
+
 #define RED         0xf800  // #ff0000
 
 

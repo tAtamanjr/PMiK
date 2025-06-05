@@ -11,6 +11,8 @@
 #include "FieldView.h"
 
 
+static void drawButtonsDescriptions();
+
 void drawField() {
     display.fillRectangle(0, 0, 128, 128, WHITE);
 
@@ -103,9 +105,10 @@ void drawField() {
 
     display.drawHorizontalLine(0, 128, 128, 2, RED);
     display.fillRectangle(0, 130, 128, 34, BLACK);
+    drawButtonsDescriptions();
 
-    drawSmallLetter(joystick.cell->x, 1, 131, RED);
-    drawNumber(joystick.cell->y + 1, 11, 131, RED);
+    drawSmallLetter(joystick.cell->x, 0, 131, RED);
+    drawNumber(joystick.cell->y + 1, 10, 131, RED);
 }
 
 void drawCell(const uint8_t x, const uint8_t y) {
@@ -201,6 +204,40 @@ void drawAim(const uint8_t x, const uint8_t y) {
     display.fillRectangle(coordinateToPixelWithShift(x, 7), coordinateToPixelWithShift(y, 1), 2, 2, color);
     display.fillRectangle(coordinateToPixelWithShift(x, 7), coordinateToPixelWithShift(y, 7), 2, 2, color);
     display.fillRectangle(coordinateToPixelWithShift(x, 1), coordinateToPixelWithShift(y, 7), 2, 2, color);
+}
+
+static void drawButtonsDescriptions() {
+    display.fillRectangle(42, 132, 4, 6, WIRE_GRAY);
+    display.drawVerticalLine(41, 133, 4, 1, WIRE_GRAY);
+    display.drawVerticalLine(46, 133, 4, 1, WIRE_GRAY);
+    drawSmallLetter(M_s, 48, 131, WIRE_GRAY);
+    drawSmallLetter(E_s, 56, 131, WIRE_GRAY);
+    drawSmallLetter(N_s, 64, 131, WIRE_GRAY);
+    drawSmallLetter(U_s, 72, 131, WIRE_GRAY);
+
+    display.fillRectangle(89, 132, 4, 6, WIRE_PURPLE);
+    display.drawVerticalLine(88, 133, 4, 1, WIRE_PURPLE);
+    display.drawVerticalLine(93, 133, 4, 1, WIRE_PURPLE);
+    drawSmallLetter(F_s, 95, 131, WIRE_PURPLE);
+    drawSmallLetter(I_s, 103, 131, WIRE_PURPLE);
+    drawSmallLetter(R_s, 111, 131, WIRE_PURPLE);
+    drawSmallLetter(E_s, 119, 131, WIRE_PURPLE);
+
+    display.fillRectangle(42, 148, 4, 6, WIRE_BLUE);
+    display.drawVerticalLine(41, 149, 4, 1, WIRE_BLUE);
+    display.drawVerticalLine(46, 149, 4, 1, WIRE_BLUE);
+    drawSmallLetter(N_s, 48, 147, WIRE_BLUE);
+    drawSmallLetter(O_s, 56, 147, WIRE_BLUE);
+    drawSmallLetter(N_s, 64, 147, WIRE_BLUE);
+    drawSmallLetter(E_s, 72, 147, WIRE_BLUE);
+
+    display.fillRectangle(89, 148, 4, 6, WIRE_GREEN);
+    display.drawVerticalLine(88, 149, 4, 1, WIRE_GREEN);
+    display.drawVerticalLine(93, 149, 4, 1, WIRE_GREEN);
+    drawSmallLetter(N_s, 95, 147, WIRE_GREEN);
+    drawSmallLetter(O_s, 103, 147, WIRE_GREEN);
+    drawSmallLetter(N_s, 111, 147, WIRE_GREEN);
+    drawSmallLetter(E_s, 119, 147, WIRE_GREEN);
 }
 
 

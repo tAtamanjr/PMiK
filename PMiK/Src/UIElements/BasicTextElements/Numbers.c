@@ -69,6 +69,11 @@ static void drawSmall0(const uint8_t x, const uint8_t y, const color_t color) {
     display.drawHorizontalLine(x + 2, y + 7, 4, 1, color);
     display.drawVerticalLine(x + 1, y + 1, 6, 1, color);
     display.drawVerticalLine(x + 6, y + 1, 6, 1, color);
+
+    display.drawPixel(x + 5, y + 2, color);
+    display.drawPixel(x + 4, y + 3, color);
+    display.drawPixel(x + 3, y + 4, color);
+    display.drawPixel(x + 2, y + 5, color);
 }
 
 static void drawSmall1(const uint8_t x, const uint8_t y, const color_t color) {
