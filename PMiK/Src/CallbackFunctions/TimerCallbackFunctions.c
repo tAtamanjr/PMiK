@@ -19,7 +19,7 @@ bool joystickDataCallback(struct repeating_timer *t) {
 
         joystickMoveDebouncerFlag = 0;
         joystickMoveDebouncerAlarm = add_alarm_in_ms(150, joystickMoveDebouncerCallback, NULL, false);
-        UIManager.setSmallChanges(0);
+        UIManager.setSmallChanges(UPDATE_ON_FIELD_AIM);
     }
 
     return true;

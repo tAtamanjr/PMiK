@@ -56,6 +56,7 @@ include_directories(${CMAKE_SOURCE_DIR}/Inc/Others)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/CallbackFunctions)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/Devices)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/UIElements/BasicTextElements)
+include_directories(${CMAKE_SOURCE_DIR}/Inc/UIElements/ButtonsDescriptions) 
 include_directories(${CMAKE_SOURCE_DIR}/Inc/UIElements/StartView)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/UIElements/Field)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/UIElements)
@@ -66,6 +67,7 @@ file(GLOB SRC_FILES ${CMAKE_SOURCE_DIR}/Src/Others/*.c
                     ${CMAKE_SOURCE_DIR}/Src/CallbackFunctions/*.c
                     ${CMAKE_SOURCE_DIR}/Src/Devices/*.c
                     ${CMAKE_SOURCE_DIR}/Src/UIElements/BasicTextElements/*.c
+                    ${CMAKE_SOURCE_DIR}/Src/UIElements/ButtonsDescriptions/*.c
                     ${CMAKE_SOURCE_DIR}/Src/UIElements/StartView/*.c
                     ${CMAKE_SOURCE_DIR}/Src/UIElements/Field/*.c
                     ${CMAKE_SOURCE_DIR}/Src/UIElements/*.c

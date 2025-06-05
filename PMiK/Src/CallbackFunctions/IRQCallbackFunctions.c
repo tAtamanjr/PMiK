@@ -40,7 +40,7 @@ static void resetNavyCallback() {
         resetNavyDebouncerAlarm = add_alarm_in_ms(1000, resetNavyDebouncerCallback, NULL, false);
 
         while (!placeNavy(&someField))
-        UIManager.setSmallChanges(1);
+        UIManager.setSmallChanges(2);
     }
 }
 
@@ -108,7 +108,7 @@ static void fireCallback() {
             default:
                 break;
         }
-        UIManager.setSmallChanges(2);
+        UIManager.setSmallChanges(UPDATE_CELL);
     }
 }
 

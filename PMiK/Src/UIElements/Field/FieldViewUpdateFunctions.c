@@ -16,8 +16,8 @@ void updateAimPosition() {
     joystick.updateCell();
     drawAim(joystick.cell->x, joystick.cell->y);
     display.fillRectangle(0, 130, 26, 10, BLACK);
-    drawSmallLetter(joystick.cell->x, 0, 131, RED);
-    drawNumber(joystick.cell->y + 1, 10, 131, RED);
+    drawSmallLetter(joystick.cell->x, 0, 132, RED);
+    drawNumber(joystick.cell->y + 1, 10, 132, RED);
 }
 
 

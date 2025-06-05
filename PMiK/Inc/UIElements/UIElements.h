@@ -11,6 +11,9 @@
 #define UI_ELEMENTS_H
 
 
+#ifndef BUTTONS_DESCRIPTIONS_H
+#include "ButtonsDescriptions.h"
+#endif
 #ifndef START_VIEW_H
 #include "StartView.h"
 #endif
