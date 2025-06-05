@@ -83,7 +83,9 @@ extern struct Byte buttonFlags;
 extern struct Field someField;
 
 
-uint8_t randomNumber(const uint8_t min, const uint8_t max);
+uint8_t randomNumber(uint8_t min, uint8_t max);
+uint8_t coordinateToPixel(uint8_t coordinate);
+uint8_t coordinateToPixelWithShift(uint8_t coordinate, uint8_t shift);
 
 
 #endif

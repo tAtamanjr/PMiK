@@ -93,7 +93,7 @@ void drawField() {
                     drawDestroyedEndVertical(x, y);
                     break;
                 default:
-                    display.fillRectangle(19 + x * 11, 19 + y * 11, 10, 10, CLOUD);
+                    display.fillRectangle(coordinateToPixel(x), coordinateToPixel(y), 10, 10, CLOUD);
                     break;
             }
         }
@@ -111,7 +111,7 @@ void drawField() {
 void drawCell(const uint8_t x, const uint8_t y) {
     switch (someField.read(&someField, (coordinates_t) {x, y})) {
         case WATER_CELL:
-            display.fillRectangle(19 + x * 11, 19 + y * 11, 10, 10, WATER);
+            display.fillRectangle(coordinateToPixel(x), coordinateToPixel(y), 10, 10, WATER);
             return;
         case BOAT_HORIZONTAL:
             drawBoatHorizontal(x, y);
@@ -170,7 +170,7 @@ void drawCell(const uint8_t x, const uint8_t y) {
             drawDestroyedEndVertical(x, y);
             return;
         default:
-            display.fillRectangle(19 + x * 11, 19 + y * 11, 10, 10, CLOUD);
+            display.fillRectangle(coordinateToPixel(x), coordinateToPixel(y), 10, 10, CLOUD);
             return;
     }
 }
@@ -193,14 +193,14 @@ void drawAim(const uint8_t x, const uint8_t y) {
             break;
     }
 
-    display.fillRectangle(19 + x * 11, 19 + y * 11, 2, 2, color);
-    display.fillRectangle(19 + x * 11 + 8, 19 + y * 11, 2, 2, color);
-    display.fillRectangle(19 + x * 11 + 8, 19 + y * 11 + 8, 2, 2, color);
-    display.fillRectangle(19 + x * 11, 19 + y * 11 + 8, 2, 2, color);
-    display.fillRectangle(19 + x * 11 + 1, 19 + y * 11 + 1, 2, 2, color);
-    display.fillRectangle(19 + x * 11 + 7, 19 + y * 11 + 1, 2, 2, color);
-    display.fillRectangle(19 + x * 11 + 7, 19 + y * 11 + 7, 2, 2, color);
-    display.fillRectangle(19 + x * 11 + 1, 19 + y * 11 + 7, 2, 2, color);
+    display.fillRectangle(coordinateToPixel(x), coordinateToPixel(y), 2, 2, color);
+    display.fillRectangle(coordinateToPixelWithShift(x, 8), coordinateToPixel(y), 2, 2, color);
+    display.fillRectangle(coordinateToPixelWithShift(x, 8), coordinateToPixelWithShift(y, 8), 2, 2, color);
+    display.fillRectangle(coordinateToPixel(x), coordinateToPixelWithShift(y, 8), 2, 2, color);
+    display.fillRectangle(coordinateToPixelWithShift(x, 1), coordinateToPixelWithShift(y, 1), 2, 2, color);
+    display.fillRectangle(coordinateToPixelWithShift(x, 7), coordinateToPixelWithShift(y, 1), 2, 2, color);
+    display.fillRectangle(coordinateToPixelWithShift(x, 7), coordinateToPixelWithShift(y, 7), 2, 2, color);
+    display.fillRectangle(coordinateToPixelWithShift(x, 1), coordinateToPixelWithShift(y, 7), 2, 2, color);
 }
 
 

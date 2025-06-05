@@ -47,7 +47,7 @@ static void resetNavyCallback() {
 static void fireCallback() {
     if (fireDebouncerFlag) {
         fireDebouncerFlag = 0;
-        fireDebouncerAlarm = add_alarm_in_ms(150, fireDebouncerCallback, NULL, false);
+        fireDebouncerAlarm = add_alarm_in_ms(250, fireDebouncerCallback, NULL, false);
         
         switch (someField.read(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y})) {
             case CLOUD_CELL:
