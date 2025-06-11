@@ -15,20 +15,11 @@
 #include "TheData.h"
 #endif
 
-#ifndef BYTE_H
-#include "Byte.h"
-#endif
 #ifndef ALARM_CLABACK_FUNCTIONS_H
 #include "AlarmCallbackFunctions.h"
 #endif
-#ifndef NAVY_PLACER_H
-#include "NavyPlacer.h"
-#endif
-#ifndef UI_ELEMENTS_H
-#include "UIElements.h"
-#endif
-#ifndef UI_MANAGER_H
-#include "UIManager.h"
+#ifndef MODEL_H
+#include "Model.h"
 #endif
 
 

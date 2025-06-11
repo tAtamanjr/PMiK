@@ -36,6 +36,33 @@ void drawStartView() {
     display.drawHorizontalLine(0, 128, 128, 2, RED);
     display.fillRectangle(0, 130, 128, 34, BLACK);
 
+    display.fillRectangle(89, 133, 4, 6, WIRE_GRAY);
+    display.drawVerticalLine(88, 134, 4, 1, WIRE_GRAY);
+    display.drawVerticalLine(93, 134, 4, 1, WIRE_GRAY);
+
+    display.fillRectangle(42, 151, 4, 6, WIRE_PURPLE);
+    display.drawVerticalLine(41, 152, 4, 1, WIRE_PURPLE);
+    display.drawVerticalLine(46, 152, 4, 1, WIRE_PURPLE);
+
+    display.fillRectangle(89, 151, 4, 6, WIRE_BLUE);
+    display.drawVerticalLine(88, 152, 4, 1, WIRE_BLUE);
+    display.drawVerticalLine(93, 152, 4, 1, WIRE_BLUE);
+
+    drawSmallLetter(M_s, 95, 132, WIRE_GRAY);
+    drawSmallLetter(E_s, 103, 132, WIRE_GRAY);
+    drawSmallLetter(N_s, 111, 132, WIRE_GRAY);
+    drawSmallLetter(U_s, 119, 132, WIRE_GRAY);
+
+    drawSmallLetter(M_s, 48, 150, WIRE_PURPLE);
+    drawSmallLetter(E_s, 56, 150, WIRE_PURPLE);
+    drawSmallLetter(N_s, 64, 150, WIRE_PURPLE);
+    drawSmallLetter(U_s, 72, 150, WIRE_PURPLE);
+    
+    drawSmallLetter(M_s, 95, 150, WIRE_BLUE);
+    drawSmallLetter(E_s, 103, 150, WIRE_BLUE);
+    drawSmallLetter(N_s, 111, 150, WIRE_BLUE);
+    drawSmallLetter(U_s, 119, 150, WIRE_BLUE);
+
     for (uint8_t x = E; x <= G; x++) {
         for(uint8_t y = 2; y <= 4; y++) {
             display.fillRectangle(19 + x * 11, 19 + y * 11, 10, 10, WATER);

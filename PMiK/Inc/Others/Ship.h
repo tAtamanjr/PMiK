@@ -11,7 +11,7 @@
 #define SHIP_H
 
 
-#ifndef THEAD_H
+#ifndef THE_DATA_H
 #include "TheData.h"
 #endif
 

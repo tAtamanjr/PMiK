@@ -33,7 +33,6 @@
 #define WIRE_GRAY   0x4a28  // #484848
 #define WIRE_PURPLE 0x8008  // #800080
 #define WIRE_BLUE   0x0011  // #000088
-#define WIRE_GREEN  0x0200  // #002200
 
 #define RED         0xf800  // #ff0000
 

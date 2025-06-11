@@ -14,6 +14,8 @@
 static void updateView();
 static void setNextView(uint8_t);
 static void setSmallChanges(uint8_t);
+static void changeView();
+static void updateCurrentView();
 
 
 void initUIManager() {
@@ -24,20 +26,46 @@ void initUIManager() {
     UIManager.setNextView = setNextView;
     UIManager.setSmallChanges = setSmallChanges;
     drawStartView();
-    drawButtonsDescriptions(UIManager.currentView);
 }
 
 static void updateView() {
     if (UIManager.nextView && UIManager.currentView != UIManager.nextView) {
-        if (UIManager.nextView == FIELD_VIEW) {
+        changeView();
+    } else if (UIManager.smallChanges) {
+        updateCurrentView();
+    }
+}
+
+static void setNextView(const uint8_t view) {
+    UIManager.nextView = view;
+}
+
+static void setSmallChanges(const uint8_t changes) {
+    UIManager.smallChanges = UIManager.smallChanges | 1 << changes;
+}
+
+static void changeView() {
+    switch (UIManager.nextView) {
+        case MAIN_MENU_VIEW:
+            drawMainMenu();
+            break;
+        case START_GAME_VIEW:
+            drawStartGameView();
+            break;
+        case FIELD_VIEW:
             drawField();
             drawButtonsDescriptions(FIELD_VIEW);
-        }
-        UIManager.currentView = FIELD_VIEW;
-        UIManager.nextView = 0b00000000;
-        UIManager.smallChanges = 0b00000000;
-    } else if (UIManager.smallChanges) {
-        if (UIManager.smallChanges & 1 << 2) {
+            break;
+        default:
+            return;
+    }
+    UIManager.currentView = UIManager.nextView;
+    UIManager.nextView = 0b00000000;
+    UIManager.smallChanges = NO_CHANGES;
+}
+
+static void updateCurrentView() {
+    if (UIManager.smallChanges & 1 << 2) {
             UIManager.currentView = 0b00000000;
             UIManager.nextView = 0b00000010;
             UIManager.smallChanges = UIManager.smallChanges & 0 << 2;
@@ -55,15 +83,6 @@ static void updateView() {
                 UIManager.smallChanges = UIManager.smallChanges & 0 << UPDATE_ON_FIELD_AIM;
             }
         }
-    }
-}
-
-static void setNextView(const uint8_t view) {
-    UIManager.nextView = view;
-}
-
-static void setSmallChanges(const uint8_t changes) {
-    UIManager.smallChanges = UIManager.smallChanges | 1 << changes;
 }
 
 

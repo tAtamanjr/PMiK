@@ -48,21 +48,29 @@
 #endif
 
 
+uint8_t viewChangeButtonDebouncerFlag;
+uint8_t mainActionButtonDebouncerFlag;
+uint8_t additionalActionButtonDebouncerFlag;
+alarm_id_t viewChangeButtonDebouncerAlarm;
+alarm_id_t mainActionButtonDebouncerAlarm;
+alarm_id_t additionalActionButtonDebouncerAlarm;
+
 // byte_t states;
 ledOut_t ledOut;
 joystick_t joystick;
-uint8_t joystickMoveDebouncerFlag;
+uint8_t joystickActionDebouncerFlag;
 uint8_t resetNavyDebouncerFlag;
 uint8_t fireDebouncerFlag;
 display_t display;
 byte_t buttonFlags;
 field_t someField;
 UIManager_t UIManager;
+model_t model;
 
 alarm_id_t mainAlarm;
 alarm_id_t confirmAlarm;
 alarm_id_t suppAlarm1;
-alarm_id_t joystickMoveDebouncerAlarm;
+alarm_id_t joystickActionDebouncerAlarm;
 alarm_id_t resetNavyDebouncerAlarm;
 alarm_id_t fireDebouncerAlarm;
 
@@ -101,31 +109,33 @@ void initElements() {
     initJoystick();
     initDisplay();
     initUIManager();
+    initModel();
 
-    gpio_init(MAIN_BUTTON);
-    gpio_set_dir(MAIN_BUTTON, GPIO_IN);
+    gpio_init(VIEW_CHANGE_BUTTON);
+    gpio_set_dir(VIEW_CHANGE_BUTTON, GPIO_IN);
 
-    gpio_init(CONFIRM_BUTTON);
-    gpio_set_dir(CONFIRM_BUTTON, GPIO_IN);
+    gpio_init(MAIN_ACTION_BUTTON);
+    gpio_set_dir(MAIN_ACTION_BUTTON, GPIO_IN);
 
-    gpio_init(SUPP_BUTTON_1);
-    gpio_set_dir(SUPP_BUTTON_1, GPIO_IN);
-
-    gpio_init(SUPP_BUTTON_2);
-    gpio_set_dir(SUPP_BUTTON_2, GPIO_IN);
+    gpio_init(ADDITIONAL_ACTION_BUTTON);
+    gpio_set_dir(ADDITIONAL_ACTION_BUTTON, GPIO_IN);
 
     initByte(&buttonFlags);
     initField(&someField);
-    joystickMoveDebouncerFlag = 1;
+
+    viewChangeButtonDebouncerFlag = 1;
+    mainActionButtonDebouncerFlag = 1;
+    additionalActionButtonDebouncerFlag = 1;
+
+    joystickActionDebouncerFlag = 1;
     resetNavyDebouncerFlag = 1;
     fireDebouncerFlag = 1;
 }
 
 void setIRQs() {
-    gpio_set_irq_enabled_with_callback(MAIN_BUTTON, GPIO_IRQ_EDGE_RISE, true, &callbackSwitcher);
-    gpio_set_irq_enabled(CONFIRM_BUTTON, GPIO_IRQ_EDGE_RISE, true);
-    gpio_set_irq_enabled(SUPP_BUTTON_1, GPIO_IRQ_EDGE_RISE, true);
-    gpio_set_irq_enabled(SUPP_BUTTON_2, GPIO_IRQ_EDGE_RISE, true);
+    gpio_set_irq_enabled_with_callback(VIEW_CHANGE_BUTTON, GPIO_IRQ_EDGE_RISE, true, &callbackSwitcher);
+    gpio_set_irq_enabled(MAIN_ACTION_BUTTON, GPIO_IRQ_EDGE_RISE, true);
+    gpio_set_irq_enabled(ADDITIONAL_ACTION_BUTTON, GPIO_IRQ_EDGE_RISE, true);
 }
 
 void startTimers() {

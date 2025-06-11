@@ -12,16 +12,14 @@
 
 
 bool joystickDataCallback(struct repeating_timer *t) {
-    if (joystickMoveDebouncerFlag) {
+    if (joystickActionDebouncerFlag) {
         joystick.read(&joystick);
 
         if (joystick.direction == NONE) return true;
 
-        joystickMoveDebouncerFlag = 0;
-        joystickMoveDebouncerAlarm = add_alarm_in_ms(150, joystickMoveDebouncerCallback, NULL, false);
-        UIManager.setSmallChanges(UPDATE_ON_FIELD_AIM);
+        joystickActionDebouncerFlag = 0;
+        model.reactOnJoystick();
     }
-
     return true;
 }
 

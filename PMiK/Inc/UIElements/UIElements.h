@@ -17,6 +17,12 @@
 #ifndef START_VIEW_H
 #include "StartView.h"
 #endif
+#ifndef MAIN_MENU_VIEW_H
+#include "MainMenuView.h"
+#endif
+#ifndef START_GAME_VIEW_H
+#include "StartGameView.h"
+#endif
 #ifndef FIELD_VIEW_H
 #include "FieldView.h"
 #endif

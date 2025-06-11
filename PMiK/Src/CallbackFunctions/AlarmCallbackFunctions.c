@@ -11,33 +11,23 @@
 #include "AlarmCallbackFunctions.h"
 
 
-int64_t mainButtonAlarmCallback(alarm_id_t id, void *user_data) {
-    buttonFlags.off(&buttonFlags, MAIN_WAIT_BIT);
+int64_t viewChangeButtonDebouncerCallback(alarm_id_t id, void *user_data) {
+    viewChangeButtonDebouncerFlag = 1;
     return 0;
 }
 
-int64_t confirmButtonAlarmCallback(alarm_id_t id, void *user_data) {
-    buttonFlags.off(&buttonFlags, CONFIRM_WAIT_BIT);
+int64_t mainActionButtonDebouncerCallback(alarm_id_t id, void *user_data) {
+    mainActionButtonDebouncerFlag = 1;
     return 0;
 }
 
-int64_t suppButton1AlarmCallback(alarm_id_t id, void *user_data) {
-    buttonFlags.off(&buttonFlags, SUPP1_WAIT_BIT);
+int64_t additionalActionButtonDebouncerCallback(alarm_id_t id, void *user_data) {
+    additionalActionButtonDebouncerFlag = 1;
     return 0;
 }
 
-int64_t joystickMoveDebouncerCallback(alarm_id_t id, void *user_data) {
-    joystickMoveDebouncerFlag = 1;
-    return 0;
-}
-
-int64_t resetNavyDebouncerCallback(alarm_id_t id, void *user_data) {
-    resetNavyDebouncerFlag = 1;
-    return 0;
-}
-
-int64_t fireDebouncerCallback(alarm_id_t id, void *user_data) {
-    fireDebouncerFlag = 1;
+int64_t joystickactionDebouncerCallback(alarm_id_t id, void *user_data) {
+    joystickActionDebouncerFlag = 1;
     return 0;
 }
 
