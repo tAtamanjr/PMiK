@@ -18,8 +18,8 @@
 #ifndef UI_ELEMENTS_H
 #include "UIElements.h"
 #endif
-#ifndef LED_OUT_H
-#include "LedOut.h"
+#ifndef NAVIGATION_DATA_H
+#include "NavigationData.h"
 #endif
 
 

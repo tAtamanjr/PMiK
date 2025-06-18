@@ -15,6 +15,9 @@
 #include "TheData.h"
 #endif
 
+#ifndef NAVIGATION_DATA_H
+#include "NavigationData.h"
+#endif
 #ifndef JOYSTICK_H
 #include "Joystick.h"
 #endif
@@ -27,11 +30,12 @@
 #ifndef ALARM_CALLBACK_FUNCTIONS_H
 #include "AlarmCallbackFunctions.h"
 #endif
+#ifndef GAME_DATA_H
+#include "GameData.h"
+#endif
 
 
 typedef struct Model {
-    uint8_t mainMenuElementIndex;
-
     void (*reactOnViewChangeButtonPressed) ();
     void (*reactOnMainActionButtonPressed) ();
     void (*reactOnAdditionalActionButtonPressed) ();

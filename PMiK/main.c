@@ -36,6 +36,9 @@
 #ifndef UI_MANAGER_H
 #include "UIManager.h"
 #endif
+#ifndef NAVIGATION_DATA_H
+#include "NavigationData.h"
+#endif
 
 #ifndef ALARM_CALLBACK_FUNCTIONS_H
 #include "AlarmCallbackFunctions.h"
@@ -66,6 +69,7 @@ byte_t buttonFlags;
 field_t someField;
 UIManager_t UIManager;
 model_t model;
+navigationData_t navigationData;
 
 alarm_id_t mainAlarm;
 alarm_id_t confirmAlarm;
@@ -108,6 +112,7 @@ void initElements() {
     initLedOut();
     initJoystick();
     initDisplay();
+    initNavigationData();
     initUIManager();
     initModel();
 

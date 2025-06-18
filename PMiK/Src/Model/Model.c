@@ -17,11 +17,10 @@ static void reactOnAdditionalActionButtonPressed();
 
 static void reactOnJoystick();
 static void updateMainMenuCursor();
+static void updateStartGameMenuCursor();
 
 
 void initModel() {
-    model.mainMenuElementIndex = 0;
-
     model.reactOnViewChangeButtonPressed = reactOnViewChangeButtonPressed;
     model.reactOnMainActionButtonPressed = reactOnMainActionButtonPressed;
     model.reactOnAdditionalActionButtonPressed = reactOnAdditionalActionButtonPressed;
@@ -39,8 +38,13 @@ static void reactOnViewChangeButtonPressed() {
             viewChangeButtonDebouncerFlag = 1;
             return;
         case START_GAME_VIEW:
-            viewChangeButtonDebouncerFlag = 1;
-            return;            
+            viewChangeButtonDebouncerAlarm = add_alarm_in_ms(500, viewChangeButtonDebouncerCallback, NULL, false);
+            UIManager.setNextView(START_GAME_MENU_VIEW);
+            return;
+        case START_GAME_MENU_VIEW:
+            viewChangeButtonDebouncerAlarm = add_alarm_in_ms(500, viewChangeButtonDebouncerCallback, NULL, false);
+            UIManager.setNextView(START_GAME_VIEW);
+            return;
         case FIELD_VIEW:
             viewChangeButtonDebouncerFlag = 1;
             return;
@@ -57,7 +61,7 @@ static void reactOnMainActionButtonPressed() {
             UIManager.setNextView(MAIN_MENU_VIEW);
             return;
         case MAIN_MENU_VIEW:
-            if (model.mainMenuElementIndex == 0 || model.mainMenuElementIndex == 1) {
+            if (navigationData.mainMenuActiveElementIndex == 0 || navigationData.mainMenuActiveElementIndex == 1) {
                 mainActionButtonDebouncerAlarm = add_alarm_in_ms(500, mainActionButtonDebouncerCallback, NULL, false);
                 UIManager.setNextView(START_GAME_VIEW);
                 return;
@@ -65,6 +69,15 @@ static void reactOnMainActionButtonPressed() {
             mainActionButtonDebouncerFlag = 1;
             return;
         case START_GAME_VIEW:
+            mainActionButtonDebouncerFlag = 1;
+            return;
+        case START_GAME_MENU_VIEW:
+            if (navigationData.placementMenuActiveElementIndex == 2) {
+                mainActionButtonDebouncerAlarm = add_alarm_in_ms(500, mainActionButtonDebouncerCallback, NULL, false);
+                UIManager.setNextView(MAIN_MENU_VIEW);
+                navigationData.placementMenuActiveElementIndex = 0;
+                return;
+            }
             mainActionButtonDebouncerFlag = 1;
             return;
         case FIELD_VIEW:
@@ -103,6 +116,10 @@ static void reactOnJoystick() {
             joystickActionDebouncerAlarm = add_alarm_in_ms(250, joystickactionDebouncerCallback, NULL, false);
             updateMainMenuCursor();
             return;
+        case START_GAME_MENU_VIEW:
+            joystickActionDebouncerAlarm = add_alarm_in_ms(250, joystickactionDebouncerCallback, NULL, false);
+            updateStartGameMenuCursor();
+            return;
         case FIELD_VIEW:
             joystickActionDebouncerAlarm = add_alarm_in_ms(150, joystickactionDebouncerCallback, NULL, false);
             UIManager.setSmallChanges(UPDATE_ON_FIELD_AIM);
@@ -114,7 +131,7 @@ static void reactOnJoystick() {
 }
 
 static void updateMainMenuCursor() {
-    switch (model.mainMenuElementIndex) {
+    switch (navigationData.mainMenuActiveElementIndex) {
         case 0:
             drawStartEasyGameText(WHITE);
             break;
@@ -132,20 +149,20 @@ static void updateMainMenuCursor() {
         case NW:
         case NP:
         case NE:
-            if (model.mainMenuElementIndex == 0) model.mainMenuElementIndex = 2;
-            else model.mainMenuElementIndex -= 1;
+            if (navigationData.mainMenuActiveElementIndex == 0) navigationData.mainMenuActiveElementIndex = 2;
+            else navigationData.mainMenuActiveElementIndex -= 1;
             break;
         case SW:
         case SP:
         case SE:
-            if (model.mainMenuElementIndex == 2) model.mainMenuElementIndex = 0;
-            else model.mainMenuElementIndex += 1;
+            if (navigationData.mainMenuActiveElementIndex == 2) navigationData.mainMenuActiveElementIndex = 0;
+            else navigationData.mainMenuActiveElementIndex += 1;
             break;
         default:
             break;
     }
 
-    switch (model.mainMenuElementIndex) {
+    switch (navigationData.mainMenuActiveElementIndex) {
         case 0:
             drawStartEasyGameText(RED);
             break;
@@ -154,6 +171,53 @@ static void updateMainMenuCursor() {
             break;
         case 2:
             drawWatchOtherText(FIRE_YELLOW);
+            break;
+        default:
+            break;
+    }
+}
+
+static void updateStartGameMenuCursor() {
+    switch (navigationData.placementMenuActiveElementIndex) {
+        case 0:
+            drawReturnOneShipText(WHITE);
+            break;
+        case 1:
+            drawResetAllShipsText(WHITE);
+            break;
+        case 2:
+            drawAbortGameText(WHITE);
+            break;
+        default:
+            break;
+    }
+
+    switch (joystick.direction) {
+        case NW:
+        case NP:
+        case NE:
+            if (navigationData.placementMenuActiveElementIndex == 0) navigationData.placementMenuActiveElementIndex = 2;
+            else navigationData.placementMenuActiveElementIndex -= 1;
+            break;
+        case SW:
+        case SP:
+        case SE:
+            if (navigationData.placementMenuActiveElementIndex == 2) navigationData.placementMenuActiveElementIndex = 0;
+            else navigationData.placementMenuActiveElementIndex += 1;
+            break;
+        default:
+            break;
+    }
+
+    switch (navigationData.placementMenuActiveElementIndex) {
+        case 0:
+            drawReturnOneShipText(RED);
+            break;
+        case 1:
+            drawResetAllShipsText(RED);
+            break;
+        case 2:
+            drawAbortGameText(RED);
             break;
         default:
             break;

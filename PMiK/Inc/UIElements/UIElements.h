@@ -23,6 +23,9 @@
 #ifndef START_GAME_VIEW_H
 #include "StartGameView.h"
 #endif
+#ifndef START_GAME_MENU_VIEW_H
+#include "StartGameMenuView.h"
+#endif
 #ifndef FIELD_VIEW_H
 #include "FieldView.h"
 #endif

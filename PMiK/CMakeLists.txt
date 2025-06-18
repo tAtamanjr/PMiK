@@ -58,6 +58,7 @@ include_directories(${CMAKE_SOURCE_DIR}/Inc/Devices)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/Model)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/UIElements/BasicTextElements)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/UIElements/StartGameView)
+include_directories(${CMAKE_SOURCE_DIR}/Inc/UIElements/StartGameMenuView)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/UIElements/ButtonsDescriptions)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/UIElements/StartView)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/UIElements/MainMenu) 
@@ -72,6 +73,7 @@ file(GLOB SRC_FILES ${CMAKE_SOURCE_DIR}/Src/Others/*.c
                     ${CMAKE_SOURCE_DIR}/Src/Model/*.c
                     ${CMAKE_SOURCE_DIR}/Src/UIElements/BasicTextElements/*.c
                     ${CMAKE_SOURCE_DIR}/Src/UIElements/StartGameView/*.c
+                    ${CMAKE_SOURCE_DIR}/Src/UIElements/StartGameMenuView/*.c
                     ${CMAKE_SOURCE_DIR}/Src/UIElements/ButtonsDescriptions/*.c
                     ${CMAKE_SOURCE_DIR}/Src/UIElements/StartView/*.c
                     ${CMAKE_SOURCE_DIR}/Src/UIElements/MainMenu/*.c

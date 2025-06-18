@@ -48,9 +48,38 @@ static void changeView() {
     switch (UIManager.nextView) {
         case MAIN_MENU_VIEW:
             drawMainMenu();
+            switch (navigationData.mainMenuActiveElementIndex) {
+                case 0:
+                    drawStartEasyGameText(RED);
+                    break;
+                case 1:
+                    drawStartHardGameText(RED);
+                    break;
+                case 2:
+                    drawWatchOtherText(FIRE_YELLOW);
+                    break;
+                default:
+                    break;
+            }
             break;
         case START_GAME_VIEW:
             drawStartGameView();
+            break;
+        case START_GAME_MENU_VIEW:
+            drawStartGameMenuView();
+            switch (navigationData.placementMenuActiveElementIndex) {
+                case 0:
+                    drawReturnOneShipText(RED);
+                    break;
+                case 1:
+                    drawResetAllShipsText(RED);
+                    break;
+                case 2:
+                    drawAbortGameText(RED);
+                    break;
+                default:
+                    break;
+            }
             break;
         case FIELD_VIEW:
             drawField();
