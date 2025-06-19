@@ -1,6 +1,6 @@
 /**
- * \file	Enum_Direction.h
- * \brief
+ * @file	Enum_Direction.h
+ * @brief	Enumeration with all possible letters
  */
 
 /*

@@ -1,6 +1,6 @@
 /**
- * \file	Model.h
- * \brief
+ * @file	Model.h
+ * @brief   Structure for managing all precesses
  */
 
 /*

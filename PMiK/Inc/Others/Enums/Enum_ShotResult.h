@@ -1,6 +1,6 @@
 /**
- * \file	Enum_ShotResult.h
- * \brief
+ * @file	Enum_ShotResult.h
+ * @brief
  */
 
 /*

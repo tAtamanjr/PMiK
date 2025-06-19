@@ -1,6 +1,6 @@
 /**
- * \file	Coordinates.h
- * \brief
+ * @file	Coordinates.h
+ * @brief	Structure for holding coordinates
  */
 
 /*

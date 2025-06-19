@@ -1,0 +1,46 @@
+\doxysection{UIManager.\+h}
+\hypertarget{_u_i_manager_8h_source}{}\label{_u_i_manager_8h_source}\index{Inc/Others/UIManager.h@{Inc/Others/UIManager.h}}
+\mbox{\hyperlink{_u_i_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2025\ Oleksandr\ "{}tAtaman"{}\ Bolbat}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ UI\_MANAGER\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ UI\_MANAGER\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#ifndef\ THE\_DATA\_H}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_the_data_8h}{TheData.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifndef\ UI\_ELEMENTS\_H}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_u_i_elements_8h}{UIElements.h}}"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ NAVIGATION\_DATA\_H}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_navigation_data_8h}{NavigationData.h}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_u_i_manager_struct}{UIManagerStruct}}\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ uint8\_t\ currentView;}
+\DoxyCodeLine{00028\ \ \ \ \ uint8\_t\ nextView;}
+\DoxyCodeLine{00029\ \ \ \ \ uint8\_t\ smallChanges;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ void\ (*updateView)\ ();}
+\DoxyCodeLine{00032\ \ \ \ \ void\ (*setNextView)\ (uint8\_t\ view);}
+\DoxyCodeLine{00033\ \ \ \ \ void\ (*setSmallChanges)\ (uint8\_t\ changes);}
+\DoxyCodeLine{00034\ \}\ UIManager\_t;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{extern}\ UIManager\_t\ UIManager;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_u_i_manager_8h_ac58dac1008dd37fd123edc3afa04c9d2}{initUIManager}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

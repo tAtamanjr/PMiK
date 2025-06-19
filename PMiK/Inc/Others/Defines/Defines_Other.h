@@ -1,6 +1,6 @@
 /**
- * \file	Defines_Other.h
- * \brief
+ * @file	Defines_Other.h
+ * @brief   Some other defines
  */
 
 /*

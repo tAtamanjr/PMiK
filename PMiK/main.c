@@ -1,6 +1,6 @@
 /**
- * \file	main.c
- * \brief   Project for PMiK, "Programowanie mikrokontrolerów"
+ * @file	main.c
+ * @brief   Project for PMiK, "Programowanie mikrokontrolerów"
  *          Game BattleShips
  */
 
@@ -90,6 +90,9 @@ void setIRQs();
 void startTimers();
 
 
+/**
+ * @brief Initialize RPI2 Pico, modules, structures, enable interupts and start timers
+ */
 int main() {
     setUp();
 
@@ -100,6 +103,9 @@ int main() {
     while (HABEMUS_RES_QUAE_AD_SOLVENDUM_OPUS) tight_loop_contents();
 }
 
+/**
+ * @brief Initialize everything
+ */
 void setUp() {
     stdio_init_all();
     sleep_ms(500);
@@ -108,6 +114,9 @@ void setUp() {
     sleep_ms(500);
 }
 
+/**
+ * @brief Initialize everyting except RPI2 Pico
+ */
 void initElements() {
     initLedOut();
     initJoystick();
@@ -137,12 +146,18 @@ void initElements() {
     fireDebouncerFlag = 1;
 }
 
+/**
+ * @brief Enable intrupts
+ */
 void setIRQs() {
     gpio_set_irq_enabled_with_callback(VIEW_CHANGE_BUTTON, GPIO_IRQ_EDGE_RISE, true, &callbackSwitcher);
     gpio_set_irq_enabled(MAIN_ACTION_BUTTON, GPIO_IRQ_EDGE_RISE, true);
     gpio_set_irq_enabled(ADDITIONAL_ACTION_BUTTON, GPIO_IRQ_EDGE_RISE, true);
 }
 
+/**
+ * @brief Start timers
+ */
 void startTimers() {
     add_repeating_timer_ms(25, UIManagerUpdateCallback, NULL, &UIManagerUpdater);
     add_repeating_timer_ms(50, joystickDataCallback, NULL, &joystickUpdateTimer);

@@ -1,6 +1,6 @@
 /**
- * \file	StartGameView.C
- * \brief
+ * @file	StartGameView.C
+ * @brief   Draw field for placing ships/boats
  */
 
 /*
@@ -10,7 +10,9 @@
 #ifndef START_GAME_VIEW_H
 #include "StartGameView.h"
 
-
+/**
+ * @brief Draw field filled with water and down menu
+ */
 void drawStartGameView() {
     display.fillRectangle(0, 0, 128, 128, WHITE);
 

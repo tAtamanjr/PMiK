@@ -1,6 +1,6 @@
 /**
- * \file	Defines_Display.h
- * \brief
+ * @file	Defines_Display.h
+ * @brief   Defines related to display modul
  */
 
 /*

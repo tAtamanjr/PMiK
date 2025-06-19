@@ -1,6 +1,6 @@
 /**
- * \file	LedOut.h
- * \brief
+ * @file	LedOut.h
+ * @brief   Manage on board led
  */
 
 /*

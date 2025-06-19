@@ -1,0 +1,127 @@
+\doxysection{main.\+c File Reference}
+\hypertarget{main_8c}{}\label{main_8c}\index{main.c@{main.c}}
+
+
+Project for PMiK, "{}\+Programowanie mikrokontrolerów"{} Game Battle\+Ships.  
+
+
+{\ttfamily \#include "{}The\+Data.\+h"{}}\newline
+{\ttfamily \#include "{}Byte.\+h"{}}\newline
+{\ttfamily \#include "{}Led\+Out.\+h"{}}\newline
+{\ttfamily \#include "{}Joystick.\+h"{}}\newline
+{\ttfamily \#include "{}Display.\+h"{}}\newline
+{\ttfamily \#include "{}UIElements.\+h"{}}\newline
+{\ttfamily \#include "{}Field.\+h"{}}\newline
+{\ttfamily \#include "{}Navy\+Placer.\+h"{}}\newline
+{\ttfamily \#include "{}UIManager.\+h"{}}\newline
+{\ttfamily \#include "{}Navigation\+Data.\+h"{}}\newline
+{\ttfamily \#include "{}Alarm\+Callback\+Functions.\+h"{}}\newline
+{\ttfamily \#include "{}Timer\+Callback\+Functions.\+h"{}}\newline
+{\ttfamily \#include "{}IRQCallback\+Functions.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main_8c_a63326a1b70b6e3f070e51687798e02de}\label{main_8c_a63326a1b70b6e3f070e51687798e02de} 
+void {\bfseries set\+Up} ()
+\begin{DoxyCompactList}\small\item\em Initialize everything. \end{DoxyCompactList}\item 
+\Hypertarget{main_8c_aaed1a8deb647bf6ffb6d6b5727f02811}\label{main_8c_aaed1a8deb647bf6ffb6d6b5727f02811} 
+void {\bfseries init\+Elements} ()
+\begin{DoxyCompactList}\small\item\em Initialize everyting except RPI2 Pico. \end{DoxyCompactList}\item 
+\Hypertarget{main_8c_aa6b3c25c7af28d5e93f68b0c740b9031}\label{main_8c_aa6b3c25c7af28d5e93f68b0c740b9031} 
+void {\bfseries set\+IRQs} ()
+\begin{DoxyCompactList}\small\item\em Enable intrupts. \end{DoxyCompactList}\item 
+\Hypertarget{main_8c_a0d849a227d60f300de4d2dcee97ac286}\label{main_8c_a0d849a227d60f300de4d2dcee97ac286} 
+void {\bfseries start\+Timers} ()
+\begin{DoxyCompactList}\small\item\em Start timers. \end{DoxyCompactList}\item 
+\Hypertarget{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int {\bfseries main} ()
+\begin{DoxyCompactList}\small\item\em Initialize RPI2 Pico, modules, structures, enable interupts and start timers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main_8c_ac80f11d6ea0a389f8111481444fad827}\label{main_8c_ac80f11d6ea0a389f8111481444fad827} 
+uint8\+\_\+t {\bfseries view\+Change\+Button\+Debouncer\+Flag}
+\item 
+\Hypertarget{main_8c_a03dd98a6e9968556fd7ac56d8e9a41c7}\label{main_8c_a03dd98a6e9968556fd7ac56d8e9a41c7} 
+uint8\+\_\+t {\bfseries main\+Action\+Button\+Debouncer\+Flag}
+\item 
+\Hypertarget{main_8c_ab5a15adf46689603560922178be9401d}\label{main_8c_ab5a15adf46689603560922178be9401d} 
+uint8\+\_\+t {\bfseries additional\+Action\+Button\+Debouncer\+Flag}
+\item 
+\Hypertarget{main_8c_ab5ba243f878eea4d29f4ead32c424670}\label{main_8c_ab5ba243f878eea4d29f4ead32c424670} 
+alarm\+\_\+id\+\_\+t {\bfseries view\+Change\+Button\+Debouncer\+Alarm}
+\item 
+\Hypertarget{main_8c_a45557748a27f6a1b6f3c34a45bd3ab8e}\label{main_8c_a45557748a27f6a1b6f3c34a45bd3ab8e} 
+alarm\+\_\+id\+\_\+t {\bfseries main\+Action\+Button\+Debouncer\+Alarm}
+\item 
+\Hypertarget{main_8c_a93045ca4e6137c3969906dcdcc9421fd}\label{main_8c_a93045ca4e6137c3969906dcdcc9421fd} 
+alarm\+\_\+id\+\_\+t {\bfseries additional\+Action\+Button\+Debouncer\+Alarm}
+\item 
+\Hypertarget{main_8c_ae9f6756620b037da922049f72dfdb3f2}\label{main_8c_ae9f6756620b037da922049f72dfdb3f2} 
+\mbox{\hyperlink{struct_led_out}{led\+Out\+\_\+t}} {\bfseries led\+Out}
+\item 
+\Hypertarget{main_8c_aa97fa5bb81b28f18a1cbc18e3d012daf}\label{main_8c_aa97fa5bb81b28f18a1cbc18e3d012daf} 
+\mbox{\hyperlink{struct_joystick}{joystick\+\_\+t}} {\bfseries joystick}
+\item 
+\Hypertarget{main_8c_af44b53b97c99374b5f7c20501943f75e}\label{main_8c_af44b53b97c99374b5f7c20501943f75e} 
+uint8\+\_\+t {\bfseries joystick\+Action\+Debouncer\+Flag}
+\item 
+\Hypertarget{main_8c_ad4ff59178879d4a81909a5da64eed908}\label{main_8c_ad4ff59178879d4a81909a5da64eed908} 
+uint8\+\_\+t {\bfseries reset\+Navy\+Debouncer\+Flag}
+\item 
+\Hypertarget{main_8c_ab3ffe038b7b4334f46c920d262c3b995}\label{main_8c_ab3ffe038b7b4334f46c920d262c3b995} 
+uint8\+\_\+t {\bfseries fire\+Debouncer\+Flag}
+\item 
+\Hypertarget{main_8c_a28f6e00c32f4a0752920fd295ea27c2d}\label{main_8c_a28f6e00c32f4a0752920fd295ea27c2d} 
+\mbox{\hyperlink{struct_display}{display\+\_\+t}} {\bfseries display}
+\item 
+\Hypertarget{main_8c_a746adf006f7a3a10bf6bb2a2a431abb4}\label{main_8c_a746adf006f7a3a10bf6bb2a2a431abb4} 
+\mbox{\hyperlink{struct_byte}{byte\+\_\+t}} {\bfseries button\+Flags}
+\item 
+\Hypertarget{main_8c_a8ad7d1af1dfa96b549617e7ac7fa31fd}\label{main_8c_a8ad7d1af1dfa96b549617e7ac7fa31fd} 
+\mbox{\hyperlink{struct_field}{field\+\_\+t}} {\bfseries some\+Field}
+\item 
+\Hypertarget{main_8c_aa1496b551268d58824609c3b47995736}\label{main_8c_aa1496b551268d58824609c3b47995736} 
+\mbox{\hyperlink{struct_u_i_manager_struct}{UIManager\+\_\+t}} {\bfseries UIManager}
+\item 
+\Hypertarget{main_8c_a2b911b89b8a6b15af9a45823fe170184}\label{main_8c_a2b911b89b8a6b15af9a45823fe170184} 
+\mbox{\hyperlink{struct_model}{model\+\_\+t}} {\bfseries model}
+\item 
+\Hypertarget{main_8c_aeb5865d318071aab65903bf01fd8114d}\label{main_8c_aeb5865d318071aab65903bf01fd8114d} 
+\mbox{\hyperlink{struct_navigation_data}{navigation\+Data\+\_\+t}} {\bfseries navigation\+Data}
+\item 
+\Hypertarget{main_8c_aa568bf3b0a65f46f665472063d91d1f9}\label{main_8c_aa568bf3b0a65f46f665472063d91d1f9} 
+alarm\+\_\+id\+\_\+t {\bfseries main\+Alarm}
+\item 
+\Hypertarget{main_8c_a9bf33c457b57a879ce68da54aa78c3e9}\label{main_8c_a9bf33c457b57a879ce68da54aa78c3e9} 
+alarm\+\_\+id\+\_\+t {\bfseries confirm\+Alarm}
+\item 
+\Hypertarget{main_8c_aaf343830e9b28b28131cf21efb5a895f}\label{main_8c_aaf343830e9b28b28131cf21efb5a895f} 
+alarm\+\_\+id\+\_\+t {\bfseries supp\+Alarm1}
+\item 
+\Hypertarget{main_8c_a9d3c618b6516a4655b364fa9e00ede16}\label{main_8c_a9d3c618b6516a4655b364fa9e00ede16} 
+alarm\+\_\+id\+\_\+t {\bfseries joystick\+Action\+Debouncer\+Alarm}
+\item 
+\Hypertarget{main_8c_aafee641165e539946bd528260cd068ec}\label{main_8c_aafee641165e539946bd528260cd068ec} 
+alarm\+\_\+id\+\_\+t {\bfseries reset\+Navy\+Debouncer\+Alarm}
+\item 
+\Hypertarget{main_8c_ade922bffee841067c00623c6f394117d}\label{main_8c_ade922bffee841067c00623c6f394117d} 
+alarm\+\_\+id\+\_\+t {\bfseries fire\+Debouncer\+Alarm}
+\item 
+\Hypertarget{main_8c_a770f1c9cb6ba5a7852e121af82afe55b}\label{main_8c_a770f1c9cb6ba5a7852e121af82afe55b} 
+struct repeating\+\_\+timer {\bfseries UIManager\+Updater}
+\item 
+\Hypertarget{main_8c_a5bb6d7574534747f74b2832c1e6194d4}\label{main_8c_a5bb6d7574534747f74b2832c1e6194d4} 
+struct repeating\+\_\+timer {\bfseries joystick\+Update\+Timer}
+\item 
+\Hypertarget{main_8c_a1d10128f8e4264b365c5a3fcd6c861dc}\label{main_8c_a1d10128f8e4264b365c5a3fcd6c861dc} 
+struct repeating\+\_\+timer {\bfseries joystick\+Move\+Timer}
+\item 
+\Hypertarget{main_8c_a5b81807ddc8edcb63aeea581f6720785}\label{main_8c_a5b81807ddc8edcb63aeea581f6720785} 
+struct repeating\+\_\+timer {\bfseries view\+Resetter}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Project for PMiK, "{}\+Programowanie mikrokontrolerów"{} Game Battle\+Ships. 
+

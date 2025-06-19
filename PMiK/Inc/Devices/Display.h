@@ -1,6 +1,6 @@
 /**
- * \file	Display.h
- * \brief
+ * @file	Display.h
+ * @brief   Manage display modul
  */
 
 /*

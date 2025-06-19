@@ -1,6 +1,6 @@
 /**
- * \file	Defines_Buttons.h
- * \brief
+ * @file	Defines_Buttons.h
+ * @brief   Defines related to buttons
  */
 
 /*

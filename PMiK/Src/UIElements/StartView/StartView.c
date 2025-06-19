@@ -1,6 +1,6 @@
 /**
- * \file	StartView.c
- * \brief
+ * @file	StartView.c
+ * @brief   Draw start view
  */
 
 /*
@@ -11,6 +11,9 @@
 #include "StartView.h"
 
 
+/**
+ * @brief Draw field with placed ships/boats and down menu
+ */
 void drawStartView() {
     display.fillRectangle(0, 0, 128, 128, WHITE);
 

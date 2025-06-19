@@ -1,6 +1,6 @@
 /**
- * \file	MainMenuView.h
- * \brief
+ * @file	MainMenuView.h
+ * @brief   Draw main menu view
  */
 
 /*

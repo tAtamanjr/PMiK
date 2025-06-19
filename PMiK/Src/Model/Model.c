@@ -1,6 +1,6 @@
 /**
- * \file	Model.c
- * \brief
+ * @file	Model.c
+ * @brief   Structure for managing all precesses
  */
 
 /*
@@ -20,6 +20,9 @@ static void updateMainMenuCursor();
 static void updateStartGameMenuCursor();
 
 
+/**
+ * @brief Initialize structure
+ */
 void initModel() {
     model.reactOnViewChangeButtonPressed = reactOnViewChangeButtonPressed;
     model.reactOnMainActionButtonPressed = reactOnMainActionButtonPressed;
@@ -28,6 +31,9 @@ void initModel() {
     model.reactOnJoystick = reactOnJoystick;
 }
 
+/**
+ * @brief Make changes after view change button has been pressed
+ */
 static void reactOnViewChangeButtonPressed() {
     switch(UIManager.currentView) {
         case START_VIEW:
@@ -54,6 +60,9 @@ static void reactOnViewChangeButtonPressed() {
     }
 }
 
+/**
+ * @brief Make changes after main action button has been pressed
+ */
 static void reactOnMainActionButtonPressed() {
     switch(UIManager.currentView) {
         case START_VIEW:
@@ -89,6 +98,9 @@ static void reactOnMainActionButtonPressed() {
     }
 }
 
+/**
+ * @brief Make changes after additional action button has been pressed
+ */
 static void reactOnAdditionalActionButtonPressed() {
     switch(UIManager.currentView) {
         case START_VIEW:
@@ -110,6 +122,9 @@ static void reactOnAdditionalActionButtonPressed() {
     }
 }
 
+/**
+ * @brief Make changes after joystick has been moved to some side
+ */
 static void reactOnJoystick() {
     switch (UIManager.currentView) {
         case MAIN_MENU_VIEW:
@@ -130,6 +145,9 @@ static void reactOnJoystick() {
     }
 }
 
+/**
+ * @brief Change main menu chose button
+ */
 static void updateMainMenuCursor() {
     switch (navigationData.mainMenuActiveElementIndex) {
         case 0:
@@ -177,6 +195,9 @@ static void updateMainMenuCursor() {
     }
 }
 
+/**
+ * @brief Update cursor position
+ */
 static void updateStartGameMenuCursor() {
     switch (navigationData.placementMenuActiveElementIndex) {
         case 0:
@@ -224,6 +245,9 @@ static void updateStartGameMenuCursor() {
     }
 }
 
+/**
+ * @brief Make changes after shot
+ */
 static void fireCallback() {
         switch (someField.read(&someField, (coordinates_t) {joystick.cell->x, joystick.cell->y})) {
             case CLOUD_CELL:

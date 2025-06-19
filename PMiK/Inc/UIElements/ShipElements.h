@@ -1,6 +1,6 @@
 /**
- * \file	ShipElements.h
- * \brief
+ * @file	ShipElements.h
+ * @brief   Functions for drawing ship parts on the field
  */
 
 /*

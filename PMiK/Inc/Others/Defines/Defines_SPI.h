@@ -1,6 +1,6 @@
 /**
- * \file	Defines_SPI.h
- * \brief
+ * @file	Defines_SPI.h
+ * @brief   Defines related to SPI
  */
 
 /*

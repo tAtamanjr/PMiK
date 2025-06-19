@@ -1,6 +1,6 @@
 /**
- * \file	AlarmCallbackFunctions.c
- * \brief
+ * @file	AlarmCallbackFunctions.c
+ * @brief   Callback functions for alarms
  */
 
 /*

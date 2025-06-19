@@ -1,6 +1,6 @@
 /**
- * \file	StartGameView.h
- * \brief
+ * @file	StartGameView.h
+ * @brief   Draw field for placing ships/boats
  */
 
 /*

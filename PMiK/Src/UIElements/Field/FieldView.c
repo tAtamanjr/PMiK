@@ -1,6 +1,6 @@
 /**
- * \file	FieldView.c
- * \brief
+ * @file	FieldView.c
+ * @brief   Draw field view and on field view elements
  */
 
 /*
@@ -11,6 +11,9 @@
 #include "FieldView.h"
 
 
+/**
+ * @brief Draw field view
+ */
 void drawField() {
     display.fillRectangle(0, 0, 128, 128, WHITE);
 
@@ -108,6 +111,11 @@ void drawField() {
     drawNumber(joystick.cell->y + 1, 10, 132, RED);
 }
 
+/**
+ * @brief Draw ship/boat/cloud/water on field cell
+ * @param x - x axis coordinates on the field
+ * @param y - y axis coordinates on the field
+ */
 void drawCell(const uint8_t x, const uint8_t y) {
     switch (someField.read(&someField, (coordinates_t) {x, y})) {
         case WATER_CELL:
@@ -175,6 +183,11 @@ void drawCell(const uint8_t x, const uint8_t y) {
     }
 }
 
+/**
+ * @brief Draw aim on field cell
+ * @param x - x axis coordinates on the field
+ * @param y - y axis coordinates on the field
+ */
 void drawAim(const uint8_t x, const uint8_t y) {
     color_t color = RED;
     switch (someField.read(&someField, (coordinates_t) {x, y})) {

@@ -1,6 +1,6 @@
 /**
- * \file	TheData.h
- * \brief
+ * @file	TheData.h
+ * @brief   Useful functions
  */
 
 /*

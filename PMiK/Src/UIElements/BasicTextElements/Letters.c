@@ -1,6 +1,6 @@
 /**
- * \file	Letters.c
- * \brief
+ * @file	Letters.c
+ * @brief   Draw letters on the display
  */
 
 /*
@@ -37,6 +37,9 @@ static void drawSmallW(uint8_t x, uint8_t y, color_t color);
 static void drawSmallY(uint8_t x, uint8_t y, color_t color);
 
 
+/**
+ * @brief Draw supported big letters on the display
+ */
 void drawBigLetter(const letter_e letter, const uint8_t x, const uint8_t y, const color_t color) {
     switch (letter) {
         case B_b:
@@ -46,6 +49,9 @@ void drawBigLetter(const letter_e letter, const uint8_t x, const uint8_t y, cons
     }
 }
 
+/**
+ * @brief Draw supported small letters or "unknown" symbol on the display
+ */
 void drawSmallLetter(const letter_e letter, const uint8_t x, const uint8_t y, const color_t color) {
     switch (letter) {
         case A_s:

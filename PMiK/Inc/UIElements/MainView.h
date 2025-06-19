@@ -1,6 +1,6 @@
 /**
- * \file	MainViews.h
- * \brief
+ * @file	MainView.h
+ * @brief
  */
 
 /*

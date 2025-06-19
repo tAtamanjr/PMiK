@@ -1,6 +1,6 @@
 /**
- * \file	UIElements.h
- * \brief
+ * @file	UIElements.h
+ * @brief   Collection of all UI elements
  */
 
 /*

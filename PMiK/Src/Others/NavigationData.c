@@ -1,6 +1,6 @@
 /**
- * \file	NavigationData.c
- * \brief
+ * @file	NavigationData.c
+ * @brief   Structure will be used to keep data about which button on menu is being chose
  */
 
 /*
@@ -11,6 +11,9 @@
 #include "NavigationData.h"
 
 
+/**
+ * @brief Initialize structure
+ */
 void initNavigationData() {
     navigationData.mainMenuActiveElementIndex = 0;
     navigationData.placementCoordanates = (coordinates_t) {A, 0};

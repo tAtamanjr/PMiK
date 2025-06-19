@@ -1,6 +1,6 @@
 /**
- * \file	GameData.h
- * \brief
+ * @file	GameData.h
+ * @brief	Usefull data and functions during the game
  */
 
 /*

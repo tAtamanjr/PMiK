@@ -1,6 +1,6 @@
 /**
- * \file	FieldView.h
- * \brief
+ * @file	FieldView.h
+ * @brief   Draw field view and on field view elements
  */
 
 /*

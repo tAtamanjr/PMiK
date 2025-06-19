@@ -1,6 +1,6 @@
 /**
- * \file	Enum_ShipPart.h
- * \brief
+ * @file	Enum_ShipPart.h
+ * @brief   Enumeration with all possible ship's part/boat states
  */
 
 /*

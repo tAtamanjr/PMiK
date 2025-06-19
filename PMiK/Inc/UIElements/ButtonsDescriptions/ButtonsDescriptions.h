@@ -1,6 +1,6 @@
 /**
- * \file	ButtonsDescriptions.h
- * \brief
+ * @file	ButtonsDescriptions.h
+ * @brief   File to be removed
  */
 
 /*

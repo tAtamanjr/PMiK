@@ -1,6 +1,6 @@
 /**
- * \file	Numbers.h
- * \brief
+ * @file	Numbers.h
+ * @brief   Draw number on the display
  */
 
 /*

@@ -1,6 +1,6 @@
 /**
- * \file	Enum_Difficulty.h
- * \brief
+ * @file	Enum_Difficulty.h
+ * @brief	Enumeration with bot difficulties
  */
 
 /*

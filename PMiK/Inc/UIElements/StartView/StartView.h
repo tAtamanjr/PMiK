@@ -1,6 +1,6 @@
 /**
- * \file	StartView.h
- * \brief
+ * @file	StartView.h
+ * @brief   Draw start view
  */
 
 /*

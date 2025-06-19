@@ -1,6 +1,6 @@
 /**
- * \file	Byte.h
- * \brief
+ * @file	Byte.h
+ * @brief
  */
 
 /*

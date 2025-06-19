@@ -1,6 +1,6 @@
 /**
- * \file	NavyPlacer.h
- * \brief
+ * @file	NavyPlacer.h
+ * @brief	Structure for auto placing ships/boats
  */
 
 /*

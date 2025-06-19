@@ -1,6 +1,6 @@
 /**
- * \file	GameData.c
- * \brief
+ * @file	GameData.c
+ * @brief	Usefull data and functions during the game
  */
 
 /*
@@ -11,11 +11,19 @@
 #include "GameData.h"
 
 
+/**
+ * @brief Initialize structures
+ */
 void initGameData() {
     gameData = (gameData_t) {{4, 3, 3, 2, 2, 2, 1, 1, 1, 1}, 0, 0, (coordinates_t) {A, 0}};
     initField(&gameData.field);
 }
 
+/**
+ * @brief Check if ship's part/boat can be placed in some on field cell
+ * @param field - field where ship's part/boat wanted to be placed
+ * @param ship - ship parameters
+ */
 uint8_t findPlaceForShip(const field_t *field, const ship_t *ship) {
 	uint8_t startX;
 	uint8_t startY;

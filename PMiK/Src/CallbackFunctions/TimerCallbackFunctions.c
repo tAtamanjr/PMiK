@@ -1,6 +1,6 @@
 /**
- * \file	TimerCallbackFunctions.h
- * \brief
+ * @file	TimerCallbackFunctions.h
+ * @brief   Callback functions for timers
  */
 
 /*

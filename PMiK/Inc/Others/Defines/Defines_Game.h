@@ -1,6 +1,6 @@
 /**
- * \file	Defines_Game.h
- * \brief
+ * @file	Defines_Game.h
+ * @brief   Defines related to game process
  */
 
 /*

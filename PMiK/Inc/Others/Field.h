@@ -1,6 +1,6 @@
 /**
- * \file	Field.h
- * \brief
+ * @file	Field.h
+ * @brief   Game field
  */
 
 /*

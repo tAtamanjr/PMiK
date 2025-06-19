@@ -1,6 +1,6 @@
 /**
- * \file	UIManager.c
- * \brief
+ * @file	UIManager.c
+ * @brief   Manage views and change them
  */
 
 /*
@@ -17,7 +17,9 @@ static void setSmallChanges(uint8_t);
 static void changeView();
 static void updateCurrentView();
 
-
+/**
+ * @brief Initialize UIManager structure
+ */
 void initUIManager() {
     UIManager.currentView = START_VIEW;
     UIManager.nextView = 0b00000000;
@@ -28,6 +30,9 @@ void initUIManager() {
     drawStartView();
 }
 
+/**
+ * @brief Change current view/update current view or do nothing
+ */
 static void updateView() {
     if (UIManager.nextView && UIManager.currentView != UIManager.nextView) {
         changeView();
@@ -36,14 +41,23 @@ static void updateView() {
     }
 }
 
+/**
+ * @brief Set next view parameter so UIManager can change current view to next one
+ */
 static void setNextView(const uint8_t view) {
     UIManager.nextView = view;
 }
 
+/**
+ * @brief Set next view parameter so UIManager can update current view
+ */
 static void setSmallChanges(const uint8_t changes) {
     UIManager.smallChanges = UIManager.smallChanges | 1 << changes;
 }
 
+/**
+ * @brief Change current view to the next one
+ */
 static void changeView() {
     switch (UIManager.nextView) {
         case MAIN_MENU_VIEW:
@@ -93,6 +107,9 @@ static void changeView() {
     UIManager.smallChanges = NO_CHANGES;
 }
 
+/**
+ * @brief Update current view
+ */
 static void updateCurrentView() {
     if (UIManager.smallChanges & 1 << 2) {
             UIManager.currentView = 0b00000000;

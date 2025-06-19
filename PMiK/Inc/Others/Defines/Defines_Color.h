@@ -1,6 +1,6 @@
 /**
- * \file	Defines_Color.h
- * \brief
+ * @file	Defines_Color.h
+ * @brief   Defines related to used colors
  */
 
 /*

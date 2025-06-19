@@ -1,6 +1,6 @@
 /**
- * \file	FieldViewUpdateFunctions.c
- * \brief
+ * @file	FieldViewUpdateFunctions.c
+ * @brief   Change field view elements
  */
 
 /*
@@ -11,6 +11,9 @@
 #include "FieldViewUpdateFunctions.h"
 
 
+/**
+ * @brief Change aim position
+ */
 void updateAimPosition() {
     drawCell(joystick.cell->x, joystick.cell->y);
     joystick.updateCell();

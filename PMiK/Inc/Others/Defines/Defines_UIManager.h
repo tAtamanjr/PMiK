@@ -1,6 +1,6 @@
 /**
- * \file	Defines_UIManager.h
- * \brief
+ * @file	Defines_UIManager.h
+ * @brief   Defines related to UIManager
  */
 
 /*

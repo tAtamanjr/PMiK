@@ -1,6 +1,6 @@
 /**
- * \file	NavigationData.h
- * \brief
+ * @file	NavigationData.h
+ * @brief   Structure will be used to keep data about which button on menu is being chose
  */
 
 /*

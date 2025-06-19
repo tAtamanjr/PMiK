@@ -1,6 +1,6 @@
 /**
- * \file	Joystick.h
- * \brief
+ * @file	Joystick.h
+ * @brief   Manage joystick modul
  */
 
 /*

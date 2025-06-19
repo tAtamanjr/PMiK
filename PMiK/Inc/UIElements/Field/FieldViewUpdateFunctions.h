@@ -1,6 +1,6 @@
 /**
- * \file	FieldViewUpdateFunctions.h
- * \brief
+ * @file	FieldViewUpdateFunctions.h
+ * @brief   Change field view elements
  */
 
 /*

@@ -1,6 +1,6 @@
 /**
- * \file	Ship.h
- * \brief
+ * @file	Ship.h
+ * @brief	Structure for holding ship's data
  */
 
 /*

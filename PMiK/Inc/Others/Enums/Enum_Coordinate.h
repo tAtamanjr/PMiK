@@ -1,6 +1,6 @@
 /**
- * \file	Enum_Coordinate.h
- * \brief
+ * @file	Enum_Coordinate.h
+ * @brief	Enumeration with all possible on field coordinates
  */
 
 /*

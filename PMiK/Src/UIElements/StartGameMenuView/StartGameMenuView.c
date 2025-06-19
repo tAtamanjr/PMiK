@@ -1,6 +1,6 @@
 /**
- * \file	StartGameMenuView.c
- * \brief
+ * @file	StartGameMenuView.c
+ * @brief   Draw menu that can be accessed from start game view
  */
 
 /*
@@ -11,6 +11,9 @@
 #include "StartGameMenuView.h"
 
 
+/**
+ * \brief   Draw menu that can be accessed from start game view
+ */
 void drawStartGameMenuView() {
     display.fillScreen(BLACK);
 
@@ -44,6 +47,10 @@ void drawStartGameMenuView() {
     drawSmallLetter(E_s, 119, 150, WIRE_PURPLE);
 }
 
+/**
+ * @brief Draw button for removing last placed ship/boat from the field
+ * @param color - button's text color
+ */
 void drawReturnOneShipText(color_t color) {
     drawSmallLetter(R_s, 7, 38, color);
     drawSmallLetter(E_s, 15, 38, color);
@@ -62,6 +69,10 @@ void drawReturnOneShipText(color_t color) {
     drawSmallLetter(P_s, 111, 38, color);
 }
 
+/**
+ * @brief Draw button for removing all placed ship/boat from the field
+ * @param color - button's text color
+ */
 void drawResetAllShipsText(color_t color) {
     drawSmallLetter(R_s, 7, 58, color);
     drawSmallLetter(E_s, 15, 58, color);
@@ -80,6 +91,10 @@ void drawResetAllShipsText(color_t color) {
     drawSmallLetter(S_s, 111, 58, color);
 }
 
+/**
+ * @brief Draw button for aborting game
+ * @param color - button's text color
+ */
 void drawAbortGameText(color_t color) {
     drawSmallLetter(A_s, 26, 78, color);
     drawSmallLetter(B_s, 34, 78, color);

@@ -1,0 +1,108 @@
+\doxysection{Inc/\+Others/\+The\+Data.h File Reference}
+\hypertarget{_the_data_8h}{}\label{_the_data_8h}\index{Inc/Others/TheData.h@{Inc/Others/TheData.h}}
+
+
+Useful functions.  
+
+
+{\ttfamily \#include "{}pico/stdlib.\+h"{}}\newline
+{\ttfamily \#include "{}pico/rand.\+h"{}}\newline
+{\ttfamily \#include "{}pico/cyw43\+\_\+arch.\+h"{}}\newline
+{\ttfamily \#include "{}hardware/gpio.\+h"{}}\newline
+{\ttfamily \#include "{}hardware/adc.\+h"{}}\newline
+{\ttfamily \#include "{}hardware/spi.\+h"{}}\newline
+{\ttfamily \#include "{}hardware/timer.\+h"{}}\newline
+{\ttfamily \#include "{}Defines\+\_\+\+Other.\+h"{}}\newline
+{\ttfamily \#include "{}Defines\+\_\+\+Buttons.\+h"{}}\newline
+{\ttfamily \#include "{}Defines\+\_\+\+Color.\+h"{}}\newline
+{\ttfamily \#include "{}Defines\+\_\+\+Game.\+h"{}}\newline
+{\ttfamily \#include "{}Defines\+\_\+\+ADC.\+h"{}}\newline
+{\ttfamily \#include "{}Defines\+\_\+\+SPI.\+h"{}}\newline
+{\ttfamily \#include "{}Defines\+\_\+\+Display.\+h"{}}\newline
+{\ttfamily \#include "{}Defines\+\_\+\+UIManager.\+h"{}}\newline
+{\ttfamily \#include "{}Enum\+\_\+\+Coordinate.\+h"{}}\newline
+{\ttfamily \#include "{}Enum\+\_\+\+Difficulty.\+h"{}}\newline
+{\ttfamily \#include "{}Enum\+\_\+\+Direction.\+h"{}}\newline
+{\ttfamily \#include "{}Enum\+\_\+\+Letter.\+h"{}}\newline
+{\ttfamily \#include "{}Enum\+\_\+\+Ship\+Part.\+h"{}}\newline
+{\ttfamily \#include "{}Enum\+\_\+\+Shot\+Result.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{_the_data_8h_a6b0c41ef0ee1ea8b4e3e4e7b10a501c4}{random\+Number}} (uint8\+\_\+t min, uint8\+\_\+t max)
+\begin{DoxyCompactList}\small\item\em Generate random number. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{_the_data_8h_accc8228b5cb125c2933565a73aaa814a}{coordinate\+To\+Pixel}} (uint8\+\_\+t coordinate)
+\begin{DoxyCompactList}\small\item\em Convert on field coordinates to on display pixel. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{_the_data_8h_a509dcec3a57ceff445970be0c5a7cee6}{coordinate\+To\+Pixel\+With\+Shift}} (uint8\+\_\+t coordinate, uint8\+\_\+t shift)
+\begin{DoxyCompactList}\small\item\em Convert on field coordinates to on display pixel and adds some shift. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_the_data_8h_a68702fd11b438e46c47b13f4b9eafe18}\label{_the_data_8h_a68702fd11b438e46c47b13f4b9eafe18} 
+struct \mbox{\hyperlink{struct_led_out}{Led\+Out}} {\bfseries led\+Out}
+\item 
+\Hypertarget{_the_data_8h_a6a132c131b4dca848c88eb68e2a915af}\label{_the_data_8h_a6a132c131b4dca848c88eb68e2a915af} 
+struct \mbox{\hyperlink{struct_byte}{Byte}} {\bfseries button\+Flags}
+\item 
+\Hypertarget{_the_data_8h_a3b028c64d7ecb154a66cbe4c285ebd65}\label{_the_data_8h_a3b028c64d7ecb154a66cbe4c285ebd65} 
+struct \mbox{\hyperlink{struct_field}{Field}} {\bfseries some\+Field}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Useful functions. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{_the_data_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_the_data_8h_accc8228b5cb125c2933565a73aaa814a}\index{TheData.h@{TheData.h}!coordinateToPixel@{coordinateToPixel}}
+\index{coordinateToPixel@{coordinateToPixel}!TheData.h@{TheData.h}}
+\doxysubsubsection{\texorpdfstring{coordinateToPixel()}{coordinateToPixel()}}
+{\footnotesize\ttfamily \label{_the_data_8h_accc8228b5cb125c2933565a73aaa814a} 
+uint8\+\_\+t coordinate\+To\+Pixel (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{coordinate}{}\end{DoxyParamCaption})}
+
+
+
+Convert on field coordinates to on display pixel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coordinate} & -\/ on field coordinate \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_the_data_8h_a509dcec3a57ceff445970be0c5a7cee6}\index{TheData.h@{TheData.h}!coordinateToPixelWithShift@{coordinateToPixelWithShift}}
+\index{coordinateToPixelWithShift@{coordinateToPixelWithShift}!TheData.h@{TheData.h}}
+\doxysubsubsection{\texorpdfstring{coordinateToPixelWithShift()}{coordinateToPixelWithShift()}}
+{\footnotesize\ttfamily \label{_the_data_8h_a509dcec3a57ceff445970be0c5a7cee6} 
+uint8\+\_\+t coordinate\+To\+Pixel\+With\+Shift (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{coordinate}{, }\item[{const uint8\+\_\+t}]{shift}{}\end{DoxyParamCaption})}
+
+
+
+Convert on field coordinates to on display pixel and adds some shift. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coordinate} & -\/ on field coordinate \\
+\hline
+{\em shift} & -\/ shift \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_the_data_8h_a6b0c41ef0ee1ea8b4e3e4e7b10a501c4}\index{TheData.h@{TheData.h}!randomNumber@{randomNumber}}
+\index{randomNumber@{randomNumber}!TheData.h@{TheData.h}}
+\doxysubsubsection{\texorpdfstring{randomNumber()}{randomNumber()}}
+{\footnotesize\ttfamily \label{_the_data_8h_a6b0c41ef0ee1ea8b4e3e4e7b10a501c4} 
+uint8\+\_\+t random\+Number (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{min}{, }\item[{const uint8\+\_\+t}]{max}{}\end{DoxyParamCaption})}
+
+
+
+Generate random number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em min} & -\/ minimum value \\
+\hline
+{\em max} & -\/ maximum value \\
+\hline
+\end{DoxyParams}

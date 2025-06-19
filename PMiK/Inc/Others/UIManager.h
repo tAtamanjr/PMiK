@@ -1,6 +1,6 @@
 /**
- * \file	UIManager.h
- * \brief
+ * @file	UIManager.h
+ * @brief   Manage views and change them
  */
 
 /*

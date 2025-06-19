@@ -1,0 +1,36 @@
+\doxysection{Field.\+h}
+\hypertarget{_field_8h_source}{}\label{_field_8h_source}\index{Inc/Others/Field.h@{Inc/Others/Field.h}}
+\mbox{\hyperlink{_field_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2025\ Oleksandr\ "{}tAtaman"{}\ Bolbat}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ FIELD\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ FIELD\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#ifndef\ THE\_DATA\_H}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_the_data_8h}{TheData.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#ifndef\ COORDINATES\_H}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_coordinates_8h}{Coordinates.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_field}{Field}}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ uint8\_t\ self[FIELD\_SIZE\ *\ FIELD\_SIZE];}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ void\ (*set)\ (\textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_field}{Field}}\ *field,\ coordinates\_t\ cell,\ uint8\_t\ value);}
+\DoxyCodeLine{00026\ \ \ \ \ uint8\_t\ (*read)\ (\textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_field}{Field}}\ *field,\ coordinates\_t\ cell);}
+\DoxyCodeLine{00027\ \}\ field\_t;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_field_8h_a656c0b9c2283f74cf26675fdbef29e19}{initField}}(field\_t\ *field);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

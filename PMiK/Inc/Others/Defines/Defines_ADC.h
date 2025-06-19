@@ -1,6 +1,6 @@
 /**
- * \file	Defines_ADC.h
- * \brief
+ * @file	Defines_ADC.h
+ * @brief   Defines related to ADC
  */
 
 /*

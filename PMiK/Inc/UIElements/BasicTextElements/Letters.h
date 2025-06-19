@@ -1,6 +1,6 @@
 /**
- * \file	Letters.h
- * \brief
+ * @file	Letters.h
+ * @brief   Draw letters on the display
  */
 
 /*

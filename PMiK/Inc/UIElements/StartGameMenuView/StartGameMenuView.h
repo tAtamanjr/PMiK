@@ -1,6 +1,6 @@
 /**
- * \file	StartGameMenuView.h
- * \brief
+ * @file	StartGameMenuView.h
+ * @brief   Draw menu that can be accessed from start game view
  */
 
 /*

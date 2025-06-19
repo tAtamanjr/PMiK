@@ -1,6 +1,6 @@
 /**
- * \file	Numbers.c
- * \brief
+ * @file	Numbers.c
+ * @brief   Draw number on the display
  */
 
 /*
@@ -23,6 +23,9 @@ static void drawSmall8(uint8_t x, uint8_t y, color_t color);
 static void drawSmall9(uint8_t x, uint8_t y, color_t color);
 
 
+/**
+ * @brief Draw supported numbers on the display
+ */
 void drawNumber(const uint8_t number, const uint8_t x, const uint8_t y, const color_t color) {
     switch (number) {
         case 0:

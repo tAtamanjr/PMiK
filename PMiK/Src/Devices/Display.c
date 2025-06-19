@@ -1,6 +1,6 @@
 /**
- * \file	Display.c
- * \brief
+ * @file	Display.c
+ * @brief   Manage display modul
  */
 
 /*

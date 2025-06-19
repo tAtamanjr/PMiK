@@ -1,6 +1,6 @@
 /**
- * \file	IRQCallBackFunctions.h
- * \brief
+ * @file	IRQCallBackFunctions.h
+ * @brief   Callback functions for interupts
  */
 
 /*

@@ -1,0 +1,63 @@
+\doxysection{Inc/\+Others/\+Game\+Data.h File Reference}
+\hypertarget{_game_data_8h}{}\label{_game_data_8h}\index{Inc/Others/GameData.h@{Inc/Others/GameData.h}}
+
+
+Usefull data and functions during the game.  
+
+
+{\ttfamily \#include "{}The\+Data.\+h"{}}\newline
+{\ttfamily \#include "{}Coordinates.\+h"{}}\newline
+{\ttfamily \#include "{}Field.\+h"{}}\newline
+{\ttfamily \#include "{}Ship.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_game_data}{Game\+Data}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_game_data_8h_aedc2c4462063de02956c3b4e175c865e}\label{_game_data_8h_aedc2c4462063de02956c3b4e175c865e} 
+typedef struct \mbox{\hyperlink{struct_game_data}{Game\+Data}} {\bfseries game\+Data\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_game_data_8h_af0d9f6d51363b7339165eabef7d38999}\label{_game_data_8h_af0d9f6d51363b7339165eabef7d38999} 
+void {\bfseries init\+Game\+Data} ()
+\begin{DoxyCompactList}\small\item\em Initialize structures. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{_game_data_8h_ae40319b7b9fa13b36521b0e3f0f9dc54}{find\+Place\+For\+Ship}} (const \mbox{\hyperlink{struct_field}{field\+\_\+t}} \texorpdfstring{$\ast$}{*}, const \mbox{\hyperlink{struct_ship}{ship\+\_\+t}} \texorpdfstring{$\ast$}{*})
+\begin{DoxyCompactList}\small\item\em Check if ship\textquotesingle{}s part/boat can be placed in some on field cell. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_game_data_8h_af37dedabe23a17a4305876d4c8004148}\label{_game_data_8h_af37dedabe23a17a4305876d4c8004148} 
+\mbox{\hyperlink{struct_game_data}{game\+Data\+\_\+t}} {\bfseries game\+Data}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Usefull data and functions during the game. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{_game_data_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_game_data_8h_ae40319b7b9fa13b36521b0e3f0f9dc54}\index{GameData.h@{GameData.h}!findPlaceForShip@{findPlaceForShip}}
+\index{findPlaceForShip@{findPlaceForShip}!GameData.h@{GameData.h}}
+\doxysubsubsection{\texorpdfstring{findPlaceForShip()}{findPlaceForShip()}}
+{\footnotesize\ttfamily \label{_game_data_8h_ae40319b7b9fa13b36521b0e3f0f9dc54} 
+uint8\+\_\+t find\+Place\+For\+Ship (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_field}{field\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{field}{, }\item[{const \mbox{\hyperlink{struct_ship}{ship\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ship}{}\end{DoxyParamCaption})}
+
+
+
+Check if ship\textquotesingle{}s part/boat can be placed in some on field cell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em field} & -\/ field where ship\textquotesingle{}s part/boat wanted to be placed \\
+\hline
+{\em ship} & -\/ ship parameters \\
+\hline
+\end{DoxyParams}
