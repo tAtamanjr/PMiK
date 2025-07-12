@@ -34,22 +34,22 @@ void callbackSwitcher(uint gpio, uint32_t events) {
 
 
 static void viewChangeButtonPressed() {
-    if (viewChangeButtonDebouncerFlag) {
-        viewChangeButtonDebouncerFlag = 0;
+    if (!inputModulesFlags.viewChangeButtonDebouncerFlag()) {
+        inputModulesFlags.setOnViewChangeButtonDebouncerFlag();
         model.reactOnViewChangeButtonPressed();
     }
 }
 
 static void mainActionButtonPressed() {
-    if (mainActionButtonDebouncerFlag) {
-        mainActionButtonDebouncerFlag = 0;
+    if (!inputModulesFlags.mainActionButtonDebouncerFlag()) {
+        inputModulesFlags.setOnMainActionButtonDebouncerFlag();
         model.reactOnMainActionButtonPressed();
     }
 }
 
 static void additionalActionButtonPressed() {
-    if (additionalActionButtonDebouncerFlag) {
-        additionalActionButtonDebouncerFlag = 0;
+    if (!inputModulesFlags.additionalActionButtonDebouncerFlag()) {
+        inputModulesFlags.setOnAdditionalActionButtonDebouncerFlag();
         model.reactOnAdditionalActionButtonPressed();
     }
 }

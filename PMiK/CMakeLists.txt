@@ -53,8 +53,10 @@ pico_sdk_init()
 include_directories(${CMAKE_SOURCE_DIR}/Inc/Others/Defines)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/Others/Enums)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/Others)
+include_directories(${CMAKE_SOURCE_DIR}/Inc/Data/Flags)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/CallbackFunctions)
-include_directories(${CMAKE_SOURCE_DIR}/Inc/Devices)
+include_directories(${CMAKE_SOURCE_DIR}/Inc/Modules)
+include_directories(${CMAKE_SOURCE_DIR}/Inc/Modules/BoardModules)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/Model)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/UIElements/BasicTextElements)
 include_directories(${CMAKE_SOURCE_DIR}/Inc/UIElements/StartGameView)
@@ -69,7 +71,9 @@ include_directories(${CMAKE_SOURCE_DIR}/Inc/Bot)
 # All source files and main.c
 file(GLOB SRC_FILES ${CMAKE_SOURCE_DIR}/Src/Others/*.c
                     ${CMAKE_SOURCE_DIR}/Src/CallbackFunctions/*.c
-                    ${CMAKE_SOURCE_DIR}/Src/Devices/*.c
+                    ${CMAKE_SOURCE_DIR}/Src/Data/Flags/*.c
+                    ${CMAKE_SOURCE_DIR}/Src/Modules/*.c
+                    ${CMAKE_SOURCE_DIR}/Src/Modules/BoardModules/*.c
                     ${CMAKE_SOURCE_DIR}/Src/Model/*.c
                     ${CMAKE_SOURCE_DIR}/Src/UIElements/BasicTextElements/*.c
                     ${CMAKE_SOURCE_DIR}/Src/UIElements/StartGameView/*.c

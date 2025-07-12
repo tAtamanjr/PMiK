@@ -15,8 +15,11 @@
 #ifndef BYTE_H
 #include "Byte.h"
 #endif
+#ifndef INPUT_MODULES_FLAGS_H
+#include "InputModulesFlags.h"
+#endif
 #ifndef LED_OUT_H
-#include "LedOut.h"
+#include "WL_GPIO_LED.h"
 #endif
 #ifndef JOYSTICK_H
 #include "Joystick.h"
@@ -51,17 +54,14 @@
 #endif
 
 
-uint8_t viewChangeButtonDebouncerFlag;
-uint8_t mainActionButtonDebouncerFlag;
-uint8_t additionalActionButtonDebouncerFlag;
+inputModulesFlags_t inputModulesFlags;
+
 alarm_id_t viewChangeButtonDebouncerAlarm;
 alarm_id_t mainActionButtonDebouncerAlarm;
 alarm_id_t additionalActionButtonDebouncerAlarm;
 
-// byte_t states;
-ledOut_t ledOut;
+WL_GPIO_LED_t WL_GPIO_LED;
 joystick_t joystick;
-uint8_t joystickActionDebouncerFlag;
 uint8_t resetNavyDebouncerFlag;
 uint8_t fireDebouncerFlag;
 display_t display;
@@ -78,21 +78,24 @@ alarm_id_t joystickActionDebouncerAlarm;
 alarm_id_t resetNavyDebouncerAlarm;
 alarm_id_t fireDebouncerAlarm;
 
-struct repeating_timer UIManagerUpdater;
+struct repeating_timer joystickTimer;
+struct repeating_timer UIManagerTimer;
+struct repeating_timer modelTimer;
+
+struct repeating_timer debuggTimer;
+
 struct repeating_timer joystickUpdateTimer;
-struct repeating_timer joystickMoveTimer;
-struct repeating_timer viewResetter;
 
 
 void setUp();
-void initElements();
+void initSupport();
+void initModules();
+void initButtons();
+void initUI();
 void setIRQs();
 void startTimers();
 
 
-/**
- * @brief Initialize RPI2 Pico, modules, structures, enable interupts and start timers
- */
 int main() {
     setUp();
 
@@ -103,28 +106,34 @@ int main() {
     while (HABEMUS_RES_QUAE_AD_SOLVENDUM_OPUS) tight_loop_contents();
 }
 
-/**
- * @brief Initialize everything
- */
 void setUp() {
     stdio_init_all();
     sleep_ms(500);
 
-    initElements();
+    initSupport();
+    initModules();
+    initUI();
+
+    initByte(&buttonFlags);
+    initField(&someField);
+
+    resetNavyDebouncerFlag = 1;
+    fireDebouncerFlag = 1;
     sleep_ms(500);
 }
 
-/**
- * @brief Initialize everyting except RPI2 Pico
- */
-void initElements() {
-    initLedOut();
+void initSupport() {
+    initInputModulesFlags();
+}
+
+void initModules() {
+    initWL_GPIO_LED();
+    initButtons();
     initJoystick();
     initDisplay();
-    initNavigationData();
-    initUIManager();
-    initModel();
+}
 
+void initButtons() {
     gpio_init(VIEW_CHANGE_BUTTON);
     gpio_set_dir(VIEW_CHANGE_BUTTON, GPIO_IN);
 
@@ -133,32 +142,26 @@ void initElements() {
 
     gpio_init(ADDITIONAL_ACTION_BUTTON);
     gpio_set_dir(ADDITIONAL_ACTION_BUTTON, GPIO_IN);
-
-    initByte(&buttonFlags);
-    initField(&someField);
-
-    viewChangeButtonDebouncerFlag = 1;
-    mainActionButtonDebouncerFlag = 1;
-    additionalActionButtonDebouncerFlag = 1;
-
-    joystickActionDebouncerFlag = 1;
-    resetNavyDebouncerFlag = 1;
-    fireDebouncerFlag = 1;
 }
 
-/**
- * @brief Enable intrupts
- */
+void initUI() {
+    initNavigationData();
+    initUIManager();
+    initModel();
+}
+
 void setIRQs() {
     gpio_set_irq_enabled_with_callback(VIEW_CHANGE_BUTTON, GPIO_IRQ_EDGE_RISE, true, &callbackSwitcher);
     gpio_set_irq_enabled(MAIN_ACTION_BUTTON, GPIO_IRQ_EDGE_RISE, true);
     gpio_set_irq_enabled(ADDITIONAL_ACTION_BUTTON, GPIO_IRQ_EDGE_RISE, true);
 }
 
-/**
- * @brief Start timers
- */
 void startTimers() {
-    add_repeating_timer_ms(25, UIManagerUpdateCallback, NULL, &UIManagerUpdater);
     add_repeating_timer_ms(50, joystickDataCallback, NULL, &joystickUpdateTimer);
+
+    // add_repeating_timer_ms(25, updateJoystickDataCallback, NULL, &joystickTimer);
+    add_repeating_timer_ms(25, updateUIManagerCallback, NULL, &UIManagerTimer);
+    add_repeating_timer_ms(50, updateGameDataCallback, NULL, &modelTimer);
+
+    add_repeating_timer_ms(100, debuggCallback, NULL, &debuggTimer);
 }

@@ -1,6 +1,6 @@
 /**
  * @file	TimerCallbackFunctions.h
- * @brief   Callback functions for timers
+ * @brief
  */
 
 /*
@@ -15,6 +15,9 @@
 #include "TheData.h"
 #endif
 
+#ifndef INPUT_MODULES_FLAGS_H
+#include "InputModulesFlags.h"
+#endif
 #ifndef JOYSTICK_H
 #include "Joystick.h"
 #endif
@@ -29,9 +32,21 @@
 #endif
 
 
+extern struct repeating_timer joystickTimer;
+extern struct repeating_timer UIManagerTimer;
+extern struct repeating_timer modelTimer;
+
+extern struct repeating_timer debuggTimer;
+
 extern struct repeating_timer timer;
 extern struct repeating_timer viewResetter;
 
+
+bool updateJoystickDataCallback(struct repeating_timer *t);
+bool updateUIManagerCallback(struct repeating_timer *t);
+bool updateGameDataCallback(struct repeating_timer *t);
+
+bool debuggCallback(struct repeating_timer *t);
 
 bool joystickDataCallback(struct repeating_timer *t);
 bool UIManagerUpdateCallback(struct repeating_timer *t);

@@ -15,6 +15,9 @@
 #include "TheData.h"
 #endif
 
+#ifndef INPUT_MODULES_FLAGS_H
+#include "InputModulesFlags.h"
+#endif
 #ifndef NAVIGATION_DATA_H
 #include "NavigationData.h"
 #endif

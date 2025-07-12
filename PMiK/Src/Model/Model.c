@@ -41,7 +41,7 @@ static void reactOnViewChangeButtonPressed() {
             UIManager.setNextView(MAIN_MENU_VIEW);
             return;
         case MAIN_MENU_VIEW:
-            viewChangeButtonDebouncerFlag = 1;
+            inputModulesFlags.setOffViewChangeButtonDebouncerFlag();
             return;
         case START_GAME_VIEW:
             viewChangeButtonDebouncerAlarm = add_alarm_in_ms(500, viewChangeButtonDebouncerCallback, NULL, false);
@@ -52,10 +52,10 @@ static void reactOnViewChangeButtonPressed() {
             UIManager.setNextView(START_GAME_VIEW);
             return;
         case FIELD_VIEW:
-            viewChangeButtonDebouncerFlag = 1;
+            inputModulesFlags.setOffViewChangeButtonDebouncerFlag();
             return;
         default:
-            viewChangeButtonDebouncerFlag = 1;
+            inputModulesFlags.setOffViewChangeButtonDebouncerFlag();
             return;
     }
 }
@@ -75,10 +75,10 @@ static void reactOnMainActionButtonPressed() {
                 UIManager.setNextView(START_GAME_VIEW);
                 return;
             }
-            mainActionButtonDebouncerFlag = 1;
+            inputModulesFlags.setOffMainActionButtonDebouncerFlag();
             return;
         case START_GAME_VIEW:
-            mainActionButtonDebouncerFlag = 1;
+            inputModulesFlags.setOffMainActionButtonDebouncerFlag();
             return;
         case START_GAME_MENU_VIEW:
             if (navigationData.placementMenuActiveElementIndex == 2) {
@@ -87,13 +87,13 @@ static void reactOnMainActionButtonPressed() {
                 navigationData.placementMenuActiveElementIndex = 0;
                 return;
             }
-            mainActionButtonDebouncerFlag = 1;
+            inputModulesFlags.setOffMainActionButtonDebouncerFlag();
             return;
         case FIELD_VIEW:
-            mainActionButtonDebouncerFlag = 1;
+            inputModulesFlags.setOffMainActionButtonDebouncerFlag();
             return;
         default:
-            mainActionButtonDebouncerFlag = 1;
+            inputModulesFlags.setOffMainActionButtonDebouncerFlag();
             return;
     }
 }
@@ -108,16 +108,16 @@ static void reactOnAdditionalActionButtonPressed() {
             UIManager.setNextView(MAIN_MENU_VIEW);
             return;
         case MAIN_MENU_VIEW:
-            additionalActionButtonDebouncerFlag = 1;
+            inputModulesFlags.setOffAdditionalActionButtonDebouncerFlag();
             return;
         case START_GAME_VIEW:
-            additionalActionButtonDebouncerFlag = 1;
+            inputModulesFlags.setOffAdditionalActionButtonDebouncerFlag();
             return;
         case FIELD_VIEW:
-            additionalActionButtonDebouncerFlag = 1;
+            inputModulesFlags.setOffAdditionalActionButtonDebouncerFlag();
             return;
         default:
-            additionalActionButtonDebouncerFlag = 1;
+            inputModulesFlags.setOffAdditionalActionButtonDebouncerFlag();
             return;
     }
 }
@@ -128,19 +128,19 @@ static void reactOnAdditionalActionButtonPressed() {
 static void reactOnJoystick() {
     switch (UIManager.currentView) {
         case MAIN_MENU_VIEW:
-            joystickActionDebouncerAlarm = add_alarm_in_ms(250, joystickactionDebouncerCallback, NULL, false);
+            joystickActionDebouncerAlarm = add_alarm_in_ms(250, joystickActionDebouncerCallback, NULL, false);
             updateMainMenuCursor();
             return;
         case START_GAME_MENU_VIEW:
-            joystickActionDebouncerAlarm = add_alarm_in_ms(250, joystickactionDebouncerCallback, NULL, false);
+            joystickActionDebouncerAlarm = add_alarm_in_ms(250, joystickActionDebouncerCallback, NULL, false);
             updateStartGameMenuCursor();
             return;
         case FIELD_VIEW:
-            joystickActionDebouncerAlarm = add_alarm_in_ms(150, joystickactionDebouncerCallback, NULL, false);
+            joystickActionDebouncerAlarm = add_alarm_in_ms(150, joystickActionDebouncerCallback, NULL, false);
             UIManager.setSmallChanges(UPDATE_ON_FIELD_AIM);
             return;
         default:
-            joystickActionDebouncerFlag = 1;
+            inputModulesFlags.setOffJoystickActionDebouncerFlag();
             return;
     }
 }

@@ -78,7 +78,6 @@
 #endif
 
 
-extern struct LedOut ledOut;
 extern struct Byte buttonFlags;
 extern struct Field someField;
 

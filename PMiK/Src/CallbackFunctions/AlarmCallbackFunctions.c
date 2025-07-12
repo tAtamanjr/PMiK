@@ -12,22 +12,22 @@
 
 
 int64_t viewChangeButtonDebouncerCallback(alarm_id_t id, void *user_data) {
-    viewChangeButtonDebouncerFlag = 1;
+    inputModulesFlags.setOffViewChangeButtonDebouncerFlag();
     return 0;
 }
 
 int64_t mainActionButtonDebouncerCallback(alarm_id_t id, void *user_data) {
-    mainActionButtonDebouncerFlag = 1;
+    inputModulesFlags.setOffMainActionButtonDebouncerFlag();
     return 0;
 }
 
 int64_t additionalActionButtonDebouncerCallback(alarm_id_t id, void *user_data) {
-    additionalActionButtonDebouncerFlag = 1;
+    inputModulesFlags.setOffAdditionalActionButtonDebouncerFlag();
     return 0;
 }
 
-int64_t joystickactionDebouncerCallback(alarm_id_t id, void *user_data) {
-    joystickActionDebouncerFlag = 1;
+int64_t joystickActionDebouncerCallback(alarm_id_t id, void *user_data) {
+    inputModulesFlags.setOffJoystickActionDebouncerFlag();
     return 0;
 }
 
